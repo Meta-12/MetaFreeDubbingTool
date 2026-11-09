@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Khmer Dubber – AI video dubbing to Khmer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ============ Khmer Dubber · studio theme ============ */
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>
+      Khmer Dubber – AI video dubbing to Khmer
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=Noto+Sans+Khmer:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+    <style>
+      /* ============ Khmer Dubber · studio theme ============ */
     :root {
       --bg: #06080f;
       --card: rgba(255, 255, 255, .035);
@@ -199,7 +200,7 @@
     .chips b { color: var(--acc3); font-weight: 700; margin-right: 5px }
 
     /* ---------- layout & cards ---------- */
-    .layout { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: start }
+    .layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start }
     @media (max-width: 940px) { .layout { grid-template-columns: minmax(0, 1fr) } }
 
     .card {
@@ -214,9 +215,8 @@
       animation: rise .7s cubic-bezier(.2, .8, .2, 1) both;
       transition: border-color .25s, box-shadow .25s
     }
-    main .card:nth-child(2) { animation-delay: .12s }
-    aside.card { animation-delay: .2s; position: sticky; top: calc(76px + env(safe-area-inset-top, 0px)) }
-    @media (max-width: 940px) { aside.card { position: static } }
+    aside { position: sticky; top: calc(76px + env(safe-area-inset-top, 0px)); display: flex; flex-direction: column }
+    @media (max-width: 940px) { aside { position: static } }
     .card:hover { border-color: color-mix(in srgb, var(--acc) 30%, var(--line)) }
     @keyframes rise { from { opacity: 0; transform: translateY(22px) scale(.985) } }
 
@@ -259,7 +259,7 @@
       background: #000; border: 1px solid var(--line);
       box-shadow: 0 18px 44px rgba(0, 0, 0, .4)
     }
-    video { display: block; width: 100%; max-width: 100%; height: auto; max-height: 56vh }
+    video { display: block; width: 100%; max-width: 100%; height: auto; max-height: 54vh }
     #cap {
       position: absolute; left: 12px; right: 12px; bottom: 48px;
       text-align: center; color: #fff;
@@ -308,14 +308,20 @@
     @keyframes shine { to { left: 130% } }
 
     /* ---------- progress & steps ---------- */
-    .track { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; margin-top: 18px }
+    .track { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; margin-top: 18px; position: relative }
     .track i {
       display: block; height: 100%; width: 0; border-radius: 99px;
       background-image: linear-gradient(90deg, var(--acc), var(--acc2), var(--acc3), var(--acc));
       background-size: 200% 100%;
       animation: flow 2s linear infinite;
       transition: width .5s;
-      box-shadow: 0 0 14px rgba(124, 108, 255, .6)
+      box-shadow: 0 0 14px rgba(124, 108, 255, .7);
+      position: relative;
+    }
+    .track i::after {
+      content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 14px;
+      background: #fff; border-radius: 50%; filter: blur(3px); opacity: .85;
+      box-shadow: 0 0 10px #22d3ee;
     }
     @keyframes flow { to { background-position: -200% 0 } }
 
@@ -338,34 +344,99 @@
       border-color: color-mix(in srgb, var(--acc) 55%, var(--line));
       color: var(--ink);
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(124, 108, 255, .22)
+      box-shadow: 0 8px 22px rgba(124, 108, 255, .25);
     }
     .s.on i { background: var(--grad); color: #fff; animation: p 1.2s infinite }
     .s.done { border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); color: var(--ink) }
     .s.done i { background: var(--ok); color: #fff; animation: pop .4s }
     .s.done i span { display: none }
     .s.done i::before { content: "✓" }
-    @keyframes p { 50% { box-shadow: 0 0 0 6px rgba(124, 108, 255, .22) } }
+    @keyframes p { 50% { box-shadow: 0 0 0 6px rgba(124, 108, 255, .25) } }
     @keyframes pop { 50% { transform: scale(1.35) } }
 
     #log { margin: 12px 0 0; font-size: 13px; color: var(--mute); min-height: 1.4em; transition: color .3s }
 
-    /* ---------- busy panel ---------- */
+    /* ---------- enhanced cool busy panel (AI Audio Engine) ---------- */
     .busy {
-      display: none; margin-top: 16px; padding: 16px 18px;
-      border-radius: 16px; position: relative; overflow: hidden;
-      border: 1px solid color-mix(in srgb, var(--acc) 40%, var(--line));
-      background: linear-gradient(135deg, rgba(124, 108, 255, .1), rgba(200, 107, 255, .08))
+      display: none; margin-top: 18px; padding: 18px 20px;
+      border-radius: 20px; position: relative; overflow: hidden;
+      border: 1px solid rgba(124, 108, 255, .38);
+      background: linear-gradient(135deg, rgba(13, 18, 38, .88), rgba(24, 16, 50, .88));
+      backdrop-filter: blur(18px);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, .45), 0 0 28px rgba(124, 108, 255, .2), inset 0 1px 0 rgba(255, 255, 255, .15);
     }
-    .busy.on { display: flex; gap: 16px; align-items: center; animation: rise .5s both }
-    .eq { display: flex; gap: 4px; align-items: flex-end; height: 38px; flex: none }
-    .eq b { width: 5px; border-radius: 3px; background: var(--grad); animation: eq 1s ease-in-out infinite }
-    .eq b:nth-child(2) { animation-delay: -.8s }
-    .eq b:nth-child(3) { animation-delay: -.6s }
-    .eq b:nth-child(4) { animation-delay: -.4s }
-    .eq b:nth-child(5) { animation-delay: -.2s }
-    .eq b:nth-child(6) { animation-delay: -.9s }
-    @keyframes eq { 0%, 100% { height: 20% } 50% { height: 100% } }
+    .busy.on { display: flex; gap: 18px; align-items: center; animation: glowRise .6s cubic-bezier(.2, .8, .2, 1) both }
+    @keyframes glowRise {
+      from { opacity: 0; transform: translateY(18px) scale(.97) }
+      to { opacity: 1; transform: translateY(0) scale(1) }
+    }
+    .busy::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(400px 120px at 15% 0%, rgba(124, 108, 255, .22), transparent 70%),
+                  radial-gradient(300px 120px at 85% 100%, rgba(34, 211, 238, .18), transparent 70%);
+      pointer-events: none;
+    }
+    .ai-core { position: relative; flex: none; display: grid; place-items: center }
+    .ai-orb {
+      width: 48px; height: 48px; border-radius: 50%;
+      position: relative; display: grid; place-items: center;
+      background: rgba(10, 14, 30, .85);
+      box-shadow: 0 0 22px rgba(124, 108, 255, .5), inset 0 0 14px rgba(124, 108, 255, .4);
+    }
+    .ai-ring {
+      position: absolute; inset: -3px; border-radius: 50%;
+      background: conic-gradient(from 0deg, #7c6cff, #c86bff, #22d3ee, #7c6cff);
+      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+      animation: spinRing 2.4s linear infinite;
+    }
+    @keyframes spinRing { to { transform: rotate(360deg) } }
+    .ai-center {
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 13px; font-weight: 800; letter-spacing: .06em;
+      background: var(--grad);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: pulseCore 1.6s ease-in-out infinite alternate;
+    }
+    @keyframes pulseCore { from { transform: scale(.92); filter: brightness(1) } to { transform: scale(1.08); filter: brightness(1.3) } }
+
+    .eq-visualizer { display: flex; gap: 3.5px; align-items: flex-end; height: 38px; flex: none }
+    .eq-visualizer b {
+      width: 4px; border-radius: 4px;
+      background: linear-gradient(180deg, #22d3ee, #c86bff 55%, #7c6cff);
+      box-shadow: 0 0 8px rgba(34, 211, 238, .6);
+      animation: audioWave 1.2s ease-in-out infinite alternate;
+    }
+    .eq-visualizer b:nth-child(1) { height: 35%; animation-delay: -.1s }
+    .eq-visualizer b:nth-child(2) { height: 75%; animation-delay: -.4s }
+    .eq-visualizer b:nth-child(3) { height: 45%; animation-delay: -.7s }
+    .eq-visualizer b:nth-child(4) { height: 95%; animation-delay: -.2s }
+    .eq-visualizer b:nth-child(5) { height: 60%; animation-delay: -.8s }
+    .eq-visualizer b:nth-child(6) { height: 100%; animation-delay: -.5s }
+    .eq-visualizer b:nth-child(7) { height: 40%; animation-delay: -.3s }
+    .eq-visualizer b:nth-child(8) { height: 85%; animation-delay: -.9s }
+    .eq-visualizer b:nth-child(9) { height: 50%; animation-delay: -.6s }
+    .eq-visualizer b:nth-child(10) { height: 90%; animation-delay: -.25s }
+    .eq-visualizer b:nth-child(11) { height: 65%; animation-delay: -.75s }
+    .eq-visualizer b:nth-child(12) { height: 40%; animation-delay: -.35s }
+    .eq-visualizer b:nth-child(13) { height: 80%; animation-delay: -.85s }
+    .eq-visualizer b:nth-child(14) { height: 55%; animation-delay: -.15s }
+    @keyframes audioWave {
+      0% { height: 15%; filter: brightness(.85) }
+      50% { height: 90%; filter: brightness(1.2) }
+      100% { height: 30%; filter: brightness(1) }
+    }
+
+    .stage-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--acc3); margin-bottom: 2px;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--ok); box-shadow: 0 0 10px var(--ok);
+      animation: blink 1.2s infinite;
+    }
     .bm { min-width: 0; flex: 1 }
     .bt { font-weight: 700; font-size: 15px; transition: opacity .35s, transform .35s }
     .bt.sw { opacity: 0; transform: translateY(6px) }
@@ -389,7 +460,7 @@
     .blog .bh button { border: 0; background: none; color: #8f9bff; cursor: pointer; font-size: 11.5px; font-weight: 600 }
     .blog .bh button:hover { color: #c3c9ff }
     #blogbody {
-      height: 150px; overflow-y: auto; padding: 10px 12px;
+      height: 140px; overflow-y: auto; padding: 10px 12px;
       font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       color: #cdd5ee;
       -webkit-user-select: text; user-select: text
@@ -416,9 +487,9 @@
     }
     button.b.p:hover:not(:disabled) { color: #fff; filter: brightness(1.12); box-shadow: 0 12px 26px rgba(124, 108, 255, .5) }
 
-    /* ---------- script list ---------- */
+    /* ---------- script list (now on the right side) ---------- */
     .list {
-      max-height: 280px; overflow: auto; margin-top: 4px;
+      max-height: 380px; overflow: auto; margin-top: 8px;
       font-size: 14px; border: 1px solid var(--line); border-radius: 14px;
       background: color-mix(in srgb, var(--card) 60%, transparent)
     }
@@ -607,189 +678,419 @@
         transition-duration: .01ms !important
       }
     }
-  </style>
-</head>
-
-<body>
-  <div class="aurora"><i></i><i></i><i></i></div>
-  <div id="guard">🔒 Developer tools are disabled on this site.<br>Please close them to continue.</div>
-  <div class="wrap">
-    <header class="top">
-      <div class="brand">
-        <div class="logo">ខ</div>
-        <div>
-          <h1>Khmer Dubber</h1>
-          <p>AI video dubbing · free-tier friendly · runs in your browser</p>
+    </style>
+  </head>
+  <body>
+    <div class="aurora">
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
+    <div id="guard">
+      🔒 Developer tools are disabled on this site.
+      <br />
+      Please close them to continue.
+    </div>
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div class="logo">
+            ខ
+          </div>
+          <div>
+            <h1>
+              Khmer Dubber
+            </h1>
+            <p>
+              AI video dubbing · free-tier friendly · runs in your browser
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="acts"><button class="donate" id="donateBtn" type="button"><span>❤</span><b>Support
-            me</b></button><button class="icon" id="theme" title="Light / dark">◐</button></div>
-    </header>
-    <section class="hero">
-      <div class="eyebrow"><i></i>AI Dubbing Studio · ភាសាខ្មែរ</div>
-      <h2>Dub any video into <span class="grad">Khmer</span></h2>
-      <p>Transcribe, translate and voice-over in one click — right in your browser. Your video never leaves your device.</p>
-      <div class="chips"><span><b>✦</b>Free-tier friendly</span><span><b>✦</b>Natural Khmer voices</span><span><b>✦</b>100% private</span><span><b>✦</b>Frame-accurate export</span></div>
-    </section>
-    <div class="layout">
-      <main>
-        <div class="card">
-          <div class="drop" id="drop">
-            <div class="dz">⬆</div>
-            <div><b id="dropTxt">Drop a video here or click to browse</b><small>MP4, MOV, WebM · the file never leaves
-                your device</small></div>
-          </div>
-          <input type="file" id="file" accept="video/*" hidden>
-          <div class="stage" id="stage" hidden><video id="v" controls playsinline></video>
-            <div id="cap"></div>
-          </div>
-          <div class="ctrl"><label class="vol">🔉 Original audio <input type="range" id="vol" min="0" max="100"
-                value="15" data-save></label><button class="cta" id="go" disabled>✨ Dub to Khmer</button></div>
-          <div class="track"><i id="bar"></i></div>
-          <ol class="steps">
-            <li class="s" id="s1"><i><span>1</span></i>Transcribe</li>
-            <li class="s" id="s2"><i><span>2</span></i>Translate</li>
-            <li class="s" id="s3"><i><span>3</span></i>Khmer voice</li>
-          </ol>
-          <div class="busy" id="busy">
-            <div class="eq"><b></b><b></b><b></b><b></b><b></b><b></b></div>
-            <div class="bm">
-              <div class="bt" id="bt">Getting ready</div>
-              <div class="bs" id="bs">Please keep this tab open</div>
+        <div class="acts">
+          <button class="donate" id="donateBtn" type="button">
+            <span>❤</span>
+            <b>Support me</b>
+          </button>
+          <button class="icon" id="theme" title="Light / dark">
+            ◐
+          </button>
+        </div>
+      </header>
+      <section class="hero">
+        <div class="eyebrow">
+          <i></i>
+          AI Dubbing Studio · ភាសាខ្មែរ
+        </div>
+        <h2>
+          Dub any video into
+          <span class="grad">Khmer</span>
+        </h2>
+        <p>
+          Transcribe, translate and voice-over in one click — right in your browser. Your video never leaves your device.
+        </p>
+        <div class="chips">
+          <span><b>✦</b> Free-tier friendly</span>
+          <span><b>✦</b> Natural Khmer voices</span>
+          <span><b>✦</b> 100% private</span>
+          <span><b>✦</b> Frame-accurate export</span>
+        </div>
+      </section>
+      <div class="layout">
+        <main>
+          <div class="card">
+            <div class="drop" id="drop">
+              <div class="dz">
+                ⬆
+              </div>
+              <div>
+                <b id="dropTxt">Drop a video here or click to browse</b>
+                <small>MP4, MOV, WebM · the file never leaves your device</small>
+              </div>
+            </div>
+            <input type="file" id="file" accept="video/*" hidden="" />
+            <div class="stage" id="stage" hidden="">
+              <video id="v" controls="" playsinline="">
+              </video>
+              <div id="cap">
+              </div>
+            </div>
+            <div class="ctrl">
+              <label class="vol">
+                🔉 Original audio
+                <input type="range" id="vol" min="0" max="100" value="15" data-save="" />
+              </label>
+              <button class="cta" id="go" disabled="">
+                ✨ Dub to Khmer
+              </button>
+            </div>
+            <div class="track">
+              <i id="bar"></i>
+            </div>
+            <ol class="steps">
+              <li class="s" id="s1">
+                <i><span>1</span></i>
+                Transcribe
+              </li>
+              <li class="s" id="s2">
+                <i><span>2</span></i>
+                Translate
+              </li>
+              <li class="s" id="s3">
+                <i><span>3</span></i>
+                Khmer voice
+              </li>
+            </ol>
+            <!-- Enhanced cool dubbing process animation -->
+            <div class="busy" id="busy">
+              <div class="ai-core">
+                <div class="ai-orb">
+                  <div class="ai-ring"></div>
+                  <div class="ai-center">AI</div>
+                </div>
+              </div>
+              <div class="eq-visualizer">
+                <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
+                <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
+              </div>
+              <div class="bm">
+                <div class="stage-tag">
+                  <span class="live-dot"></span>
+                  <span id="bstage">AI Dubbing Engine</span>
+                </div>
+                <div class="bt" id="bt">Getting ready</div>
+                <div class="bs" id="bs">Please keep this tab open</div>
+              </div>
+            </div>
+            <p id="log">
+            </p>
+            <div class="blog">
+              <div class="bh">
+                <span>Backend log</span>
+                <button type="button" id="blogclear">
+                  Clear
+                </button>
+              </div>
+              <div id="blogbody">
+              </div>
             </div>
           </div>
-          <p id="log"></p>
-          <div class="blog">
-            <div class="bh"><span>Backend log</span><button type="button" id="blogclear">Clear</button></div>
-            <div id="blogbody"></div>
+        </main>
+        <aside>
+          <!-- Dubbing result info placed in the right side beside video -->
+          <div class="card" id="resCard" hidden="">
+            <h2>
+              Khmer script
+              <span class="btns">
+                <button class="b" id="genv">🔊 Voice</button>
+                <button class="b" id="replay">▶ Replay</button>
+                <button class="b" id="dlaudio">⬇ Audio</button>
+                <button class="b" id="dl">⬇ .srt</button>
+                <button class="b p" id="exp">🎞 Export dubbed video</button>
+              </span>
+            </h2>
+            <div class="list" id="list">
+            </div>
+            <p class="note" id="voiceNote">
+            </p>
           </div>
+
+          <!-- Configuration card -->
+          <div class="card">
+            <div class="tabs">
+              <button class="on" data-tab="prov">
+                Providers
+              </button>
+              <button data-tab="pipe">
+                Pipeline
+              </button>
+              <button data-tab="subs">
+                Subtitles
+              </button>
+            </div>
+            <section class="panel" id="tab-prov">
+              <p class="note" style="margin:0 0 12px">
+                Add each key in its own box (＋ Add key). Keys are automatically verified with Google before adding.
+              </p>
+              <div class="prov">
+                <div class="ph">
+                  <label class="sw">
+                    <input type="checkbox" id="en-gemini" data-save="" checked="" />
+                    <b>Gemini</b>
+                  </label>
+                  <span class="tag">transcribe · translate · voice</span>
+                  <a href="https://aistudio.google.com/apikey" rel="noopener" target="_blank">Get free key ↗</a>
+                </div>
+                <textarea id="key" data-save="" placeholder="AIza… (one per line)" spellcheck="false">
+                </textarea>
+                <div class="mrow">
+                  <span>Models</span>
+                  <button class="b" data-refresh="gemini">
+                    ↻ Load
+                  </button>
+                </div>
+                <textarea id="model" data-save="" spellcheck="false">gemini-2.0-flash
+gemini-2.0-flash-lite
+gemini-1.5-flash
+gemini-1.5-pro</textarea>
+              </div>
+              <p class="note" id="used">
+              </p>
+            </section>
+            <section class="panel" id="tab-pipe" hidden="">
+              <label class="f" for="voice">
+                Khmer voice
+              </label>
+              <select id="voice" data-save="">
+                <option value="gemini">
+                  Gemini voice (just open the page, works on any device, exportable)
+                </option>
+                <option value="edge">
+                  Edge voice — Sreymom / Piseth (natural Khmer, exportable)
+                </option>
+                <option value="device">
+                  This device’s Khmer voice (no export)
+                </option>
+              </select>
+              <div id="v-edge">
+                <label class="f" for="evoice">
+                  Edge voice
+                </label>
+                <div class="two">
+                  <select id="evoice" data-save="">
+                    <option value="km-KH-SreymomNeural">
+                      Sreymom (female)
+                    </option>
+                    <option value="km-KH-PisethNeural">
+                      Piseth (male)
+                    </option>
+                  </select>
+                  <input type="hidden" id="eurl" value="https://khmer-voice-1.onrender.com" />
+                </div>
+                <div hidden="" style="display:flex;gap:10px;align-items:center;margin-top:8px">
+                  <button class="b" id="etest">
+                    Test helper
+                  </button>
+                  <span class="note" id="etestmsg" style="margin:0">Paste your Worker link above, then press Test.</span>
+                </div>
+              </div>
+              <div id="v-gemini">
+                <label class="f" for="vname">
+                  Gemini voice style
+                </label>
+                <select id="vname" data-save="">
+                  <optgroup label="♀ Female">
+                    <option value="Zephyr">
+                      Zephyr · Female · Bright
+                    </option>
+                    <option value="Kore">
+                      Kore · Female · Firm
+                    </option>
+                    <option value="Leda">
+                      Leda · Female · Youthful
+                    </option>
+                    <option value="Aoede">
+                      Aoede · Female · Breezy
+                    </option>
+                    <option value="Callirrhoe">
+                      Callirrhoe · Female · Easy-going
+                    </option>
+                    <option value="Autonoe">
+                      Autonoe · Female · Bright
+                    </option>
+                    <option value="Despina">
+                      Despina · Female · Smooth
+                    </option>
+                    <option value="Erinome">
+                      Erinome · Female · Clear
+                    </option>
+                    <option value="Laomedeia">
+                      Laomedeia · Female · Upbeat
+                    </option>
+                    <option value="Achernar">
+                      Achernar · Female · Soft
+                    </option>
+                    <option value="Gacrux">
+                      Gacrux · Female · Mature
+                    </option>
+                    <option value="Pulcherrima">
+                      Pulcherrima · Female · Forward
+                    </option>
+                    <option value="Vindemiatrix">
+                      Vindemiatrix · Female · Gentle
+                    </option>
+                    <option value="Sulafat">
+                      Sulafat · Female · Warm
+                    </option>
+                  </optgroup>
+                  <optgroup label="♂ Male">
+                    <option value="Puck">
+                      Puck · Male · Upbeat
+                    </option>
+                    <option value="Charon">
+                      Charon · Male · Informative
+                    </option>
+                    <option value="Fenrir">
+                      Fenrir · Male · Excitable
+                    </option>
+                    <option value="Orus">
+                      Orus · Male · Firm
+                    </option>
+                    <option value="Enceladus">
+                      Enceladus · Male · Breathy
+                    </option>
+                    <option value="Iapetus">
+                      Iapetus · Male · Clear
+                    </option>
+                    <option value="Umbriel">
+                      Umbriel · Male · Easy-going
+                    </option>
+                    <option value="Algieba">
+                      Algieba · Male · Smooth
+                    </option>
+                    <option value="Algenib">
+                      Algenib · Male · Gravelly
+                    </option>
+                    <option value="Rasalgethi">
+                      Rasalgethi · Male · Informative
+                    </option>
+                    <option value="Alnilam">
+                      Alnilam · Male · Firm
+                    </option>
+                    <option value="Schedar">
+                      Schedar · Male · Even
+                    </option>
+                    <option value="Achird">
+                      Achird · Male · Friendly
+                    </option>
+                    <option value="Zubenelgenubi">
+                      Zubenelgenubi · Male · Casual
+                    </option>
+                    <option value="Sadachbia">
+                      Sadachbia · Male · Lively
+                    </option>
+                    <option value="Sadaltager">
+                      Sadaltager · Male · Knowledgeable
+                    </option>
+                  </optgroup>
+                </select>
+                <p class="note">
+                  Gender labels are as commonly reported for these voices; the tone may sound a little
+                different in Khmer. Try one and press 🔊 Voice to hear it.
+                </p>
+                <label class="f" for="ttsmodel">
+                  Gemini voice models, in order
+                </label>
+                <textarea id="ttsmodel" data-save="" spellcheck="false">gemini-2.0-flash</textarea>
+                <p class="note">
+                  Nearby lines are grouped into larger requests to save free quota. Gemini voice models have
+                small free limits.
+                </p>
+              </div>
+            </section>
+            <section class="panel" id="tab-subs" hidden="">
+              <p class="note" style="margin:0 0 10px">
+                Optional: paste your Khmer subtitles (.srt) or plain Khmer text.
+              Transcription and translation are skipped completely: the text is used exactly as written and goes straight
+              to the voice. Plain lines are spread evenly across the video.
+              </p>
+              <input type="file" id="srt" accept=".srt,.vtt,.txt" style="font-size:13px" />
+              <textarea id="srtText" style="min-height:150px;margin-top:10px" placeholder="1
+00:00:01,000 --> 00:00:03,500
+Hello everyone, welcome back.">
+              </textarea>
+            </section>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <p class="foot">
+      Made with ❤ for Khmer creators ·
+      <a id="donateLink">Buy me a coffee ☕</a>
+    </p>
+    <div class="mod" id="mod">
+      <div class="mbox">
+        <div class="big">
+          ☕
         </div>
-        <div class="card" id="resCard" hidden>
-          <h2>Khmer script<span class="btns"><button class="b" id="genv">🔊 Voice</button><button class="b"
-                id="replay">▶ Replay</button><button class="b" id="dlaudio">⬇ Audio</button><button class="b" id="dl">⬇ .srt</button><button class="b p" id="exp">🎞
-                Export dubbed video</button></span></h2>
-          <div class="list" id="list"></div>
-          <p class="note" id="voiceNote"></p>
+        <h3>
+          Support this project
+        </h3>
+        <p>
+          If Khmer Dubber saved you time, a small donation keeps it free and growing. Thank you!
+        </p>
+        <div class="merr" id="merr">
         </div>
-      </main>
-      <aside class="card">
-        <div class="tabs"><button class="on" data-tab="prov">Providers</button><button
-            data-tab="pipe">Pipeline</button><button data-tab="subs">Subtitles</button></div>
-        <section class="panel" id="tab-prov">
-          <p class="note" style="margin:0 0 12px">Add each key in its own box (＋ Add key); pasting several keys splits
-            them automatically. When a key or model is rate-limited, the next one is used automatically.</p>
-          <div class="prov">
-            <div class="ph"><label class="sw"><input type="checkbox" id="en-gemini" data-save
-                  checked><b>Gemini</b></label><span class="tag">transcribe · translate · voice</span><a
-                href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Get free key ↗</a></div>
-            <textarea id="key" data-save placeholder="AIza… (one per line)" spellcheck="false"></textarea>
-            <div class="mrow"><span>Models</span><button class="b" data-refresh="gemini">↻ Load</button></div>
-            <textarea id="model" data-save spellcheck="false">
-gemini-3.6-flash
-gemini-3.5-flash
-gemini-3.5-flash-lite
-gemini-3-flash-preview</textarea>
-          </div>
-          <p class="note" id="used"></p>
-        </section>
-        <section class="panel" id="tab-pipe" hidden>
-          <label class="f" for="voice">Khmer voice</label>
-          <select id="voice" data-save>
-            <option value="gemini">Gemini voice (just open the page, works on any device, exportable)</option>
-            <option value="edge">Edge voice — Sreymom / Piseth (natural Khmer, exportable)</option>
-            <option value="device">This device’s Khmer voice (no export)</option>
-          </select>
-          <div id="v-edge"><label class="f" for="evoice">Edge voice</label>
-            <div class="two"><select id="evoice" data-save>
-                <option value="km-KH-SreymomNeural">Sreymom (female)</option>
-                <option value="km-KH-PisethNeural">Piseth (male)</option>
-              </select><input type="hidden" id="eurl" value="https://khmer-voice-1.onrender.com"></div>
-            <div hidden style="display:flex;gap:10px;align-items:center;margin-top:8px"><button class="b"
-                id="etest">Test
-                helper</button><span class="note" id="etestmsg" style="margin:0">Paste your
-                Worker link above, then press Test.</span></div>
-          </div>
-          <div id="v-gemini"><label class="f" for="vname">Gemini voice style</label>
-            <select id="vname" data-save>
-              <optgroup label="♀ Female">
-                <option value="Zephyr">Zephyr · Female · Bright</option>
-                <option value="Kore">Kore · Female · Firm</option>
-                <option value="Leda">Leda · Female · Youthful</option>
-                <option value="Aoede">Aoede · Female · Breezy</option>
-                <option value="Callirrhoe">Callirrhoe · Female · Easy-going</option>
-                <option value="Autonoe">Autonoe · Female · Bright</option>
-                <option value="Despina">Despina · Female · Smooth</option>
-                <option value="Erinome">Erinome · Female · Clear</option>
-                <option value="Laomedeia">Laomedeia · Female · Upbeat</option>
-                <option value="Achernar">Achernar · Female · Soft</option>
-                <option value="Gacrux">Gacrux · Female · Mature</option>
-                <option value="Pulcherrima">Pulcherrima · Female · Forward</option>
-                <option value="Vindemiatrix">Vindemiatrix · Female · Gentle</option>
-                <option value="Sulafat">Sulafat · Female · Warm</option>
-              </optgroup>
-              <optgroup label="♂ Male">
-                <option value="Puck">Puck · Male · Upbeat</option>
-                <option value="Charon">Charon · Male · Informative</option>
-                <option value="Fenrir">Fenrir · Male · Excitable</option>
-                <option value="Orus">Orus · Male · Firm</option>
-                <option value="Enceladus">Enceladus · Male · Breathy</option>
-                <option value="Iapetus">Iapetus · Male · Clear</option>
-                <option value="Umbriel">Umbriel · Male · Easy-going</option>
-                <option value="Algieba">Algieba · Male · Smooth</option>
-                <option value="Algenib">Algenib · Male · Gravelly</option>
-                <option value="Rasalgethi">Rasalgethi · Male · Informative</option>
-                <option value="Alnilam">Alnilam · Male · Firm</option>
-                <option value="Schedar">Schedar · Male · Even</option>
-                <option value="Achird">Achird · Male · Friendly</option>
-                <option value="Zubenelgenubi">Zubenelgenubi · Male · Casual</option>
-                <option value="Sadachbia">Sadachbia · Male · Lively</option>
-                <option value="Sadaltager">Sadaltager · Male · Knowledgeable</option>
-              </optgroup>
-            </select>
-            <p class="note">Gender labels are as commonly reported for these voices; the tone may sound a little
-              different in Khmer. Try one and press 🔊 Voice to hear it.</p>
-            <label class="f" for="ttsmodel">Gemini voice models, in order</label>
-            <textarea id="ttsmodel" data-save spellcheck="false">gemini-3.1-flash-tts-preview</textarea>
-            <p class="note">Nearby lines are grouped into larger requests to save free quota. Gemini voice models have
-              small free limits.</p>
-          </div>
-        </section>
-        <section class="panel" id="tab-subs" hidden>
-          <p class="note" style="margin:0 0 10px">Optional: paste your Khmer subtitles (.srt) or plain Khmer text.
-            Transcription and translation are skipped completely: the text is used exactly as written and goes straight
-            to the voice. Plain lines are spread evenly across the video.</p>
-          <input type="file" id="srt" accept=".srt,.vtt,.txt" style="font-size:13px">
-          <textarea id="srtText" style="min-height:150px;margin-top:10px"
-            placeholder="1&#10;00:00:01,000 --> 00:00:03,500&#10;Hello everyone, welcome back."></textarea>
-        </section>
-      </aside>
+        <a class="tg" id="tg" rel="noopener noreferrer" target="_blank">✈ Donate via Telegram</a>
+        <button class="mclose" id="mclose" type="button">
+          Maybe later
+        </button>
+      </div>
     </div>
-  </div>
-  <p class="foot">Made with ❤ for Khmer creators · <a id="donateLink">Buy me a coffee ☕</a></p>
-  <div class="mod" id="mod">
-    <div class="mbox">
-      <div class="big">☕</div>
-      <h3>Support this project</h3>
-      <p>If Khmer Dubber saved you time, a small donation keeps it free and growing. Thank you!</p>
-      <div class="merr" id="merr"></div>
-      <a class="tg" id="tg" target="_blank" rel="noopener noreferrer">✈ Donate via Telegram</a>
-      <button class="mclose" id="mclose" type="button">Maybe later</button>
+    <div class="mod" id="xmod">
+      <div class="mbox">
+        <div class="big">
+          🎉
+        </div>
+        <h3>
+          Your Khmer dub is ready!
+        </h3>
+        <p id="xinfo">
+        </p>
+        <a class="tg" id="xopen" rel="noopener" target="_blank">▶ Open exported video</a>
+        <button class="b" id="xsave" type="button" style="width:100%;margin-top:10px">
+          ⬇ Save another copy
+        </button>
+        <p class="note" id="xwhere" style="margin-top:12px">
+        </p>
+        <button class="mclose" id="xclose" type="button">
+          Close
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="mod" id="xmod">
-    <div class="mbox">
-      <div class="big">🎉</div>
-      <h3>Your Khmer dub is ready!</h3>
-      <p id="xinfo"></p>
-      <a class="tg" id="xopen" target="_blank" rel="noopener">▶ Open exported video</a>
-      <button class="b" id="xsave" type="button" style="width:100%;margin-top:10px">⬇ Save another copy</button>
-      <p class="note" id="xwhere" style="margin-top:12px"></p>
-      <button class="mclose" id="xclose" type="button">Close</button>
+    <div class="toast" id="toast">
     </div>
-  </div>
-  <div class="toast" id="toast"></div>
-  <script>
-    // ================== OWNER SETTINGS ==================
+    <script>
+      // ================== OWNER SETTINGS ==================
     // Put YOUR Telegram link here (e.g. https://t.me/yourname). Must start with https://t.me/
     const DONATE_TELEGRAM = 'https://t.me/donateTOmeta';
     // ====================================================
@@ -805,7 +1106,7 @@ gemini-3-flash-preview</textarea>
       if (near || b.children.length < 3) b.scrollTop = b.scrollHeight;
     };
     const log = m => { $('log').textContent = m; if (m) blog(m, /^⚠/.test(m) ? 'w' : /^✓|^Done/.test(m) ? 'k' : '') };
-    $('blogclear').onclick = () => { $('blogbody').innerHTML = ''; _bl = '' };
+    $('blogclear').onclick = () => { $('blogbody').innerHTML = ''; _bl = ''; };
     let curFile, segs = [], spoken = new Set(), dubbing = false, kmVoice = null;
 
     // ---------- load video ----------
@@ -853,9 +1154,29 @@ gemini-3-flash-preview</textarea>
     document.querySelectorAll('[data-save]').forEach(el => { const k = 'kd_' + el.id, c = el.type === 'checkbox'; try { const x = localStorage.getItem(k); if (x !== null) c ? el.checked = x === '1' : el.value = x } catch (_) { } el.addEventListener('input', () => { try { localStorage.setItem(k, c ? (el.checked ? '1' : '0') : el.value) } catch (_) { } }) });
     const lines = el => el.value.split(/[\s,]+/).filter(Boolean);
     const providers = () => keyList().length && $('en-gemini').checked ? ['gemini'] : [];
-    try { if (localStorage.getItem('kd_modelv') !== '4') { ['model', 'ttsmodel'].forEach(id => { const v = $(id).value.split(/[\s,]+/).filter(x => x && !/3\.8/.test(x)); $(id).value = v.join('\n'); localStorage.setItem('kd_' + id, $(id).value) }); localStorage.setItem('kd_modelv', '4') } } catch (_) { }
+    const AVAILABLE_MODELS = ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-flash', 'gemini-1.5-pro'];
+    try {
+      ['model', 'ttsmodel'].forEach(id => {
+        const stored = localStorage.getItem('kd_' + id) || $(id).value || '';
+        const cleaned = stored.split(/[\s,]+/).map(s => s.trim()).filter(x => x && !/2\.5|3\.[5678]/.test(x));
+        const finalVal = (id === 'model') ? (cleaned.length ? cleaned : AVAILABLE_MODELS).join('\n') : (cleaned.length ? cleaned.join('\n') : 'gemini-2.0-flash');
+        $(id).value = finalVal;
+        localStorage.setItem('kd_' + id, finalVal);
+      });
+      localStorage.setItem('kd_modelv', '5');
+      try {
+        const o = JSON.parse(localStorage.getItem('kd_cool') || '{}');
+        let mod = false;
+        for (const k in o) { if (/2\.5|3\.[5678]/.test(k)) { delete o[k]; mod = true; } }
+        if (mod) localStorage.setItem('kd_cool', JSON.stringify(o));
+      } catch (_) { }
+    } catch (_) { }
     const sleep = ms => new Promise(r => setTimeout(r, ms));
-    const keyList = () => $('key').value.split(/[\s,]+/).filter(Boolean), modelList = () => $('model').value.split(/[\s,]+/).filter(Boolean);
+    const keyList = () => [...new Set($('key').value.split(/[\s,]+/).filter(Boolean))];
+    const modelList = () => {
+      const list = $('model').value.split(/[\s,]+/).map(s => s.trim()).filter(x => x && !/2\.5/.test(x));
+      return list.length ? list : AVAILABLE_MODELS;
+    };
     // ---- per-key / per-model state (remembered across reloads) ----
     const cool = {}, dly = {}, keyBad = {}; window.paintKeys = () => { };
     try { const o = JSON.parse(localStorage.getItem('kd_cool') || '{}'); for (const id in o) if (o[id].u > Date.now()) { cool[id] = o[id].u; if (o[id].d) dly[id] = 1 } } catch (_) { }
@@ -871,15 +1192,41 @@ gemini-3-flash-preview</textarea>
       if (!k) return null; if (keyBad[k]) return { t: 'Invalid key', c: 'bad', title: keyBad[k] };
       const M = modelList(), now = Date.now(), lim = M.filter(m => (cool[m + '|' + k] || 0) > now);
       if (!M.length) return { t: '—', c: '' };
-      if (!lim.length) return { t: 'Ready', c: 'ok', title: 'This key can be used now' };
+      if (!lim.length) return { t: 'Ready', c: 'ok', title: 'This key is verified and ready' };
       const left = Math.min(...lim.map(m => cool[m + '|' + k]));
-      if (lim.length < M.length) return { t: 'Ready · ' + lim.length + '/' + M.length + ' models resting', c: 'warn', title: 'Some models are limited for this key; others still work' };
+      if (lim.length < M.length) return { t: 'Ready · ' + lim.length + '/' + M.length + ' resting', c: 'warn', title: 'Some models are resting for this key' };
       if (lim.every(m => dly[m + '|' + k])) return { t: 'Limit today · ' + dur(left - now), c: 'bad', title: 'Daily quota used up. Skipped until it resets.' };
-      return { t: 'Resting ' + dur(left - now), c: 'warn', title: 'Failed or rate-limited. Skipped for now, retried after the rest.' };
+      return { t: 'Resting ' + dur(left - now), c: 'warn', title: 'Rate-limited right now. Retried after cooldown.' };
+    }
+
+    // ---------- verify Gemini API key before adding ----------
+    async function verifyGeminiKey(key) {
+      const k = String(key || '').trim();
+      if (!k) return { ok: false, msg: 'Empty API key' };
+      if (!/^AIzaSy[A-Za-z0-9_-]{33}$/.test(k)) {
+        return { ok: false, msg: 'Invalid format. Google Gemini keys start with AIzaSy…' };
+      }
+      try {
+        const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=1', {
+          headers: { 'x-goog-api-key': k }
+        });
+        if (res.ok) return { ok: true, msg: 'Valid Gemini key' };
+        const j = await res.json().catch(() => ({}));
+        const m = (j.error && j.error.message) || String(res.status);
+        if (res.status === 400 || res.status === 403 || /api key/i.test(m)) {
+          return { ok: false, msg: 'Not a valid Gemini key: ' + m.slice(0, 70) };
+        }
+        if (res.status === 429 || res.status >= 500) {
+          return { ok: true, msg: 'Valid key (currently limited)', warn: true };
+        }
+        return { ok: false, msg: 'Validation failed: ' + m.slice(0, 70) };
+      } catch (_) {
+        return { ok: true, msg: 'Format valid (offline check)', warn: true };
+      }
     }
 
     // ---------- robust transcript helpers ----------
-    function looseJson(t) { // keeps every complete object even if the answer was cut off
+    function looseJson(t) {
       t = String(t).replace(/```json|```/g, '').trim();
       try { return JSON.parse(t) } catch (_) { }
       const out = []; let depth = 0, st = -1, str = false, esc = false;
@@ -893,7 +1240,7 @@ gemini-3-flash-preview</textarea>
       if (!out.length) throw new Error('bad json');
       return out;
     }
-    const tsAny = v => { // 12.5 | "12.5" | "01:12" | "00:01:12.5"
+    const tsAny = v => {
       if (typeof v === 'number') return isFinite(v) ? v : NaN;
       if (typeof v !== 'string') return NaN;
       const s = v.trim().replace(',', '.');
@@ -908,7 +1255,7 @@ gemini-3-flash-preview</textarea>
         text: String(x.text ?? x.original ?? '').trim(), km: String(x.km ?? x.khmer ?? '').trim()
       })).filter(x => x.text || x.km);
       const bad = L.filter((x, i) => !isFinite(x.s) || x.s < 0 || x.s > dur + 1 || (i && x.s < L[i - 1].s - 0.01)).length;
-      if (L.length > 1 && bad > L.length * 0.3) { // timestamps unusable → spread by text length
+      if (L.length > 1 && bad > L.length * 0.3) {
         const tot = L.reduce((a, x) => a + (x.km || x.text).length, 0) || 1; let acc = 0;
         L.forEach(x => { x.s = acc / tot * dur; acc += (x.km || x.text).length; x.e = acc / tot * dur });
       } else L.forEach((x, i) => {
@@ -928,7 +1275,6 @@ gemini-3-flash-preview</textarea>
       });
       return o;
     }
-    // seconds that clearly contain speech-level audio but no subtitle
     function voicedGaps(pcm, L, off) {
       const n = Math.floor(pcm.length / 16000); if (n < 3) return [];
       const v = [];
@@ -1003,7 +1349,6 @@ gemini-3-flash-preview</textarea>
       for (let i = 0; i < n; i++) { const x = Math.max(-1, Math.min(1, pcm[i])); o.setInt16(44 + i * 2, x < 0 ? x * 32768 : x * 32767, true) }
       return o.buffer;
     }
-    // ---- read ONLY the audio track out of an MP4/MOV (low memory: works on iPhone) ----
     async function mp4Audio(file) {
       const u64 = (d, o) => d.getUint32(o) * 4294967296 + d.getUint32(o + 4);
       const tt = (d, o) => String.fromCharCode(d.getUint8(o), d.getUint8(o + 1), d.getUint8(o + 2), d.getUint8(o + 3));
@@ -1061,14 +1406,13 @@ gemini-3-flash-preview</textarea>
       }
       return { dur: ticks / timescale, n, sd, adts };
     }
-    // ---- loudness map of the ORIGINAL audio (10 ms frames) used to find where speech really starts/stops ----
     let ENV = null;
     function addEnv(pcm, off) {
       if (!ENV) ENV = [];
       const base = Math.round(off * 100), n = Math.floor(pcm.length / 160);
       for (let i = 0; i < n; i++) { let s = 0; for (let j = i * 160; j < i * 160 + 160; j += 2) s += pcm[j] * pcm[j]; ENV[base + i] = Math.sqrt(s / 80) }
     }
-    function speechRuns() { // [[startSec,endSec],...] of continuous speech in the original
+    function speechRuns() {
       if (!ENV || ENV.length < 50) return null;
       const n = ENV.length, v = Array.from({ length: n }, (_, i) => ENV[i] || 0), srt = v.slice().sort((a, b) => a - b);
       const floor = srt[Math.floor(n * 0.2)], peak = srt[Math.floor(n * 0.95)], thr = Math.max(floor * 2.5, peak * 0.08, 0.004), runs = [];
@@ -1080,7 +1424,6 @@ gemini-3-flash-preview</textarea>
       }
       return runs.filter(r => r[1] - r[0] >= 8).map(r => [r[0] / 100, r[1] / 100]);
     }
-    // move every line's start/end onto the real speech onset/offset found in the original audio
     function snapToSpeech(L) {
       const R = speechRuns(); if (!R || !R.length || !L.length) return 0;
       const near = x => { let best = null, bd = 1e9; for (const r of R) { const d = x < r[0] ? r[0] - x : x > r[1] ? x - r[1] : 0; if (d < bd) { bd = d; best = r } } return bd <= 0.9 ? best : null };
@@ -1099,7 +1442,7 @@ gemini-3-flash-preview</textarea>
       L.forEach((s, i) => { if (Math.abs(s.t - t2[i]) > 0.05 || Math.abs((Number(s.e) || 0) - e2[i]) > 0.05) moved++; s.t = t2[i]; s.e = e2[i] });
       return moved;
     }
-    function pauseNear(x, lo, hi, minT) { // quietest moment near x (used to cut a long line at a natural pause)
+    function pauseNear(x, lo, hi, minT) {
       if (!ENV) return x;
       const a = Math.max(Math.round((x - 0.6) * 100), Math.round((Math.max(lo, minT) + 0.4) * 100)), b = Math.min(Math.round((x + 0.6) * 100), Math.round((hi - 0.4) * 100));
       if (b <= a) return x; let best = a, bv = Infinity;
@@ -1116,7 +1459,6 @@ gemini-3-flash-preview</textarea>
       log('Reading audio from your video…');
       const CHs = 120, CH = CHs * 16000; let ma = null, getPcm, total;
       const ac = new (window.AudioContext || window.webkitAudioContext)();
-      // fast, low-memory path (MP4/MOV with AAC audio) — falls back to full decode if anything is unusual
       try {
         ma = await mp4Audio(curFile); total = Math.ceil(ma.dur / CHs);
         const pcmAt = async k => {
@@ -1149,7 +1491,7 @@ gemini-3-flash-preview</textarea>
         log('Gemini is listening & translating… part ' + (k + 1) + '/' + total);
         const pcm = await getPcm(k), off = k * CHs; addEnv(pcm, off);
         let L = mergeSegs(await askClip(pcm, off));
-        for (let pass = 0; pass < 2; pass++) { // re-ask for any stretch of speech that got no subtitle
+        for (let pass = 0; pass < 2; pass++) {
           const gaps = voicedGaps(pcm, L, off).slice(0, 4); if (!gaps.length) break;
           log('Part ' + (k + 1) + '/' + total + ': filling ' + gaps.length + ' missing stretch(es)…');
           for (const [a, b] of gaps) L = L.concat(await askClip(pcm.subarray(Math.floor(a * 16000), Math.floor(b * 16000)), off + a));
@@ -1173,8 +1515,12 @@ gemini-3-flash-preview</textarea>
           log('Translating… ' + need.filter(i => segs[i].km).length + '/' + need.length);
         }
       }
-      const miss = need.filter(i => !segs[i].km);
-      if (miss.length) { miss.forEach(i => segs[i].km = segs[i].text); log('⚠ ' + miss.length + ' line(s) could not be translated; original text kept so no subtitle is lost.') }
+      const miss = need.filter(i => !segs[i].km || !segs[i].km.trim());
+      if (miss.length) {
+        log('⚠ ' + miss.length + ' line(s) incomplete in translation — skipped and not stored into video.', 'w');
+      }
+      segs = segs.filter(s => s.km && s.km.trim() && s.km !== s.text);
+      if (!segs.length) throw new Error('Translation incomplete. No translated Khmer speech to store into video.');
     }
 
     // ---------- Gemini Khmer voice ----------
@@ -1185,7 +1531,6 @@ gemini-3-flash-preview</textarea>
       o.setUint32(24, rate, true); o.setUint32(28, rate * 2, true); o.setUint16(32, 2, true); o.setUint16(34, 16, true); w(36, 'data'); o.setUint32(40, bin.length, true);
       return new Blob([o, bin], { type: 'audio/wav' })
     }
-    // ---- Edge voice: clean text, split long lines, never abort on one failure ----
     const khClean = t => String(t).replace(/[。｡]/g, '។').replace(/！/g, '!').replace(/？/g, '?').replace(/[\u2E80-\u9FFF\uAC00-\uD7AF\uFF00-\uFFEF]/g, '').replace(/[\u0000-\u001F\u007F\u200B-\u200D\uFEFF]/g, ' ').replace(/\s+/g, ' ').trim();
     function khChunks(t, max = 150) {
       const sent = t.match(/[^។!?]+[។!?]*/g) || [t], out = []; let cur = '';
@@ -1193,7 +1538,6 @@ gemini-3-flash-preview</textarea>
       sent.forEach(s => { if (s.length <= max) push(s); else { let p = ''; s.split(' ').forEach(w => { if (p && (p + ' ' + w).length > max) { push(p); p = w } else p = p ? p + ' ' + w : w }); push(p) } });
       if (cur) out.push(cur); return out;
     }
-    // long lines become several shorter lines (timing shared by text length) before anything is sent to the voice
     function splitLong(L, max = 120) {
       const out = [];
       L.forEach((s, i) => {
@@ -1247,7 +1591,6 @@ gemini-3-flash-preview</textarea>
           segs[i].audio = URL.createObjectURL(await edgeClip(base, txt, voice, undefined, 45));
         }
       };
-      // One request at a time avoids overloading small/free Render instances.
       while (q.length) { const i = q.shift(); try { await gen(i) } catch (e) { failed.push(i); blog('✕ line ' + (i + 1) + ' failed: ' + (e.message || e), 'w') } log('Generating Khmer voice with Edge… ' + (++done) + '/' + total + (failed.length ? ' (' + failed.length + ' failed)' : '')) }
       for (const i of failed.slice()) { log('Retrying line ' + (i + 1) + '…'); await sleep(2500); try { await gen(i); failed.splice(failed.indexOf(i), 1) } catch (e) { blog('✕ line ' + (i + 1) + ' failed again: ' + (e.message || e), 'w') } }
       await measureAll();
@@ -1258,8 +1601,6 @@ gemini-3-flash-preview</textarea>
       if (!keyList().length) throw new Error('no Gemini key added');
       const gen = { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: $('vname').value } } } };
       segs.forEach(x => { x.skip = false; x.grp = undefined });
-      // Group only lines that are close together in the original (small gap), so a grouped
-      // clip still lines up with the span it covers in the video.
       const G = []; let cur = null;
       segs.forEach((x, i) => {
         if (!x.km.trim()) return;
@@ -1298,26 +1639,21 @@ gemini-3-flash-preview</textarea>
     }
 
     // ================== TIMELINE FITTING ==================
-    // Every generated clip is (1) trimmed of leading/trailing silence, (2) time-compressed
-    // WITHOUT changing pitch (WSOLA) so it ends inside its own slot of the original video, and
-    // (3) scheduled on the audio clock at its exact subtitle timestamp (never queued one after another).
     let plan = [], active = new Set(), played = new Set();
     const _mac = () => (_mac.c = _mac.c || new (window.AudioContext || window.webkitAudioContext)());
     const decode = (c, ab) => new Promise((ok, no) => { const p = c.decodeAudioData(ab, ok, no); if (p && p.catch) p.catch(no) });
     function unlockAudio() { try { const c = _mac(); if (c.state !== 'running') c.resume(); const s = c.createBufferSource(); s.buffer = c.createBuffer(1, 1, 22050); s.connect(c.destination); s.start(0) } catch (_) { } }
 
-    // cut silence at both ends of a TTS clip (it otherwise eats the time budget of the slot)
     function trimBuf(buf) {
       const x = buf.getChannelData(0), n = x.length, sr = buf.sampleRate; let peak = 0;
       for (let i = 0; i < n; i += 8) { const a = Math.abs(x[i]); if (a > peak) peak = a }
       const thr = Math.max(0.004, peak * 0.03), pad = Math.round(sr * 0.03);
       let a = 0, b = n - 1; while (a < n && Math.abs(x[a]) < thr) a++; while (b > a && Math.abs(x[b]) < thr) b--;
       if (a >= b) return buf;
-      a = Math.max(0, a - pad); b = Math.min(n, b + pad);
+      a = Math.max(0, pad ? a - pad : a); b = Math.min(n, b + pad);
       if (b - a >= n - 2) return buf;
       const o = _mac().createBuffer(1, b - a, sr); o.getChannelData(0).set(x.subarray(a, b)); return o;
     }
-    // WSOLA time-scale: speed>1 shortens the clip, pitch stays the same
     function wsola(x, speed, sr) {
       const N = Math.round(sr * 0.016) * 2, Hs = N / 2, Ha = Hs * speed, D = Math.round(sr * 0.01), len = x.length;
       const outLen = Math.max(1, Math.ceil(len / speed)), out = new Float32Array(outLen + N), ws = new Float32Array(outLen + N), win = new Float32Array(N);
@@ -1343,12 +1679,11 @@ gemini-3-flash-preview</textarea>
     function stretchBuf(buf, speed) {
       const d = wsola(buf.getChannelData(0), speed, buf.sampleRate), o = _mac().createBuffer(1, d.length, buf.sampleRate);
       o.getChannelData(0).set(d);
-      const f = Math.min(d.length >> 1, Math.round(buf.sampleRate * 0.012)), c = o.getChannelData(0); // tiny fades, no clicks
+      const f = Math.min(d.length >> 1, Math.round(buf.sampleRate * 0.012)), c = o.getChannelData(0);
       for (let i = 0; i < f; i++) { c[i] *= i / f; c[d.length - 1 - i] *= i / f }
       return o;
     }
     const ev0dur = () => (Number.isFinite(v.duration) && v.duration > 0 ? v.duration : 1);
-    // render every fitted clip into ONE audio track, exactly as long as the video
     async function mergeVoice(pl, total) {
       const sr = 44100, len = Math.max(1, Math.ceil((total || 1) * sr)), oc = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, len, sr);
       pl.forEach(p => {
@@ -1360,7 +1695,7 @@ gemini-3-flash-preview</textarea>
       if (pk > 0.98) { const k = 0.98 / pk; for (let i = 0; i < d.length; i++) d[i] *= k }
       return out;
     }
-    function cutBuf(buf, sec) { // last-resort: cut a clip at `sec` with a short fade-out
+    function cutBuf(buf, sec) {
       const n = Math.max(1, Math.floor(sec * buf.sampleRate)), o = _mac().createBuffer(1, n, buf.sampleRate), c = o.getChannelData(0);
       c.set(buf.getChannelData(0).subarray(0, n)); const f = Math.min(n, Math.round(buf.sampleRate * 0.04));
       for (let i = 0; i < f; i++) c[n - 1 - i] *= i / f;
@@ -1372,20 +1707,15 @@ gemini-3-flash-preview</textarea>
         catch (_) { s.dur = 0; s.buf = null; s.fit = null }
       }
     }
-    // Build the playback plan: for each clip find the time it may occupy in the ORIGINAL video
-    // (until the end of the lines it voices, or up to the next clip's start if that is later),
-    // and compress it to fit. Clips are never slowed down or stretched to fill gaps.
     async function buildPlan() {
       await measureAll();
       const cl = segs.map((s, i) => ({ s, i })).filter(x => x.s.audio && x.s.dur), vd = Number.isFinite(v.duration) ? v.duration : 1e9, out = []; let fitted = 0;
       for (let k = 0; k < cl.length; k++) {
         const { s, i } = cl[k], nx = cl[k + 1], last = segs[s.grp != null ? s.grp : i];
         const cueEnd = Number(last.e) > s.t ? Number(last.e) : s.t + 2, nextSt = nx ? nx.s.t : vd;
-        // base = how long the original speech really lasts; gap = room until the next line starts
         const base = Math.max(0.4, Math.min(cueEnd - s.t, vd - s.t)), gap = Math.max(base, Math.min(nextSt - s.t - 0.08, vd - s.t));
-        const ideal = s.dur / base, floor = s.dur / gap; // ideal = ends exactly with the original speech
+        const ideal = s.dur / base, floor = s.dur / gap;
         const need = ideal <= 1.5 ? ideal : Math.max(floor, 1.5); let b = s.buf;
-        // hard limit: a clip may never run past the end of the video
         const hard = Math.max(0.2, vd - s.t - 0.05); let sp = need > 1.03 ? Math.min(2.2, need) : 1;
         if (s.dur / sp > hard) sp = Math.min(3.2, s.dur / hard);
         if (sp > 1.03) {
@@ -1400,7 +1730,6 @@ gemini-3-flash-preview</textarea>
       blog('Timeline fit: ' + out.length + ' clips scheduled, ' + fitted + ' compressed (pitch kept) to match the original timing.', 'k');
       return out;
     }
-    // schedule one clip on the audio clock: `delay` seconds from now (negative = already late → skip into the clip)
     function startClip(ctx, dest, p, delay, gain) {
       const off = delay < 0 ? -delay : 0; if (off >= p.b.duration - 0.02) return 0;
       const n = ctx.createBufferSource(), g = ctx.createGain(); n.buffer = p.b; g.gain.value = gain; n.connect(g); g.connect(dest);
@@ -1439,7 +1768,6 @@ gemini-3-flash-preview</textarea>
         if (c >= s.t && c < end) cur = s.km;
         if (!s.audio && c >= s.t && c < s.t + 1.5 && !spoken.has(i)) { spoken.add(i); say(s.km, i) }
       });
-      // look 0.35s ahead and place each clip on the audio clock at its exact timestamp
       const ctx = _mac();
       plan.forEach(p => {
         if (played.has(p.i)) return;
@@ -1452,13 +1780,10 @@ gemini-3-flash-preview</textarea>
     v.addEventListener('seeked', () => { if (dubbing) { stopVoice(); played = new Set(); spoken = new Set(segs.map((s, i) => s.t < v.currentTime - 1 ? i : -1).filter(i => i >= 0)) } });
     v.addEventListener('pause', () => { try { speechSynthesis.pause() } catch (_) { } stopVoice(); played = new Set() });
     v.addEventListener('play', () => { try { speechSynthesis.resume() } catch (_) { } unlockAudio(); played = new Set() });
-    v.addEventListener('ended', () => { if (segs.length && segs[0].km) { dubbing = false; v.playbackRate = 1 } });  // let the last voice line finish
+    v.addEventListener('ended', () => { if (segs.length && segs[0].km) { dubbing = false; v.playbackRate = 1 } });
     $('vol').oninput = () => { if (dubbing && segs[0] && segs[0].km) v.volume = $('vol').value / 100 };
 
     // ---------- export dubbed video ----------
-    // Preferred path: offline frame-by-frame WebCodecs export — every source frame is kept,
-    // the duration is exact, and it runs as fast as the device allows (no real-time recording,
-    // so no frozen/slideshow frames and no stretched files on slow devices).
     let _mb = null;
     const loadMuxer = () => _mb || (_mb = import('https://cdn.jsdelivr.net/npm/mediabunny@1.65.2/+esm').catch(e => { _mb = null; throw new Error('could not load the video encoder library — check your internet connection') }));
     async function exportOffline(m, cfg, voice) {
@@ -1505,8 +1830,9 @@ gemini-3-flash-preview</textarea>
       return { blob, name, where, handle: !!(handle && handle.name.toLowerCase().endsWith('.' + ext)) };
     }
     async function exportDub() {
+      segs = segs.filter(x => x.km && x.km.trim());
+      if (!segs.length) return log('⚠ No translated Khmer speech available to store into video.');
       const mime0 = window.MediaRecorder && ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm'].find(t => MediaRecorder.isTypeSupported(t));
-      // can this device encode frame-accurate video? (local check, fast enough to keep the save-picker gesture)
       let offCfg = null;
       if (window.VideoEncoder && window.AudioEncoder) {
         const ok = (p, c) => p.isConfigSupported(c).then(x => !!x.supported).catch(() => false);
@@ -1545,7 +1871,6 @@ gemini-3-flash-preview</textarea>
         ev = document.createElement('video'); ev.src = v.src; ev.playsInline = true;
         ev.style.cssText = 'position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:200px;max-height:200px;border-radius:12px;z-index:45;box-shadow:0 8px 30px rgba(0,0,0,.4);pointer-events:none;background:#000'; document.body.append(ev);
         await new Promise((r, j) => { ev.onloadedmetadata = r; ev.onerror = () => j(new Error('Could not open the video for export.')); ev.load() });
-        // the picture is drawn on a canvas so the recorder keeps getting frames
         const W0 = ev.videoWidth || 1280, H0 = ev.videoHeight || 720, sc = Math.min(1, 1280 / Math.max(W0, H0)), W = Math.max(2, Math.round(W0 * sc / 2) * 2), H = Math.max(2, Math.round(H0 * sc / 2) * 2);
         const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g2 = cv.getContext('2d', { alpha: false });
         const paint = () => { try { g2.drawImage(ev, 0, 0, W, H) } catch (_) { } };
@@ -1561,11 +1886,9 @@ gemini-3-flash-preview</textarea>
         await ac.resume(); ev.currentTime = 0; await ev.play(); frame(); drw = setInterval(() => { if (performance.now() - lastP >= 28) frame() }, 15);
         if (ev.requestVideoFrameCallback) { const cb = () => { frame(); try { ev.requestVideoFrameCallback(cb) } catch (_) { } }; ev.requestVideoFrameCallback(cb) }
         rec.start(1000);
-        // ONE merged voice track, started in sync with the video (no per-clip scheduling during recording)
         const vs = ac.createBufferSource(); vs.buffer = mbuf; vs.connect(dest); active.add(vs);
         vs.start(0, Math.min(ev.currentTime, Math.max(0, mbuf.duration - 0.01)));
         ev.ontimeupdate = () => log('Exporting dubbed video… ' + Math.round(ev.currentTime) + 's / ' + Math.round(ev.duration) + 's (real time, keep this tab open and in front)');
-        // fail loudly if the video errors or stalls, instead of hanging forever
         await new Promise((res, rej) => {
           let lastT = -1, lastChange = Date.now();
           const watch = setInterval(() => {
@@ -1578,11 +1901,9 @@ gemini-3-flash-preview</textarea>
           rec.onerror = done(e => rej(new Error('Recorder error: ' + ((e.error && e.error.message) || e.error || 'unknown'))));
         });
         clearInterval(drv); clearInterval(drw);
-        // stop exactly with the video so the file is never longer than the original
         active.forEach(a => { a.onended = null; try { a.stop() } catch (_) { } }); active.clear();
         rec.stop(); await stopped;
         const blob = new Blob(chunks, { type: mime0.split(';')[0] });
-        // verify the recording really contains a picture before saving it
         const probe = document.createElement('video'); probe.muted = true; probe.src = URL.createObjectURL(blob);
         const pw = await new Promise(res => { const to = setTimeout(() => res(0), 8000); probe.onloadedmetadata = () => { clearTimeout(to); res(probe.videoWidth) }; probe.onerror = () => { clearTimeout(to); res(0) }; probe.load() });
         URL.revokeObjectURL(probe.src);
@@ -1627,7 +1948,7 @@ gemini-3-flash-preview</textarea>
     const step = (n, st) => { if (st === 'on') window.__stage = +n; $('s' + n).className = 's ' + st; if (st === 'done') $('bar').style.width = (n / 3 * 100) + '%'; else if (st === 'on') $('bar').style.width = Math.max(4, (n - 1) / 3 * 100 + 4) + '%' };
     $('go').onclick = async () => {
       unlockAudio();
-      $('go').disabled = true; $('resCard').hidden = true; busy(true);['s1', 's2', 's3'].forEach(i => step(i.slice(1), '')); $('bar').style.width = '0%';
+      $('go').disabled = true; $('resCard').hidden = true; busy(true); ['s1', 's2', 's3'].forEach(i => step(i.slice(1), '')); $('bar').style.width = '0%';
       try {
         const pasted = $('srtText').value.trim();
         if (!pasted && !keyList().length) throw new Error('Add a Gemini API key first (Providers tab), or paste your Khmer subtitles in the Subtitles tab.');
@@ -1637,7 +1958,6 @@ gemini-3-flash-preview</textarea>
           segs = parseSrt(pasted);
           if (!segs.length) segs = parsePlain(pasted);
           else {
-            // Wait for the uploaded video's duration before comparing SRT timestamps.
             if (v.readyState < 1) await new Promise((resolve, reject) => {
               const ok = () => { cleanup(); resolve() }, bad = () => { cleanup(); reject(new Error('Could not read the video duration.')) };
               const cleanup = () => { v.removeEventListener('loadedmetadata', ok); v.removeEventListener('error', bad) };
@@ -1651,6 +1971,8 @@ gemini-3-flash-preview</textarea>
         if (!segs.length) throw new Error('No speech was found in the audio.');
         step(1, 'done'); step(2, 'on');
         if (segs.some(x => !x.km)) await translate();
+        segs = segs.filter(s => s.km && s.km.trim() && (pasted || s.km !== s.text));
+        if (!segs.length) throw new Error('Translation incomplete. No translated Khmer speech to store into video.');
         await refineTiming();
         { const n0 = segs.length; segs = splitLong(segs); if (segs.length !== n0) blog('Split long lines: ' + n0 + ' → ' + segs.length + ' lines (each short enough for the voice)', 'k') }
         step(2, 'done'); step(3, 'on');
@@ -1681,8 +2003,10 @@ gemini-3-flash-preview</textarea>
           if (!keyList().length) throw 0;
           const j = await (await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', { headers: { 'x-goog-api-key': keyList()[0] } })).json();
           const all = (j.models || []).filter(m => (m.supportedGenerationMethods || []).includes('generateContent')).map(m => m.name.replace('models/', ''));
-          setList('model', all.filter(i => /flash/.test(i) && !/tts|image|live|audio|embed|robotics|computer|exp/.test(i)).slice(0, 6));
-          setList('ttsmodel', all.filter(i => /tts/.test(i)).slice(0, 4));
+          const valid = all.filter(i => /flash|pro/.test(i) && !/tts|image|live|audio|embed|robotics|computer|exp|2\.5/.test(i));
+          setList('model', valid.length ? valid.slice(0, 6) : AVAILABLE_MODELS);
+          const tts = all.filter(i => /tts/.test(i) && !/2\.5/.test(i));
+          setList('ttsmodel', tts.length ? tts.slice(0, 4) : ['gemini-2.0-flash']);
         }
         b.textContent = '✓ Loaded';
       } catch (e) { b.textContent = e === 0 ? 'Add a key first' : '⚠ Failed' }
@@ -1696,7 +2020,7 @@ gemini-3-flash-preview</textarea>
     };
     $('genv').onclick = async () => { try { await genVoice(); if ($('voice').value === 'device') log('The device voice needs no generation.') } catch (e) { log('⚠ ' + e.message) } };
 
-    // ---------- separate key boxes ----------
+    // ---------- separate key boxes with verification before add ----------
     function keyWidget(id) {
       const ta = $(id), ph = ta.placeholder || 'API key'; ta.style.display = 'none';
       const box = document.createElement('div'), ctl = document.createElement('div'), add = document.createElement('button'), eye = document.createElement('button'), chk = document.createElement('button'), cnt = document.createElement('span');
@@ -1715,48 +2039,151 @@ gemini-3-flash-preview</textarea>
           const el = ((performance.now() - t0) / 1000).toFixed(1) + 's', msg = (j.error && j.error.message) || String(r.status);
           if (r.ok) { delete cool[id]; delete dly[id]; delete keyBad[K[ki]]; setCool(id, 0); blog('✓ ' + who + ': ready (' + el + ')', 'k') }
           else if (r.status === 403 || (r.status === 400 && /api key/i.test(msg))) { keyBad[K[ki]] = msg.slice(0, 100); blog('✕ ' + who + ': invalid or blocked key — ' + msg.slice(0, 120), 'w') }
+          else if (r.status === 404) { setCool(id, Infinity); blog('✕ ' + who + ': model ' + M[0] + ' not found or unavailable', 'w') }
           else if (r.status === 429) { const c = classify(j); if (c.daily) { setCool(id, nextReset(), true); blog('✕ ' + who + ': limit reached for today (resets in ~' + dur(nextReset() - Date.now()) + ')', 'w') } else { setCool(id, Date.now() + Math.max(60000, c.wait)); blog('✕ ' + who + ': rate-limited right now → resting ' + dur(Math.max(60000, c.wait)), 'w') } }
           else { setCool(id, Date.now() + 60000); blog('✕ ' + who + ': error ' + r.status + ' — ' + msg.slice(0, 120) + ' → resting 1 min', 'w') }
           paint();
         }
         chk.disabled = false; paint();
       };
-      const sync = () => { const v = inputs().map(i => i.value.trim()).filter(Boolean); ta.value = v.join('\n'); ta.dispatchEvent(new Event('input')); cnt.textContent = v.length + (v.length === 1 ? ' key' : ' keys');[...box.children].forEach((r, i) => r.firstChild.textContent = i + 1) };
+      const sync = () => {
+        const seen = new Set(), v = [];
+        inputs().forEach(inp => {
+          const val = inp.value.trim();
+          if (val) {
+            if (seen.has(val)) {
+              inp.value = '';
+              toast('Duplicate key removed');
+            } else {
+              seen.add(val);
+              v.push(val);
+            }
+          }
+        });
+        ta.value = v.join('\n');
+        ta.dispatchEvent(new Event('input'));
+        cnt.textContent = v.length + (v.length === 1 ? ' key' : ' keys');
+        [...box.children].forEach((r, i) => r.firstChild.textContent = i + 1);
+      };
+
+      async function validateAndApply(inputEl, val, rowEl) {
+        val = String(val || '').trim();
+        if (!val) { inputEl.value = ''; sync(); paint(); return false }
+        const isDup = inputs().some(inp => inp !== inputEl && inp.value.trim() === val);
+        if (isDup) {
+          inputEl.value = '';
+          toast('Duplicate key is not allowed');
+          sync(); paint();
+          return false;
+        }
+        const ks = rowEl.querySelector('.ks');
+        if (ks) { ks.hidden = false; ks.textContent = 'Verifying…'; ks.className = 'ks warn'; }
+        inputEl.disabled = true;
+        const res = await verifyGeminiKey(val);
+        inputEl.disabled = false;
+        if (!res.ok) {
+          inputEl.value = '';
+          if (ks) { ks.hidden = false; ks.textContent = 'Invalid'; ks.className = 'ks bad'; ks.title = res.msg; }
+          toast('⚠ ' + res.msg);
+          sync(); paint();
+          return false;
+        }
+        inputEl.value = val;
+        if (ks) {
+          ks.hidden = false;
+          ks.textContent = res.warn ? 'Valid (busy)' : 'Ready';
+          ks.className = 'ks ' + (res.warn ? 'warn' : 'ok');
+          ks.title = res.msg;
+        }
+        toast('✓ Gemini key verified and added');
+        sync(); paint();
+        return true;
+      }
+
       function row(v, after) {
         const r = document.createElement('div'), n = document.createElement('span'), i = document.createElement('input'), x = document.createElement('button');
         r.className = 'kr'; i.type = 'text'; i.className = show ? '' : 'mask'; i.value = v || ''; i.placeholder = ph; i.autocomplete = 'off'; i.spellcheck = false;
         x.type = 'button'; x.className = 'kx'; x.textContent = '✕'; x.title = 'Remove this key'; const ks = document.createElement('span'); ks.className = 'ks'; ks.hidden = true;
-        i.oninput = () => { sync(); paint() };
-        i.onpaste = e => { const p = ((e.clipboardData || window.clipboardData).getData('text') || '').split(/[\s,]+/).filter(Boolean); if (p.length > 1) { e.preventDefault(); i.value = p[0]; let last = r; p.slice(1).forEach(k => { last = row(k, last) }); sync() } };
+        
+        i.onchange = async () => {
+          if (i.value.trim()) {
+            await validateAndApply(i, i.value.trim(), r);
+          } else {
+            sync(); paint();
+          }
+        };
+        i.oninput = () => {
+          const val = i.value.trim();
+          if (val && inputs().some(inp => inp !== i && inp.value.trim() === val)) {
+            i.value = '';
+            toast('Duplicate key is not allowed');
+            sync(); paint();
+          }
+        };
+        i.onpaste = async e => {
+          e.preventDefault();
+          const raw = (e.clipboardData || window.clipboardData).getData('text') || '';
+          const p = raw.split(/[\s,]+/).map(s => s.trim()).filter(Boolean);
+          if (!p.length) return;
+          const existing = new Set(inputs().filter(inp => inp !== i).map(inp => inp.value.trim()).filter(Boolean));
+          const unique = [];
+          for (const k of p) {
+            if (!existing.has(k) && !unique.includes(k)) unique.push(k);
+          }
+          if (!unique.length) {
+            toast('Duplicate key is not allowed');
+            return;
+          }
+          toast('Verifying key(s)…');
+          await validateAndApply(i, unique[0], r);
+          let last = r;
+          for (let idx = 1; idx < unique.length; idx++) {
+            const newRow = row('', last);
+            const newInp = newRow.querySelector('input');
+            const ok = await validateAndApply(newInp, unique[idx], newRow);
+            if (ok) { last = newRow } else { newRow.remove() }
+          }
+        };
         x.onclick = () => { if (box.children.length > 1) r.remove(); else i.value = ''; sync() };
         r.append(n, i, ks, x); after ? after.after(r) : box.append(r); return r;
       }
-      add.onclick = () => { const r = row(''); sync(); r.querySelector('input').focus() };
+      add.onclick = () => {
+        const empty = inputs().find(inp => !inp.value.trim());
+        if (empty) { empty.focus(); return; }
+        const r = row(''); sync(); r.querySelector('input').focus();
+      };
       eye.onclick = () => { show = !show; inputs().forEach(i => i.classList.toggle('mask', !show)); eye.textContent = show ? '🙈 Hide' : '👁 Show' };
-      const init = ta.value.split(/[\s,]+/).filter(Boolean); (init.length ? init : ['']).forEach(v => row(v)); sync();
+      const init = [...new Set(ta.value.split(/[\s,]+/).filter(Boolean))]; (init.length ? init : ['']).forEach(v => row(v)); sync();
     }
     ['key'].forEach(keyWidget);
-    // ---------- show only the selected voice's settings ----------
     const voiceVis = () => { const v = $('voice').value; $('v-edge').hidden = v !== 'edge'; $('v-gemini').hidden = v !== 'gemini' };
     $('voice').addEventListener('change', voiceVis); voiceVis();
 
-    // ---------- friendly progress messages ----------
+    // ---------- friendly progress messages with animated stage title ----------
     const MSG = {
-      1: ['Listening to every word 🎧', 'Catching the speech and timing', 'Separating voices from background noise', 'Almost done reading the audio'],
-      2: ['Translating into natural Khmer 🇰🇭', 'Making it sound like real conversation', 'Polishing the Khmer wording', 'Matching meaning, not just words'],
-      3: ['Creating the Khmer voice 🎙', 'Giving your video a new voice', 'Fitting each sentence to the timeline', 'Final touches, nearly there ✨'],
-      export: ['Recording your dubbed video 🎞', 'Mixing the Khmer voice with the video', 'Keep this tab open and in front', 'Saving your finished file']
+      1: ['Listening to every sentence 🎧', 'Detecting speech rhythm and pauses', 'Filtering background noise and breaths', 'Finalizing speech segment boundaries'],
+      2: ['Translating into natural spoken Khmer 🇰🇭', 'Polishing conversational flow and nuances', 'Matching natural speech phrasing', 'Translating remaining dialogues'],
+      3: ['Synthesizing natural Khmer voiceover 🎙', 'Fine-tuning voice rhythm & pitch', 'Aligning Khmer voice onto video slots', 'Applying acoustic timeline compression ✨'],
+      export: ['Encoding high-definition video 🎞', 'Muxing frame-accurate Khmer dub', 'Rendering master audio track', 'Saving finished video file']
+    };
+    const STAGE_TITLES = {
+      1: 'AI Speech Recognition 🎧',
+      2: 'AI Khmer Translation 🇰🇭',
+      3: 'AI Khmer Voice Synthesis 🎙️',
+      export: 'Video Encoder Pipeline 🎞️'
     };
     let bTimer, bI = 0, bT0 = 0;
     function busy(on, mode) {
-      const b = $('busy'), t = $('bt'), sub = $('bs'); clearInterval(bTimer);
+      const b = $('busy'), t = $('bt'), sub = $('bs'), st = $('bstage'); clearInterval(bTimer);
       b.classList.toggle('on', !!on); if (!on) return;
       window.__stage = 1; bI = 0; bT0 = Date.now();
+      const currentMode = mode || window.__stage;
+      if (st) st.textContent = STAGE_TITLES[currentMode] || 'AI Dubbing Engine';
       const show = () => {
         const L = MSG[mode || window.__stage] || MSG[1]; t.classList.add('sw');
-        setTimeout(() => { t.textContent = L[bI++ % L.length]; t.classList.remove('sw') }, 300);
+        setTimeout(() => { t.textContent = L[bI++ % L.length]; t.classList.remove('sw') }, 280);
       };
-      const tickT = () => { const s = Math.floor((Date.now() - bT0) / 1000); sub.textContent = 'Working for ' + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0') + ' · please keep this tab open' };
+      const tickT = () => { const s = Math.floor((Date.now() - bT0) / 1000); sub.textContent = 'Processing: ' + Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0') + ' · please keep this tab active' };
       show(); tickT(); let n = 0; bTimer = setInterval(() => { tickT(); if (++n % 3 === 0) show() }, 1000);
     }
     function confetti() {
@@ -1779,8 +2206,6 @@ gemini-3-flash-preview</textarea>
     $('mod').onclick = e => { if (e.target === $('mod')) $('mod').classList.remove('on') };
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { $('mod').classList.remove('on'); $('xmod').classList.remove('on') } });
 
-
-
     // ---------- deterrent against casual inspection ----------
     (() => {
       const stop = e => e.preventDefault(), editable = e => /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
@@ -1798,7 +2223,6 @@ gemini-3-flash-preview</textarea>
         if (d !== open) { open = d; g.style.display = d ? 'grid' : 'none' }
       }, 700);
     })();
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
