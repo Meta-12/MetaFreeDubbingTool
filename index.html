@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>
-      Khmer Dubber – AI video dubbing to Khmer
-    </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=Noto+Sans+Khmer:wght@400;600;700&amp;display=swap" rel="stylesheet" />
-    <style>
-      /* ============ Khmer Dubber · studio theme ============ */
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>
+    Khmer Dubber – AI video dubbing to Khmer
+  </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;family=Noto+Sans+Khmer:wght@400;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ============ Khmer Dubber · studio theme ============ */
     :root {
       --bg: #06080f;
       --card: rgba(255, 255, 255, .035);
@@ -49,9 +52,17 @@
       color-scheme: light
     }
 
-    * { box-sizing: border-box }
-    [hidden] { display: none !important }
-    html { scroll-padding-top: env(safe-area-inset-top, 0px) }
+    * {
+      box-sizing: border-box
+    }
+
+    [hidden] {
+      display: none !important
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
 
     body {
       margin: 0;
@@ -86,22 +97,76 @@
       pointer-events: none
     }
 
-    :root[data-theme="light"] body::after { opacity: .5 }
+    :root[data-theme="light"] body::after {
+      opacity: .5
+    }
 
-    textarea, input { -webkit-user-select: text; user-select: text }
+    textarea,
+    input {
+      -webkit-user-select: text;
+      user-select: text
+    }
 
-    ::selection { background: rgba(124, 108, 255, .35) }
+    ::selection {
+      background: rgba(124, 108, 255, .35)
+    }
 
-    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 18px 64px }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 18px 64px
+    }
 
     /* ---------- aurora blobs ---------- */
-    .aurora { position: fixed; inset: 0; z-index: -3; overflow: hidden; pointer-events: none }
-    .aurora i { position: absolute; width: 44vmax; height: 44vmax; border-radius: 50%; filter: blur(100px); opacity: .22; animation: drift 24s ease-in-out infinite alternate }
-    .aurora i:nth-child(1) { background: #7c6cff; left: -14%; top: -20% }
-    .aurora i:nth-child(2) { background: #c86bff; right: -16%; top: 6%; animation-duration: 30s; animation-delay: -8s }
-    .aurora i:nth-child(3) { background: #22d3ee; left: 28%; bottom: -34%; opacity: .12; animation-duration: 36s }
-    :root[data-theme="light"] .aurora i { opacity: .14 }
-    @keyframes drift { to { transform: translate(7vmax, 5vmax) scale(1.15) } }
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      overflow: hidden;
+      pointer-events: none
+    }
+
+    .aurora i {
+      position: absolute;
+      width: 44vmax;
+      height: 44vmax;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .22;
+      animation: drift 24s ease-in-out infinite alternate
+    }
+
+    .aurora i:nth-child(1) {
+      background: #7c6cff;
+      left: -14%;
+      top: -20%
+    }
+
+    .aurora i:nth-child(2) {
+      background: #c86bff;
+      right: -16%;
+      top: 6%;
+      animation-duration: 30s;
+      animation-delay: -8s
+    }
+
+    .aurora i:nth-child(3) {
+      background: #22d3ee;
+      left: 28%;
+      bottom: -34%;
+      opacity: .12;
+      animation-duration: 36s
+    }
+
+    :root[data-theme="light"] .aurora i {
+      opacity: .14
+    }
+
+    @keyframes drift {
+      to {
+        transform: translate(7vmax, 5vmax) scale(1.15)
+      }
+    }
 
     /* ---------- navbar ---------- */
     .top {
@@ -120,19 +185,40 @@
       border-bottom: 1px solid var(--line);
       animation: down .7s cubic-bezier(.2, .8, .2, 1) both
     }
-    @keyframes down { from { opacity: 0; transform: translateY(-14px) } }
 
-    .brand { display: flex; gap: 12px; align-items: center }
+    @keyframes down {
+      from {
+        opacity: 0;
+        transform: translateY(-14px)
+      }
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
     .logo {
-      width: 44px; height: 44px; border-radius: 14px;
-      display: grid; place-items: center;
-      color: #fff; font-weight: 700; font-size: 23px;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 23px;
       font-family: "Noto Sans Khmer", "Khmer OS", sans-serif;
       background: var(--grad);
       box-shadow: 0 8px 22px rgba(124, 108, 255, .45), inset 0 1px 0 rgba(255, 255, 255, .35);
       animation: float 4s ease-in-out infinite
     }
-    @keyframes float { 50% { transform: translateY(-3px) rotate(-4deg) } }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-3px) rotate(-4deg)
+      }
+    }
 
     h1 {
       margin: 0;
@@ -145,63 +231,180 @@
       background-clip: text;
       color: transparent
     }
-    .brand p { margin: 0; color: var(--mute); font-size: 12.5px }
 
-    .acts { display: flex; gap: 8px; align-items: center }
+    .brand p {
+      margin: 0;
+      color: var(--mute);
+      font-size: 12.5px
+    }
+
+    .acts {
+      display: flex;
+      gap: 8px;
+      align-items: center
+    }
+
     .icon {
-      width: 38px; height: 38px; border-radius: 12px;
-      border: 1px solid var(--line); background: var(--card);
-      color: var(--ink); cursor: pointer; font-size: 16px;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 16px;
       transition: .2s
     }
-    .icon:hover { transform: rotate(25deg) scale(1.08); border-color: var(--acc); box-shadow: var(--ring) }
+
+    .icon:hover {
+      transform: rotate(25deg) scale(1.08);
+      border-color: var(--acc);
+      box-shadow: var(--ring)
+    }
 
     .donate {
-      display: inline-flex; align-items: center; gap: 7px;
-      height: 38px; padding: 0 15px; border: 0; border-radius: 12px;
-      font: inherit; font-size: 13px; font-weight: 700; color: #fff; cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 38px;
+      padding: 0 15px;
+      border: 0;
+      border-radius: 12px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
       background: linear-gradient(135deg, #f59e0b, #ef4444);
       box-shadow: 0 8px 20px rgba(239, 68, 68, .3);
       transition: .2s
     }
-    .donate:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(239, 68, 68, .45) }
-    .donate span { display: inline-block; animation: beat 1.4s infinite }
-    @keyframes beat { 14% { transform: scale(1.3) } 28% { transform: scale(1) } 42% { transform: scale(1.2) } 70% { transform: scale(1) } }
+
+    .donate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(239, 68, 68, .45)
+    }
+
+    .donate span {
+      display: inline-block;
+      animation: beat 1.4s infinite
+    }
+
+    @keyframes beat {
+      14% {
+        transform: scale(1.3)
+      }
+
+      28% {
+        transform: scale(1)
+      }
+
+      42% {
+        transform: scale(1.2)
+      }
+
+      70% {
+        transform: scale(1)
+      }
+    }
 
     /* ---------- hero ---------- */
-    .hero { text-align: center; padding: 44px 12px 34px; animation: rise .8s cubic-bezier(.2, .8, .2, 1) both }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 14px; border-radius: 999px;
-      border: 1px solid var(--line); background: var(--card);
-      font-size: 11.5px; font-weight: 700; letter-spacing: .14em;
-      color: var(--mute); text-transform: uppercase
+    .hero {
+      text-align: center;
+      padding: 44px 12px 34px;
+      animation: rise .8s cubic-bezier(.2, .8, .2, 1) both
     }
-    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 10px var(--ok); animation: blink 2s infinite }
-    @keyframes blink { 50% { opacity: .35 } }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      color: var(--mute);
+      text-transform: uppercase
+    }
+
+    .eyebrow i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 10px var(--ok);
+      animation: blink 2s infinite
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: .35
+      }
+    }
+
     .hero h2 {
       margin: 18px 0 10px;
       font-family: "Space Grotesk", Inter, sans-serif;
       font-size: clamp(30px, 5.4vw, 52px);
-      font-weight: 700; line-height: 1.08; letter-spacing: -.02em
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -.02em
     }
+
     .grad {
       background: var(--grad);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent
     }
-    .hero p { margin: 0 auto; max-width: 560px; color: var(--mute); font-size: 15px }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 20px }
-    .chips span {
-      padding: 6px 13px; border-radius: 999px; font-size: 12px; font-weight: 600;
-      color: var(--mute); border: 1px solid var(--line); background: var(--card)
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 560px;
+      color: var(--mute);
+      font-size: 15px
     }
-    .chips b { color: var(--acc3); font-weight: 700; margin-right: 5px }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 20px
+    }
+
+    .chips span {
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--mute);
+      border: 1px solid var(--line);
+      background: var(--card)
+    }
+
+    .chips b {
+      color: var(--acc3);
+      font-weight: 700;
+      margin-right: 5px
+    }
 
     /* ---------- layout & cards ---------- */
-    .layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start }
-    @media (max-width: 940px) { .layout { grid-template-columns: minmax(0, 1fr) } }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: start
+    }
+
+    @media (max-width: 940px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr)
+      }
+    }
 
     .card {
       background: var(--card);
@@ -215,102 +418,266 @@
       animation: rise .7s cubic-bezier(.2, .8, .2, 1) both;
       transition: border-color .25s, box-shadow .25s
     }
-    aside { position: sticky; top: calc(76px + env(safe-area-inset-top, 0px)); display: flex; flex-direction: column }
-    @media (max-width: 940px) { aside { position: static } }
-    .card:hover { border-color: color-mix(in srgb, var(--acc) 30%, var(--line)) }
-    @keyframes rise { from { opacity: 0; transform: translateY(22px) scale(.985) } }
+
+    aside {
+      position: sticky;
+      top: calc(76px + env(safe-area-inset-top, 0px));
+      display: flex;
+      flex-direction: column
+    }
+
+    @media (max-width: 940px) {
+      aside {
+        position: static
+      }
+    }
+
+    .card:hover {
+      border-color: color-mix(in srgb, var(--acc) 30%, var(--line))
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(.985)
+      }
+    }
 
     .card h2 {
-      font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
       color: var(--mute);
       margin: 0 0 14px;
-      display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap
     }
 
     /* ---------- dropzone ---------- */
     .drop {
-      display: flex; gap: 16px; align-items: center;
+      display: flex;
+      gap: 16px;
+      align-items: center;
       border: 1.5px dashed color-mix(in srgb, var(--acc) 38%, var(--line));
-      border-radius: 18px; padding: 22px 18px;
-      cursor: pointer; transition: .2s;
+      border-radius: 18px;
+      padding: 22px 18px;
+      cursor: pointer;
+      transition: .2s;
       background: color-mix(in srgb, var(--soft) 45%, transparent);
-      position: relative; overflow: hidden
+      position: relative;
+      overflow: hidden
     }
-    .drop:hover, .drop.over {
+
+    .drop:hover,
+    .drop.over {
       border-color: var(--acc);
       background: var(--soft);
       box-shadow: var(--ring), 0 10px 30px rgba(124, 108, 255, .15)
     }
+
     .dz {
-      width: 54px; height: 54px; border-radius: 16px; flex: none;
-      display: grid; place-items: center;
-      background: var(--grad); color: #fff; font-size: 23px;
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      flex: none;
+      display: grid;
+      place-items: center;
+      background: var(--grad);
+      color: #fff;
+      font-size: 23px;
       box-shadow: 0 10px 24px rgba(124, 108, 255, .4), inset 0 1px 0 rgba(255, 255, 255, .35)
     }
-    .drop:hover .dz { animation: bob .8s ease infinite }
-    @keyframes bob { 50% { transform: translateY(-5px) } }
-    .drop b { font-size: 15px }
-    .drop small { display: block; color: var(--mute); margin-top: 3px; font-size: 12.5px }
+
+    .drop:hover .dz {
+      animation: bob .8s ease infinite
+    }
+
+    @keyframes bob {
+      50% {
+        transform: translateY(-5px)
+      }
+    }
+
+    .drop b {
+      font-size: 15px
+    }
+
+    .drop small {
+      display: block;
+      color: var(--mute);
+      margin-top: 3px;
+      font-size: 12.5px
+    }
 
     /* ---------- video stage ---------- */
     .stage {
-      position: relative; margin-top: 16px;
-      border-radius: 18px; overflow: hidden;
-      background: #000; border: 1px solid var(--line);
+      position: relative;
+      margin-top: 16px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--line);
       box-shadow: 0 18px 44px rgba(0, 0, 0, .4)
     }
-    video { display: block; width: 100%; max-width: 100%; height: auto; max-height: 54vh }
+
+    video {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: 54vh
+    }
+
     #cap {
-      position: absolute; left: 12px; right: 12px; bottom: 48px;
-      text-align: center; color: #fff;
-      font-size: 18px; font-weight: 600;
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 48px;
+      text-align: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
       font-family: Inter, "Noto Sans Khmer", sans-serif;
       text-shadow: 0 1px 3px #000, 0 0 10px #000;
       pointer-events: none
     }
 
     /* ---------- controls ---------- */
-    .ctrl { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 18px }
-    .vol { display: flex; gap: 10px; align-items: center; color: var(--mute); font-size: 13px; font-weight: 600 }
-    .vol input { width: 120px; accent-color: var(--acc); cursor: pointer }
-
-    input[type=range] { -webkit-appearance: none; appearance: none; background: transparent; height: 22px }
-    input[type=range]::-webkit-slider-runnable-track { height: 6px; border-radius: 99px; background: var(--line) }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none; appearance: none;
-      width: 16px; height: 16px; margin-top: -5px; border-radius: 50%;
-      background: var(--grad); border: 2px solid #fff;
-      box-shadow: 0 2px 10px rgba(124, 108, 255, .55); cursor: pointer
+    .ctrl {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 18px
     }
-    input[type=range]::-moz-range-track { height: 6px; border-radius: 99px; background: var(--line) }
-    input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--acc); border: 2px solid #fff; cursor: pointer }
+
+    .vol {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--mute);
+      font-size: 13px;
+      font-weight: 600
+    }
+
+    .vol input {
+      width: 120px;
+      accent-color: var(--acc);
+      cursor: pointer
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      height: 22px
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      height: 6px;
+      border-radius: 99px;
+      background: var(--line)
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      margin-top: -5px;
+      border-radius: 50%;
+      background: var(--grad);
+      border: 2px solid #fff;
+      box-shadow: 0 2px 10px rgba(124, 108, 255, .55);
+      cursor: pointer
+    }
+
+    input[type=range]::-moz-range-track {
+      height: 6px;
+      border-radius: 99px;
+      background: var(--line)
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--acc);
+      border: 2px solid #fff;
+      cursor: pointer
+    }
 
     .cta {
-      flex: 1; min-width: 220px;
-      border: 0; border-radius: 14px; padding: 15px 22px;
-      font: inherit; font-weight: 700; font-size: 16px; letter-spacing: .01em;
-      color: #fff; cursor: pointer;
+      flex: 1;
+      min-width: 220px;
+      border: 0;
+      border-radius: 14px;
+      padding: 15px 22px;
+      font: inherit;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: .01em;
+      color: #fff;
+      cursor: pointer;
       background: var(--grad);
       box-shadow: 0 12px 30px rgba(124, 108, 255, .4), inset 0 1px 0 rgba(255, 255, 255, .35);
       transition: .18s;
-      position: relative; overflow: hidden
+      position: relative;
+      overflow: hidden
     }
-    .cta:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(124, 108, 255, .55), inset 0 1px 0 rgba(255, 255, 255, .35) }
-    .cta:active:not(:disabled) { transform: scale(.98) }
-    .cta:disabled { opacity: .4; cursor: not-allowed; box-shadow: none }
+
+    .cta:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(124, 108, 255, .55), inset 0 1px 0 rgba(255, 255, 255, .35)
+    }
+
+    .cta:active:not(:disabled) {
+      transform: scale(.98)
+    }
+
+    .cta:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      box-shadow: none
+    }
+
     .cta:not(:disabled)::after {
-      content: ""; position: absolute; top: 0; left: -60%;
-      width: 40%; height: 100%;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
       background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
       transform: skewX(-20deg);
       animation: shine 3s infinite
     }
-    @keyframes shine { to { left: 130% } }
+
+    @keyframes shine {
+      to {
+        left: 130%
+      }
+    }
 
     /* ---------- progress & steps ---------- */
-    .track { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; margin-top: 18px; position: relative }
+    .track {
+      height: 8px;
+      border-radius: 99px;
+      background: var(--line);
+      overflow: hidden;
+      margin-top: 18px;
+      position: relative
+    }
+
     .track i {
-      display: block; height: 100%; width: 0; border-radius: 99px;
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 99px;
       background-image: linear-gradient(90deg, var(--acc), var(--acc2), var(--acc3), var(--acc));
       background-size: 200% 100%;
       animation: flow 2s linear infinite;
@@ -318,779 +685,1559 @@
       box-shadow: 0 0 14px rgba(124, 108, 255, .7);
       position: relative;
     }
+
     .track i::after {
-      content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 14px;
-      background: #fff; border-radius: 50%; filter: blur(3px); opacity: .85;
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 14px;
+      background: #fff;
+      border-radius: 50%;
+      filter: blur(3px);
+      opacity: .85;
       box-shadow: 0 0 10px #22d3ee;
     }
-    @keyframes flow { to { background-position: -200% 0 } }
 
-    .steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 14px 0 0 }
+    @keyframes flow {
+      to {
+        background-position: -200% 0
+      }
+    }
+
+    .steps {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0;
+      margin: 14px 0 0
+    }
+
     .s {
-      display: flex; gap: 10px; align-items: center; min-width: 0;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-width: 0;
       padding: 10px 12px;
-      border: 1px solid var(--line); border-radius: 14px;
-      font-size: 13px; font-weight: 600; color: var(--mute);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--mute);
       background: var(--card);
       transition: .3s
     }
+
     .s i {
-      width: 24px; height: 24px; border-radius: 50%; flex: none;
-      display: grid; place-items: center;
-      font-style: normal; font-size: 12px; font-weight: 700;
-      background: var(--line); color: var(--mute)
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      flex: none;
+      display: grid;
+      place-items: center;
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--line);
+      color: var(--mute)
     }
+
     .s.on {
       border-color: color-mix(in srgb, var(--acc) 55%, var(--line));
       color: var(--ink);
       transform: translateY(-2px);
       box-shadow: 0 8px 22px rgba(124, 108, 255, .25);
     }
-    .s.on i { background: var(--grad); color: #fff; animation: p 1.2s infinite }
-    .s.done { border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); color: var(--ink) }
-    .s.done i { background: var(--ok); color: #fff; animation: pop .4s }
-    .s.done i span { display: none }
-    .s.done i::before { content: "✓" }
-    @keyframes p { 50% { box-shadow: 0 0 0 6px rgba(124, 108, 255, .25) } }
-    @keyframes pop { 50% { transform: scale(1.35) } }
 
-    #log { margin: 12px 0 0; font-size: 13px; color: var(--mute); min-height: 1.4em; transition: color .3s }
+    .s.on i {
+      background: var(--grad);
+      color: #fff;
+      animation: p 1.2s infinite
+    }
+
+    .s.done {
+      border-color: color-mix(in srgb, var(--ok) 45%, var(--line));
+      color: var(--ink)
+    }
+
+    .s.done i {
+      background: var(--ok);
+      color: #fff;
+      animation: pop .4s
+    }
+
+    .s.done i span {
+      display: none
+    }
+
+    .s.done i::before {
+      content: "✓"
+    }
+
+    @keyframes p {
+      50% {
+        box-shadow: 0 0 0 6px rgba(124, 108, 255, .25)
+      }
+    }
+
+    @keyframes pop {
+      50% {
+        transform: scale(1.35)
+      }
+    }
+
+    #log {
+      margin: 12px 0 0;
+      font-size: 13px;
+      color: var(--mute);
+      min-height: 1.4em;
+      transition: color .3s
+    }
 
     /* ---------- enhanced cool busy panel (AI Audio Engine) ---------- */
     .busy {
-      display: none; margin-top: 18px; padding: 18px 20px;
-      border-radius: 20px; position: relative; overflow: hidden;
+      display: none;
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
       border: 1px solid rgba(124, 108, 255, .38);
       background: linear-gradient(135deg, rgba(13, 18, 38, .88), rgba(24, 16, 50, .88));
       backdrop-filter: blur(18px);
       box-shadow: 0 16px 42px rgba(0, 0, 0, .45), 0 0 28px rgba(124, 108, 255, .2), inset 0 1px 0 rgba(255, 255, 255, .15);
     }
-    .busy.on { display: flex; gap: 18px; align-items: center; animation: glowRise .6s cubic-bezier(.2, .8, .2, 1) both }
-    @keyframes glowRise {
-      from { opacity: 0; transform: translateY(18px) scale(.97) }
-      to { opacity: 1; transform: translateY(0) scale(1) }
+
+    .busy.on {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      animation: glowRise .6s cubic-bezier(.2, .8, .2, 1) both
     }
+
+    @keyframes glowRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(.97)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
     .busy::before {
-      content: ""; position: absolute; inset: 0;
+      content: "";
+      position: absolute;
+      inset: 0;
       background: radial-gradient(400px 120px at 15% 0%, rgba(124, 108, 255, .22), transparent 70%),
-                  radial-gradient(300px 120px at 85% 100%, rgba(34, 211, 238, .18), transparent 70%);
+        radial-gradient(300px 120px at 85% 100%, rgba(34, 211, 238, .18), transparent 70%);
       pointer-events: none;
     }
-    .ai-core { position: relative; flex: none; display: grid; place-items: center }
+
+    .ai-core {
+      position: relative;
+      flex: none;
+      display: grid;
+      place-items: center
+    }
+
     .ai-orb {
-      width: 48px; height: 48px; border-radius: 50%;
-      position: relative; display: grid; place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      position: relative;
+      display: grid;
+      place-items: center;
       background: rgba(10, 14, 30, .85);
       box-shadow: 0 0 22px rgba(124, 108, 255, .5), inset 0 0 14px rgba(124, 108, 255, .4);
     }
+
     .ai-ring {
-      position: absolute; inset: -3px; border-radius: 50%;
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
       background: conic-gradient(from 0deg, #7c6cff, #c86bff, #22d3ee, #7c6cff);
       mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
       -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
       animation: spinRing 2.4s linear infinite;
     }
-    @keyframes spinRing { to { transform: rotate(360deg) } }
+
+    @keyframes spinRing {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
     .ai-center {
       font-family: "Space Grotesk", Inter, sans-serif;
-      font-size: 13px; font-weight: 800; letter-spacing: .06em;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .06em;
       background: var(--grad);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       animation: pulseCore 1.6s ease-in-out infinite alternate;
     }
-    @keyframes pulseCore { from { transform: scale(.92); filter: brightness(1) } to { transform: scale(1.08); filter: brightness(1.3) } }
 
-    .eq-visualizer { display: flex; gap: 3.5px; align-items: flex-end; height: 38px; flex: none }
+    @keyframes pulseCore {
+      from {
+        transform: scale(.92);
+        filter: brightness(1)
+      }
+
+      to {
+        transform: scale(1.08);
+        filter: brightness(1.3)
+      }
+    }
+
+    .eq-visualizer {
+      display: flex;
+      gap: 3.5px;
+      align-items: flex-end;
+      height: 38px;
+      flex: none
+    }
+
     .eq-visualizer b {
-      width: 4px; border-radius: 4px;
+      width: 4px;
+      border-radius: 4px;
       background: linear-gradient(180deg, #22d3ee, #c86bff 55%, #7c6cff);
       box-shadow: 0 0 8px rgba(34, 211, 238, .6);
       animation: audioWave 1.2s ease-in-out infinite alternate;
     }
-    .eq-visualizer b:nth-child(1) { height: 35%; animation-delay: -.1s }
-    .eq-visualizer b:nth-child(2) { height: 75%; animation-delay: -.4s }
-    .eq-visualizer b:nth-child(3) { height: 45%; animation-delay: -.7s }
-    .eq-visualizer b:nth-child(4) { height: 95%; animation-delay: -.2s }
-    .eq-visualizer b:nth-child(5) { height: 60%; animation-delay: -.8s }
-    .eq-visualizer b:nth-child(6) { height: 100%; animation-delay: -.5s }
-    .eq-visualizer b:nth-child(7) { height: 40%; animation-delay: -.3s }
-    .eq-visualizer b:nth-child(8) { height: 85%; animation-delay: -.9s }
-    .eq-visualizer b:nth-child(9) { height: 50%; animation-delay: -.6s }
-    .eq-visualizer b:nth-child(10) { height: 90%; animation-delay: -.25s }
-    .eq-visualizer b:nth-child(11) { height: 65%; animation-delay: -.75s }
-    .eq-visualizer b:nth-child(12) { height: 40%; animation-delay: -.35s }
-    .eq-visualizer b:nth-child(13) { height: 80%; animation-delay: -.85s }
-    .eq-visualizer b:nth-child(14) { height: 55%; animation-delay: -.15s }
+
+    .eq-visualizer b:nth-child(1) {
+      height: 35%;
+      animation-delay: -.1s
+    }
+
+    .eq-visualizer b:nth-child(2) {
+      height: 75%;
+      animation-delay: -.4s
+    }
+
+    .eq-visualizer b:nth-child(3) {
+      height: 45%;
+      animation-delay: -.7s
+    }
+
+    .eq-visualizer b:nth-child(4) {
+      height: 95%;
+      animation-delay: -.2s
+    }
+
+    .eq-visualizer b:nth-child(5) {
+      height: 60%;
+      animation-delay: -.8s
+    }
+
+    .eq-visualizer b:nth-child(6) {
+      height: 100%;
+      animation-delay: -.5s
+    }
+
+    .eq-visualizer b:nth-child(7) {
+      height: 40%;
+      animation-delay: -.3s
+    }
+
+    .eq-visualizer b:nth-child(8) {
+      height: 85%;
+      animation-delay: -.9s
+    }
+
+    .eq-visualizer b:nth-child(9) {
+      height: 50%;
+      animation-delay: -.6s
+    }
+
+    .eq-visualizer b:nth-child(10) {
+      height: 90%;
+      animation-delay: -.25s
+    }
+
+    .eq-visualizer b:nth-child(11) {
+      height: 65%;
+      animation-delay: -.75s
+    }
+
+    .eq-visualizer b:nth-child(12) {
+      height: 40%;
+      animation-delay: -.35s
+    }
+
+    .eq-visualizer b:nth-child(13) {
+      height: 80%;
+      animation-delay: -.85s
+    }
+
+    .eq-visualizer b:nth-child(14) {
+      height: 55%;
+      animation-delay: -.15s
+    }
+
     @keyframes audioWave {
-      0% { height: 15%; filter: brightness(.85) }
-      50% { height: 90%; filter: brightness(1.2) }
-      100% { height: 30%; filter: brightness(1) }
+      0% {
+        height: 15%;
+        filter: brightness(.85)
+      }
+
+      50% {
+        height: 90%;
+        filter: brightness(1.2)
+      }
+
+      100% {
+        height: 30%;
+        filter: brightness(1)
+      }
     }
 
     .stage-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-      color: var(--acc3); margin-bottom: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--acc3);
+      margin-bottom: 2px;
     }
+
     .live-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--ok); box-shadow: 0 0 10px var(--ok);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 10px var(--ok);
       animation: blink 1.2s infinite;
     }
-    .bm { min-width: 0; flex: 1 }
-    .bt { font-weight: 700; font-size: 15px; transition: opacity .35s, transform .35s }
-    .bt.sw { opacity: 0; transform: translateY(6px) }
-    .bt::after { content: "..."; display: inline-block; overflow: hidden; vertical-align: bottom; width: 0; animation: dots 1.4s steps(4) infinite }
-    @keyframes dots { to { width: 1.1em } }
-    .bs { font-size: 12.5px; color: var(--mute); margin-top: 2px }
+
+    .bm {
+      min-width: 0;
+      flex: 1
+    }
+
+    .bt {
+      font-weight: 700;
+      font-size: 15px;
+      transition: opacity .35s, transform .35s
+    }
+
+    .bt.sw {
+      opacity: 0;
+      transform: translateY(6px)
+    }
+
+    .bt::after {
+      content: "...";
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      width: 0;
+      animation: dots 1.4s steps(4) infinite
+    }
+
+    @keyframes dots {
+      to {
+        width: 1.1em
+      }
+    }
+
+    .bs {
+      font-size: 12.5px;
+      color: var(--mute);
+      margin-top: 2px
+    }
 
     /* ---------- backend log (terminal) ---------- */
     .blog {
-      margin-top: 16px; border: 1px solid var(--line); border-radius: 14px;
-      background: #05070d; overflow: hidden
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #05070d;
+      overflow: hidden
     }
-    :root[data-theme="light"] .blog { background: #0b1020 }
+
+    :root[data-theme="light"] .blog {
+      background: #0b1020
+    }
+
     .blog .bh {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 12px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      color: #7c86a8; border-bottom: 1px solid rgba(255, 255, 255, .07)
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #7c86a8;
+      border-bottom: 1px solid rgba(255, 255, 255, .07)
     }
-    .blog .bh::before { content: "● ● ●"; letter-spacing: 2px; font-size: 8px; color: #3a4260; margin-right: 8px }
-    .blog .bh span { margin-right: auto }
-    .blog .bh button { border: 0; background: none; color: #8f9bff; cursor: pointer; font-size: 11.5px; font-weight: 600 }
-    .blog .bh button:hover { color: #c3c9ff }
+
+    .blog .bh::before {
+      content: "● ● ●";
+      letter-spacing: 2px;
+      font-size: 8px;
+      color: #3a4260;
+      margin-right: 8px
+    }
+
+    .blog .bh span {
+      margin-right: auto
+    }
+
+    .blog .bh button {
+      border: 0;
+      background: none;
+      color: #8f9bff;
+      cursor: pointer;
+      font-size: 11.5px;
+      font-weight: 600
+    }
+
+    .blog .bh button:hover {
+      color: #c3c9ff
+    }
+
     #blogbody {
-      height: 140px; overflow-y: auto; padding: 10px 12px;
+      height: 140px;
+      overflow-y: auto;
+      padding: 10px 12px;
       font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       color: #cdd5ee;
-      -webkit-user-select: text; user-select: text
+      -webkit-user-select: text;
+      user-select: text
     }
-    #blogbody div { white-space: pre-wrap; word-break: break-word }
-    #blogbody .t { color: #5b6480 }
-    #blogbody .w { color: #fbbf24 }
-    #blogbody .k { color: #34d399 }
+
+    #blogbody div {
+      white-space: pre-wrap;
+      word-break: break-word
+    }
+
+    #blogbody .t {
+      color: #5b6480
+    }
+
+    #blogbody .w {
+      color: #fbbf24
+    }
+
+    #blogbody .k {
+      color: #34d399
+    }
 
     /* ---------- buttons ---------- */
-    .btns { display: flex; gap: 8px; flex-wrap: wrap }
-    button.b {
-      font: inherit; font-size: 12.5px; font-weight: 600;
-      padding: 8px 13px; border-radius: 11px;
-      border: 1px solid var(--line); background: var(--card);
-      color: var(--ink); cursor: pointer;
-      transition: .18s; text-transform: none; letter-spacing: 0
+    .btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
     }
-    button.b:hover:not(:disabled) { border-color: var(--acc); color: var(--acc); box-shadow: var(--ring) }
-    button.b:disabled { opacity: .45; cursor: not-allowed }
+
+    button.b {
+      font: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 8px 13px;
+      border-radius: 11px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      cursor: pointer;
+      transition: .18s;
+      text-transform: none;
+      letter-spacing: 0
+    }
+
+    button.b:hover:not(:disabled) {
+      border-color: var(--acc);
+      color: var(--acc);
+      box-shadow: var(--ring)
+    }
+
+    button.b:disabled {
+      opacity: .45;
+      cursor: not-allowed
+    }
+
     button.b.p {
-      background: var(--grad); border-color: transparent; color: #fff;
+      background: var(--grad);
+      border-color: transparent;
+      color: #fff;
       box-shadow: 0 8px 20px rgba(124, 108, 255, .35), inset 0 1px 0 rgba(255, 255, 255, .3)
     }
-    button.b.p:hover:not(:disabled) { color: #fff; filter: brightness(1.12); box-shadow: 0 12px 26px rgba(124, 108, 255, .5) }
+
+    button.b.p:hover:not(:disabled) {
+      color: #fff;
+      filter: brightness(1.12);
+      box-shadow: 0 12px 26px rgba(124, 108, 255, .5)
+    }
 
     /* ---------- script list (now on the right side) ---------- */
     .list {
-      max-height: 380px; overflow: auto; margin-top: 8px;
-      font-size: 14px; border: 1px solid var(--line); border-radius: 14px;
+      max-height: 380px;
+      overflow: auto;
+      margin-top: 8px;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
       background: color-mix(in srgb, var(--card) 60%, transparent)
     }
-    .list div { padding: 10px 14px; border-bottom: 1px solid var(--line); animation: rise .4s both; line-height: 1.6 }
-    .list div:last-child { border: 0 }
-    .list div:hover { background: var(--soft) }
-    .list b {
-      color: var(--acc3); font-variant-numeric: tabular-nums;
-      font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px;
-      margin-right: 10px; padding: 2px 7px;
-      background: var(--soft); border-radius: 7px
+
+    .list div {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      animation: rise .4s both;
+      line-height: 1.6
     }
-    .note { font-size: 12.5px; color: var(--mute); margin: 10px 0 0 }
+
+    .list div:last-child {
+      border: 0
+    }
+
+    .list div:hover {
+      background: var(--soft)
+    }
+
+    .list b {
+      color: var(--acc3);
+      font-variant-numeric: tabular-nums;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12px;
+      margin-right: 10px;
+      padding: 2px 7px;
+      background: var(--soft);
+      border-radius: 7px
+    }
+
+    .note {
+      font-size: 12.5px;
+      color: var(--mute);
+      margin: 10px 0 0
+    }
 
     /* ---------- tabs ---------- */
     .tabs {
-      display: flex; gap: 4px;
+      display: flex;
+      gap: 4px;
       background: color-mix(in srgb, var(--bg) 65%, transparent);
       border: 1px solid var(--line);
-      padding: 4px; border-radius: 14px; margin-bottom: 16px
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 16px
     }
+
     .tabs button {
-      flex: 1; border: 0; background: none; color: var(--mute);
-      font: inherit; font-size: 13px; font-weight: 600;
-      padding: 9px 8px; border-radius: 10px; cursor: pointer; transition: .18s
+      flex: 1;
+      border: 0;
+      background: none;
+      color: var(--mute);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: .18s
     }
-    .tabs button:hover { color: var(--ink) }
-    .tabs button.on { background: var(--grad); color: #fff; box-shadow: 0 6px 16px rgba(124, 108, 255, .35) }
+
+    .tabs button:hover {
+      color: var(--ink)
+    }
+
+    .tabs button.on {
+      background: var(--grad);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(124, 108, 255, .35)
+    }
 
     /* ---------- providers / pipeline ---------- */
-    .prov { border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-bottom: 12px; background: color-mix(in srgb, var(--card) 60%, transparent) }
-    .ph { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px }
-    .ph a { margin-left: auto; font-size: 12.5px; color: var(--acc3); text-decoration: none; font-weight: 600 }
-    .ph a:hover { text-decoration: underline }
-    .tag {
-      font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 99px;
-      background: var(--soft); color: var(--acc)
+    .prov {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: color-mix(in srgb, var(--card) 60%, transparent)
     }
-    .sw { display: flex; gap: 8px; align-items: center; cursor: pointer }
-    .sw input { accent-color: var(--acc); width: 16px; height: 16px; cursor: pointer }
-    .mrow { display: flex; justify-content: space-between; align-items: center; margin: 12px 0 6px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--mute) }
 
-    textarea, select, input[type=text] {
-      width: 100%; font: inherit; font-size: 13px; color: var(--ink);
+    .ph {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px
+    }
+
+    .ph a {
+      margin-left: auto;
+      font-size: 12.5px;
+      color: var(--acc3);
+      text-decoration: none;
+      font-weight: 600
+    }
+
+    .ph a:hover {
+      text-decoration: underline
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: var(--soft);
+      color: var(--acc)
+    }
+
+    .sw {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer
+    }
+
+    .sw input {
+      accent-color: var(--acc);
+      width: 16px;
+      height: 16px;
+      cursor: pointer
+    }
+
+    .mrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 12px 0 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--mute)
+    }
+
+    textarea,
+    select,
+    input[type=text] {
+      width: 100%;
+      font: inherit;
+      font-size: 13px;
+      color: var(--ink);
       background: color-mix(in srgb, var(--bg) 55%, transparent);
-      border: 1px solid var(--line); border-radius: 12px;
-      padding: 9px 12px; outline: none;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 9px 12px;
+      outline: none;
       transition: border-color .18s, box-shadow .18s
     }
-    :root[data-theme="light"] textarea, :root[data-theme="light"] select, :root[data-theme="light"] input[type=text] { background: #f7f8fd }
-    textarea { min-height: 58px; resize: vertical; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 1.6 }
-    textarea:focus, select:focus, input[type=text]:focus { border-color: var(--acc); box-shadow: var(--ring) }
+
+    :root[data-theme="light"] textarea,
+    :root[data-theme="light"] select,
+    :root[data-theme="light"] input[type=text] {
+      background: #f7f8fd
+    }
+
+    textarea {
+      min-height: 58px;
+      resize: vertical;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.6
+    }
+
+    textarea:focus,
+    select:focus,
+    input[type=text]:focus {
+      border-color: var(--acc);
+      box-shadow: var(--ring)
+    }
+
     select {
-      appearance: none; -webkit-appearance: none; cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
       background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b93b4' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 12px center;
+      background-repeat: no-repeat;
+      background-position: right 12px center;
       padding-right: 34px
     }
-    select option, select optgroup { background: var(--card2); color: var(--ink) }
 
-    label.f { display: block; font-size: 12px; color: var(--mute); margin: 14px 0 6px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase }
-    .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px }
+    select option,
+    select optgroup {
+      background: var(--card2);
+      color: var(--ink)
+    }
+
+    label.f {
+      display: block;
+      font-size: 12px;
+      color: var(--mute);
+      margin: 14px 0 6px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 8px
+    }
 
     /* ---------- key widget ---------- */
-    .keys { display: grid; gap: 8px; max-height: 200px; overflow-y: auto; overscroll-behavior: contain; padding-right: 2px }
-    .keys:has(.kr:nth-child(6)) { padding-right: 6px; border-bottom: 1px solid var(--line) }
-    .kr { display: flex; gap: 6px; align-items: center }
-    .kr > span:first-child { width: 18px; text-align: center; color: var(--mute); font-size: 12px; flex: none; font-variant-numeric: tabular-nums }
-    .kr input { flex: 1; min-width: 0 }
-    .mask { -webkit-text-security: disc; text-security: disc }
+    .keys {
+      display: grid;
+      gap: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding-right: 2px
+    }
+
+    .keys:has(.kr:nth-child(6)) {
+      padding-right: 6px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .kr {
+      display: flex;
+      gap: 6px;
+      align-items: center
+    }
+
+    .kr>span:first-child {
+      width: 18px;
+      text-align: center;
+      color: var(--mute);
+      font-size: 12px;
+      flex: none;
+      font-variant-numeric: tabular-nums
+    }
+
+    .kr input {
+      flex: 1;
+      min-width: 0
+    }
+
+    .mask {
+      -webkit-text-security: disc;
+      text-security: disc
+    }
+
     .ks {
-      width: auto; max-width: 46%; overflow: hidden; text-overflow: ellipsis; flex: none;
-      font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap;
-      background: var(--soft); color: var(--mute)
+      width: auto;
+      max-width: 46%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: none;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+      background: var(--soft);
+      color: var(--mute)
     }
-    .ks[hidden] { display: none }
-    .ks.ok { color: var(--ok); background: color-mix(in srgb, var(--ok) 14%, transparent) }
-    .ks.warn { color: #f59e0b; background: rgba(245, 158, 11, .13) }
-    .ks.bad { color: #f87171; background: rgba(248, 113, 113, .13) }
+
+    .ks[hidden] {
+      display: none
+    }
+
+    .ks.ok {
+      color: var(--ok);
+      background: color-mix(in srgb, var(--ok) 14%, transparent)
+    }
+
+    .ks.warn {
+      color: #f59e0b;
+      background: rgba(245, 158, 11, .13)
+    }
+
+    .ks.bad {
+      color: #f87171;
+      background: rgba(248, 113, 113, .13)
+    }
+
     .kx {
-      border: 1px solid var(--line); background: var(--card); color: var(--mute);
-      border-radius: 10px; width: 34px; height: 34px; cursor: pointer; flex: none; transition: .18s
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--mute);
+      border-radius: 10px;
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      flex: none;
+      transition: .18s
     }
-    .kx:hover { color: #f87171; border-color: #f87171 }
-    .kctl { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap }
+
+    .kx:hover {
+      color: #f87171;
+      border-color: #f87171
+    }
+
+    .kctl {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 10px;
+      flex-wrap: wrap
+    }
 
     /* ---------- scrollbars ---------- */
-    .list::-webkit-scrollbar, #blogbody::-webkit-scrollbar, .keys::-webkit-scrollbar { width: 8px }
-    .list::-webkit-scrollbar-thumb, .keys::-webkit-scrollbar-thumb { background: var(--line); border-radius: 99px }
-    #blogbody::-webkit-scrollbar-thumb { background: #2a3350; border-radius: 99px }
-    .list::-webkit-scrollbar-thumb:hover, .keys::-webkit-scrollbar-thumb:hover { background: var(--acc) }
+    .list::-webkit-scrollbar,
+    #blogbody::-webkit-scrollbar,
+    .keys::-webkit-scrollbar {
+      width: 8px
+    }
+
+    .list::-webkit-scrollbar-thumb,
+    .keys::-webkit-scrollbar-thumb {
+      background: var(--line);
+      border-radius: 99px
+    }
+
+    #blogbody::-webkit-scrollbar-thumb {
+      background: #2a3350;
+      border-radius: 99px
+    }
+
+    .list::-webkit-scrollbar-thumb:hover,
+    .keys::-webkit-scrollbar-thumb:hover {
+      background: var(--acc)
+    }
 
     /* ---------- modals ---------- */
     .mod {
-      position: fixed; inset: 0; z-index: 50;
-      display: none; place-items: center; padding: 20px;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 20px;
       background: rgba(4, 6, 16, .6);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px)
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px)
     }
-    .mod.on { display: grid; animation: fade .25s }
-    @keyframes fade { from { opacity: 0 } }
+
+    .mod.on {
+      display: grid;
+      animation: fade .25s
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0
+      }
+    }
+
     .mbox {
       width: min(430px, 100%);
       background: var(--card2);
       border: 1px solid var(--line);
-      border-radius: 26px; padding: 28px;
+      border-radius: 26px;
+      padding: 28px;
       text-align: center;
       box-shadow: 0 40px 90px rgba(0, 0, 0, .55);
       animation: rise .4s cubic-bezier(.2, .8, .2, 1) both
     }
-    .mbox .big { font-size: 46px; animation: beat 1.6s infinite; display: inline-block }
-    .mbox h3 { margin: 8px 0 6px; font-size: 20px; font-family: "Space Grotesk", Inter, sans-serif }
-    .mbox p { color: var(--mute); margin: 0 0 18px; font-size: 13.5px }
+
+    .mbox .big {
+      font-size: 46px;
+      animation: beat 1.6s infinite;
+      display: inline-block
+    }
+
+    .mbox h3 {
+      margin: 8px 0 6px;
+      font-size: 20px;
+      font-family: "Space Grotesk", Inter, sans-serif
+    }
+
+    .mbox p {
+      color: var(--mute);
+      margin: 0 0 18px;
+      font-size: 13.5px
+    }
+
     .tg {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; padding: 14px; border: 0; border-radius: 14px;
-      font: inherit; font-weight: 700; color: #fff; cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 14px;
+      font: inherit;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
       background: linear-gradient(135deg, #29a9eb, #1d7bd8);
       box-shadow: 0 10px 24px rgba(41, 169, 235, .3);
-      text-decoration: none; transition: .18s
+      text-decoration: none;
+      transition: .18s
     }
-    .tg:hover { filter: brightness(1.1); transform: translateY(-1px) }
+
+    .tg:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px)
+    }
+
     .merr {
-      display: none; margin-bottom: 14px; padding: 11px 13px;
-      border-radius: 12px; font-size: 13px; text-align: left;
-      color: #fca5a5; background: rgba(248, 113, 113, .1); border: 1px solid rgba(248, 113, 113, .35)
+      display: none;
+      margin-bottom: 14px;
+      padding: 11px 13px;
+      border-radius: 12px;
+      font-size: 13px;
+      text-align: left;
+      color: #fca5a5;
+      background: rgba(248, 113, 113, .1);
+      border: 1px solid rgba(248, 113, 113, .35)
     }
-    .merr.on { display: block; animation: shake .4s }
-    @keyframes shake { 25% { transform: translateX(-6px) } 75% { transform: translateX(6px) } }
-    .mclose { margin-top: 14px; background: none; border: 0; color: var(--mute); cursor: pointer; font: inherit; font-size: 13px }
-    .mclose:hover { color: var(--ink) }
+
+    .merr.on {
+      display: block;
+      animation: shake .4s
+    }
+
+    @keyframes shake {
+      25% {
+        transform: translateX(-6px)
+      }
+
+      75% {
+        transform: translateX(6px)
+      }
+    }
+
+    .mclose {
+      margin-top: 14px;
+      background: none;
+      border: 0;
+      color: var(--mute);
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px
+    }
+
+    .mclose:hover {
+      color: var(--ink)
+    }
 
     /* ---------- footer / toast / confetti ---------- */
-    .foot { text-align: center; color: var(--mute); font-size: 12.5px; margin-top: 12px }
-    .foot a { color: var(--acc); cursor: pointer; font-weight: 600; text-decoration: none }
-    .foot a:hover { text-decoration: underline }
-    .toast {
-      position: fixed; left: 50%; bottom: calc(26px + env(safe-area-inset-bottom, 0px));
-      transform: translate(-50%, 30px); opacity: 0; z-index: 60;
-      padding: 12px 20px; border-radius: 999px;
-      background: var(--ink); color: var(--bg);
-      font-size: 13.5px; font-weight: 600;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, .35);
-      transition: .35s; pointer-events: none
+    .foot {
+      text-align: center;
+      color: var(--mute);
+      font-size: 12.5px;
+      margin-top: 12px
     }
-    .toast.on { opacity: 1; transform: translate(-50%, 0) }
-    .cf { position: fixed; top: -12px; z-index: 70; width: 9px; height: 14px; border-radius: 2px; pointer-events: none; animation: fall linear forwards }
-    @keyframes fall { to { transform: translateY(105vh) rotate(720deg); opacity: .8 } }
+
+    .foot a {
+      color: var(--acc);
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none
+    }
+
+    .foot a:hover {
+      text-decoration: underline
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+      transform: translate(-50%, 30px);
+      opacity: 0;
+      z-index: 60;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .35);
+      transition: .35s;
+      pointer-events: none
+    }
+
+    .toast.on {
+      opacity: 1;
+      transform: translate(-50%, 0)
+    }
+
+    .cf {
+      position: fixed;
+      top: -12px;
+      z-index: 70;
+      width: 9px;
+      height: 14px;
+      border-radius: 2px;
+      pointer-events: none;
+      animation: fall linear forwards
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(105vh) rotate(720deg);
+        opacity: .8
+      }
+    }
 
     #guard {
-      position: fixed; inset: 0; z-index: 99;
-      display: none; place-items: center; text-align: center;
-      background: var(--bg); color: var(--ink); padding: 30px; font-weight: 700
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      display: none;
+      place-items: center;
+      text-align: center;
+      background: var(--bg);
+      color: var(--ink);
+      padding: 30px;
+      font-weight: 700
     }
 
     /* ---------- responsive ---------- */
     @media (max-width: 600px) {
-      .donate b { display: none }
-      .brand p { display: none }
-      h1 { font-size: 17px }
-      .hero { padding: 30px 6px 26px }
-      .hero p { font-size: 13.5px }
-      .card { padding: 16px; border-radius: 18px }
-      .card:hover { box-shadow: var(--shadow) }
-      .steps { gap: 6px }
-      .s { font-size: 11.5px; padding: 8px; gap: 7px }
-      .s i { width: 20px; height: 20px; font-size: 10.5px }
-      .vol input { width: 90px }
-      .busy.on { flex-direction: column; text-align: center }
-      .aurora i { filter: blur(50px); animation: none }
-      .top { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--bg) }
-      .ks { font-size: 10px; padding: 3px 7px }
-      #cap { font-size: 15px; bottom: 42px }
+      .donate b {
+        display: none
+      }
+
+      .brand p {
+        display: none
+      }
+
+      h1 {
+        font-size: 17px
+      }
+
+      .hero {
+        padding: 30px 6px 26px
+      }
+
+      .hero p {
+        font-size: 13.5px
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 18px
+      }
+
+      .card:hover {
+        box-shadow: var(--shadow)
+      }
+
+      .steps {
+        gap: 6px
+      }
+
+      .s {
+        font-size: 11.5px;
+        padding: 8px;
+        gap: 7px
+      }
+
+      .s i {
+        width: 20px;
+        height: 20px;
+        font-size: 10.5px
+      }
+
+      .vol input {
+        width: 90px
+      }
+
+      .busy.on {
+        flex-direction: column;
+        text-align: center
+      }
+
+      .aurora i {
+        filter: blur(50px);
+        animation: none
+      }
+
+      .top {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: var(--bg)
+      }
+
+      .ks {
+        font-size: 10px;
+        padding: 3px 7px
+      }
+
+      #cap {
+        font-size: 15px;
+        bottom: 42px
+      }
     }
+
     @media (max-width: 480px) {
-      .steps { grid-template-columns: 1fr }
-      .s { padding: 9px 12px; font-size: 12.5px }
+      .steps {
+        grid-template-columns: 1fr
+      }
+
+      .s {
+        padding: 9px 12px;
+        font-size: 12.5px
+      }
     }
-    input, select, textarea { font-size: 16px }
-    @media (min-width: 601px) { input, select, textarea { font-size: 13px } }
+
+    input,
+    select,
+    textarea {
+      font-size: 16px
+    }
+
+    @media (min-width: 601px) {
+
+      input,
+      select,
+      textarea {
+        font-size: 13px
+      }
+    }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important
       }
     }
-    </style>
-  </head>
-  <body>
-    <div class="aurora">
-      <i></i>
-      <i></i>
-      <i></i>
-    </div>
-    <div id="guard">
-      🔒 Developer tools are disabled on this site.
-      <br />
-      Please close them to continue.
-    </div>
-    <div class="wrap">
-      <header class="top">
-        <div class="brand">
-          <div class="logo">
-            ខ
+  </style>
+</head>
+
+<body>
+  <div class="aurora">
+    <i></i>
+    <i></i>
+    <i></i>
+  </div>
+  <div id="guard">
+    🔒 Developer tools are disabled on this site.
+    <br />
+    Please close them to continue.
+  </div>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <div class="logo">
+          ខ
+        </div>
+        <div>
+          <h1>
+            Khmer Dubber
+          </h1>
+          <p>
+            AI video dubbing · free-tier friendly · runs in your browser
+          </p>
+        </div>
+      </div>
+      <div class="acts">
+        <button class="donate" id="donateBtn" type="button">
+          <span>❤</span>
+          <b>Support me</b>
+        </button>
+        <button class="icon" id="theme" title="Light / dark">
+          ◐
+        </button>
+      </div>
+    </header>
+    <section class="hero">
+      <div class="eyebrow">
+        <i></i>
+        AI Dubbing Studio · ភាសាខ្មែរ
+      </div>
+      <h2>
+        Dub any video into
+        <span class="grad">Khmer</span>
+      </h2>
+      <p>
+        Transcribe, translate and voice-over in one click — right in your browser. Your video never leaves your device.
+      </p>
+      <div class="chips">
+        <span><b>✦</b> Free-tier friendly</span>
+        <span><b>✦</b> Natural Khmer voices</span>
+        <span><b>✦</b> 100% private</span>
+        <span><b>✦</b> Frame-accurate export</span>
+      </div>
+    </section>
+    <div class="layout">
+      <main>
+        <div class="card">
+          <div class="drop" id="drop">
+            <div class="dz">
+              ⬆
+            </div>
+            <div>
+              <b id="dropTxt">Drop a video here or click to browse</b>
+              <small>MP4, MOV, WebM · the file never leaves your device</small>
+            </div>
           </div>
-          <div>
-            <h1>
-              Khmer Dubber
-            </h1>
-            <p>
-              AI video dubbing · free-tier friendly · runs in your browser
-            </p>
+          <input type="file" id="file" accept="video/*" hidden="" />
+          <div class="stage" id="stage" hidden="">
+            <video id="v" controls="" playsinline="">
+            </video>
+            <div id="cap">
+            </div>
           </div>
-        </div>
-        <div class="acts">
-          <button class="donate" id="donateBtn" type="button">
-            <span>❤</span>
-            <b>Support me</b>
-          </button>
-          <button class="icon" id="theme" title="Light / dark">
-            ◐
-          </button>
-        </div>
-      </header>
-      <section class="hero">
-        <div class="eyebrow">
-          <i></i>
-          AI Dubbing Studio · ភាសាខ្មែរ
-        </div>
-        <h2>
-          Dub any video into
-          <span class="grad">Khmer</span>
-        </h2>
-        <p>
-          Transcribe, translate and voice-over in one click — right in your browser. Your video never leaves your device.
-        </p>
-        <div class="chips">
-          <span><b>✦</b> Free-tier friendly</span>
-          <span><b>✦</b> Natural Khmer voices</span>
-          <span><b>✦</b> 100% private</span>
-          <span><b>✦</b> Frame-accurate export</span>
-        </div>
-      </section>
-      <div class="layout">
-        <main>
-          <div class="card">
-            <div class="drop" id="drop">
-              <div class="dz">
-                ⬆
-              </div>
-              <div>
-                <b id="dropTxt">Drop a video here or click to browse</b>
-                <small>MP4, MOV, WebM · the file never leaves your device</small>
+          <div class="ctrl">
+            <label class="vol">
+              🔉 Original audio
+              <input type="range" id="vol" min="0" max="100" value="15" data-save="" />
+            </label>
+            <button class="cta" id="go" disabled="">
+              ✨ Dub to Khmer
+            </button>
+          </div>
+          <div class="track">
+            <i id="bar"></i>
+          </div>
+          <ol class="steps">
+            <li class="s" id="s1">
+              <i><span>1</span></i>
+              Transcribe
+            </li>
+            <li class="s" id="s2">
+              <i><span>2</span></i>
+              Translate
+            </li>
+            <li class="s" id="s3">
+              <i><span>3</span></i>
+              Khmer voice
+            </li>
+          </ol>
+          <!-- Enhanced cool dubbing process animation -->
+          <div class="busy" id="busy">
+            <div class="ai-core">
+              <div class="ai-orb">
+                <div class="ai-ring"></div>
+                <div class="ai-center">AI</div>
               </div>
             </div>
-            <input type="file" id="file" accept="video/*" hidden="" />
-            <div class="stage" id="stage" hidden="">
-              <video id="v" controls="" playsinline="">
-              </video>
-              <div id="cap">
-              </div>
+            <div class="eq-visualizer">
+              <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
+              <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
             </div>
-            <div class="ctrl">
-              <label class="vol">
-                🔉 Original audio
-                <input type="range" id="vol" min="0" max="100" value="15" data-save="" />
-              </label>
-              <button class="cta" id="go" disabled="">
-                ✨ Dub to Khmer
+            <div class="bm">
+              <div class="stage-tag">
+                <span class="live-dot"></span>
+                <span id="bstage">AI Dubbing Engine</span>
+              </div>
+              <div class="bt" id="bt">Getting ready</div>
+              <div class="bs" id="bs">Please keep this tab open</div>
+            </div>
+          </div>
+          <p id="log">
+          </p>
+          <div class="blog">
+            <div class="bh">
+              <span>Backend log</span>
+              <button type="button" id="blogclear">
+                Clear
               </button>
             </div>
-            <div class="track">
-              <i id="bar"></i>
+            <div id="blogbody">
             </div>
-            <ol class="steps">
-              <li class="s" id="s1">
-                <i><span>1</span></i>
-                Transcribe
-              </li>
-              <li class="s" id="s2">
-                <i><span>2</span></i>
-                Translate
-              </li>
-              <li class="s" id="s3">
-                <i><span>3</span></i>
-                Khmer voice
-              </li>
-            </ol>
-            <!-- Enhanced cool dubbing process animation -->
-            <div class="busy" id="busy">
-              <div class="ai-core">
-                <div class="ai-orb">
-                  <div class="ai-ring"></div>
-                  <div class="ai-center">AI</div>
-                </div>
-              </div>
-              <div class="eq-visualizer">
-                <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
-                <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
-              </div>
-              <div class="bm">
-                <div class="stage-tag">
-                  <span class="live-dot"></span>
-                  <span id="bstage">AI Dubbing Engine</span>
-                </div>
-                <div class="bt" id="bt">Getting ready</div>
-                <div class="bs" id="bs">Please keep this tab open</div>
-              </div>
-            </div>
-            <p id="log">
+          </div>
+        </div>
+      </main>
+      <aside>
+        <!-- Dubbing result info placed in the right side beside video -->
+        <div class="card" id="resCard" hidden="">
+          <h2>
+            Khmer script
+            <span class="btns">
+              <button class="b" id="genv">🔊 Voice</button>
+              <button class="b" id="replay">▶ Replay</button>
+              <button class="b" id="dlaudio">⬇ Audio</button>
+              <button class="b" id="dl">⬇ .srt</button>
+              <button class="b p" id="exp">🎞 Export dubbed video</button>
+            </span>
+          </h2>
+          <div class="list" id="list">
+          </div>
+          <p class="note" id="voiceNote">
+          </p>
+        </div>
+
+        <!-- Configuration card -->
+        <div class="card">
+          <div class="tabs">
+            <button class="on" data-tab="prov">
+              Providers
+            </button>
+            <button data-tab="pipe">
+              Pipeline
+            </button>
+            <button data-tab="subs">
+              Subtitles
+            </button>
+          </div>
+          <section class="panel" id="tab-prov">
+            <p class="note" style="margin:0 0 12px">
+              Add each key in its own box (＋ Add key). Keys are automatically verified with Google before adding.
             </p>
-            <div class="blog">
-              <div class="bh">
-                <span>Backend log</span>
-                <button type="button" id="blogclear">
-                  Clear
+            <div class="prov">
+              <div class="ph">
+                <label class="sw">
+                  <input type="checkbox" id="en-gemini" data-save="" checked="" />
+                  <b>Gemini</b>
+                </label>
+                <span class="tag">transcribe · translate · voice</span>
+                <a href="https://aistudio.google.com/apikey" rel="noopener" target="_blank">Get free key ↗</a>
+              </div>
+              <textarea id="key" data-save="" placeholder="AIza… (one per line)" spellcheck="false">
+                </textarea>
+              <div class="mrow">
+                <span>Models</span>
+                <button class="b" data-refresh="gemini">
+                  ↻ Load
                 </button>
               </div>
-              <div id="blogbody">
-              </div>
+              <textarea id="model" data-save="" spellcheck="false">gemini-3.6-flash
+gemini-3.5-flash
+gemini-3.5-flash-lite
+gemini-3-flash
+gemini-3.1-pro
+gemini-3.8-flash</textarea>
             </div>
-          </div>
-        </main>
-        <aside>
-          <!-- Dubbing result info placed in the right side beside video -->
-          <div class="card" id="resCard" hidden="">
-            <h2>
-              Khmer script
-              <span class="btns">
-                <button class="b" id="genv">🔊 Voice</button>
-                <button class="b" id="replay">▶ Replay</button>
-                <button class="b" id="dlaudio">⬇ Audio</button>
-                <button class="b" id="dl">⬇ .srt</button>
-                <button class="b p" id="exp">🎞 Export dubbed video</button>
-              </span>
-            </h2>
-            <div class="list" id="list">
-            </div>
-            <p class="note" id="voiceNote">
+            <p class="note" id="used">
             </p>
-          </div>
-
-          <!-- Configuration card -->
-          <div class="card">
-            <div class="tabs">
-              <button class="on" data-tab="prov">
-                Providers
-              </button>
-              <button data-tab="pipe">
-                Pipeline
-              </button>
-              <button data-tab="subs">
-                Subtitles
-              </button>
-            </div>
-            <section class="panel" id="tab-prov">
-              <p class="note" style="margin:0 0 12px">
-                Add each key in its own box (＋ Add key). Keys are automatically verified with Google before adding.
-              </p>
-              <div class="prov">
-                <div class="ph">
-                  <label class="sw">
-                    <input type="checkbox" id="en-gemini" data-save="" checked="" />
-                    <b>Gemini</b>
-                  </label>
-                  <span class="tag">transcribe · translate · voice</span>
-                  <a href="https://aistudio.google.com/apikey" rel="noopener" target="_blank">Get free key ↗</a>
-                </div>
-                <textarea id="key" data-save="" placeholder="AIza… (one per line)" spellcheck="false">
-                </textarea>
-                <div class="mrow">
-                  <span>Models</span>
-                  <button class="b" data-refresh="gemini">
-                    ↻ Load
-                  </button>
-                </div>
-                <textarea id="model" data-save="" spellcheck="false">gemini-2.0-flash
-gemini-2.0-flash-lite
-gemini-1.5-flash
-gemini-1.5-pro</textarea>
-              </div>
-              <p class="note" id="used">
-              </p>
-            </section>
-            <section class="panel" id="tab-pipe" hidden="">
-              <label class="f" for="voice">
-                Khmer voice
+          </section>
+          <section class="panel" id="tab-pipe" hidden="">
+            <label class="f" for="voice">
+              Khmer voice
+            </label>
+            <select id="voice" data-save="">
+              <option value="gemini">
+                Gemini voice (just open the page, works on any device, exportable)
+              </option>
+              <option value="edge">
+                Edge voice — Sreymom / Piseth (natural Khmer, exportable)
+              </option>
+              <option value="device">
+                This device’s Khmer voice (no export)
+              </option>
+            </select>
+            <div id="v-edge">
+              <label class="f" for="evoice">
+                Edge voice
               </label>
-              <select id="voice" data-save="">
-                <option value="gemini">
-                  Gemini voice (just open the page, works on any device, exportable)
-                </option>
-                <option value="edge">
-                  Edge voice — Sreymom / Piseth (natural Khmer, exportable)
-                </option>
-                <option value="device">
-                  This device’s Khmer voice (no export)
-                </option>
-              </select>
-              <div id="v-edge">
-                <label class="f" for="evoice">
-                  Edge voice
-                </label>
-                <div class="two">
-                  <select id="evoice" data-save="">
-                    <option value="km-KH-SreymomNeural">
-                      Sreymom (female)
-                    </option>
-                    <option value="km-KH-PisethNeural">
-                      Piseth (male)
-                    </option>
-                  </select>
-                  <input type="hidden" id="eurl" value="https://khmer-voice-1.onrender.com" />
-                </div>
-                <div hidden="" style="display:flex;gap:10px;align-items:center;margin-top:8px">
-                  <button class="b" id="etest">
-                    Test helper
-                  </button>
-                  <span class="note" id="etestmsg" style="margin:0">Paste your Worker link above, then press Test.</span>
-                </div>
-              </div>
-              <div id="v-gemini">
-                <label class="f" for="vname">
-                  Gemini voice style
-                </label>
-                <select id="vname" data-save="">
-                  <optgroup label="♀ Female">
-                    <option value="Zephyr">
-                      Zephyr · Female · Bright
-                    </option>
-                    <option value="Kore">
-                      Kore · Female · Firm
-                    </option>
-                    <option value="Leda">
-                      Leda · Female · Youthful
-                    </option>
-                    <option value="Aoede">
-                      Aoede · Female · Breezy
-                    </option>
-                    <option value="Callirrhoe">
-                      Callirrhoe · Female · Easy-going
-                    </option>
-                    <option value="Autonoe">
-                      Autonoe · Female · Bright
-                    </option>
-                    <option value="Despina">
-                      Despina · Female · Smooth
-                    </option>
-                    <option value="Erinome">
-                      Erinome · Female · Clear
-                    </option>
-                    <option value="Laomedeia">
-                      Laomedeia · Female · Upbeat
-                    </option>
-                    <option value="Achernar">
-                      Achernar · Female · Soft
-                    </option>
-                    <option value="Gacrux">
-                      Gacrux · Female · Mature
-                    </option>
-                    <option value="Pulcherrima">
-                      Pulcherrima · Female · Forward
-                    </option>
-                    <option value="Vindemiatrix">
-                      Vindemiatrix · Female · Gentle
-                    </option>
-                    <option value="Sulafat">
-                      Sulafat · Female · Warm
-                    </option>
-                  </optgroup>
-                  <optgroup label="♂ Male">
-                    <option value="Puck">
-                      Puck · Male · Upbeat
-                    </option>
-                    <option value="Charon">
-                      Charon · Male · Informative
-                    </option>
-                    <option value="Fenrir">
-                      Fenrir · Male · Excitable
-                    </option>
-                    <option value="Orus">
-                      Orus · Male · Firm
-                    </option>
-                    <option value="Enceladus">
-                      Enceladus · Male · Breathy
-                    </option>
-                    <option value="Iapetus">
-                      Iapetus · Male · Clear
-                    </option>
-                    <option value="Umbriel">
-                      Umbriel · Male · Easy-going
-                    </option>
-                    <option value="Algieba">
-                      Algieba · Male · Smooth
-                    </option>
-                    <option value="Algenib">
-                      Algenib · Male · Gravelly
-                    </option>
-                    <option value="Rasalgethi">
-                      Rasalgethi · Male · Informative
-                    </option>
-                    <option value="Alnilam">
-                      Alnilam · Male · Firm
-                    </option>
-                    <option value="Schedar">
-                      Schedar · Male · Even
-                    </option>
-                    <option value="Achird">
-                      Achird · Male · Friendly
-                    </option>
-                    <option value="Zubenelgenubi">
-                      Zubenelgenubi · Male · Casual
-                    </option>
-                    <option value="Sadachbia">
-                      Sadachbia · Male · Lively
-                    </option>
-                    <option value="Sadaltager">
-                      Sadaltager · Male · Knowledgeable
-                    </option>
-                  </optgroup>
+              <div class="two">
+                <select id="evoice" data-save="">
+                  <option value="km-KH-SreymomNeural">
+                    Sreymom (female)
+                  </option>
+                  <option value="km-KH-PisethNeural">
+                    Piseth (male)
+                  </option>
                 </select>
-                <p class="note">
-                  Gender labels are as commonly reported for these voices; the tone may sound a little
-                different in Khmer. Try one and press 🔊 Voice to hear it.
-                </p>
-                <label class="f" for="ttsmodel">
-                  Gemini voice models, in order
-                </label>
-                <textarea id="ttsmodel" data-save="" spellcheck="false">gemini-2.0-flash</textarea>
-                <p class="note">
-                  Nearby lines are grouped into larger requests to save free quota. Gemini voice models have
-                small free limits.
-                </p>
+                <input type="hidden" id="eurl" value="https://khmer-voice-1.onrender.com" />
               </div>
-            </section>
-            <section class="panel" id="tab-subs" hidden="">
-              <p class="note" style="margin:0 0 10px">
-                Optional: paste your Khmer subtitles (.srt) or plain Khmer text.
-              Transcription and translation are skipped completely: the text is used exactly as written and goes straight
-              to the voice. Plain lines are spread evenly across the video.
+              <div hidden="" style="display:flex;gap:10px;align-items:center;margin-top:8px">
+                <button class="b" id="etest">
+                  Test helper
+                </button>
+                <span class="note" id="etestmsg" style="margin:0">Paste your Worker link above, then press Test.</span>
+              </div>
+            </div>
+            <div id="v-gemini">
+              <label class="f" for="vname">
+                Gemini voice style
+              </label>
+              <select id="vname" data-save="">
+                <optgroup label="♀ Female">
+                  <option value="Zephyr">
+                    Zephyr · Female · Bright
+                  </option>
+                  <option value="Kore">
+                    Kore · Female · Firm
+                  </option>
+                  <option value="Leda">
+                    Leda · Female · Youthful
+                  </option>
+                  <option value="Aoede">
+                    Aoede · Female · Breezy
+                  </option>
+                  <option value="Callirrhoe">
+                    Callirrhoe · Female · Easy-going
+                  </option>
+                  <option value="Autonoe">
+                    Autonoe · Female · Bright
+                  </option>
+                  <option value="Despina">
+                    Despina · Female · Smooth
+                  </option>
+                  <option value="Erinome">
+                    Erinome · Female · Clear
+                  </option>
+                  <option value="Laomedeia">
+                    Laomedeia · Female · Upbeat
+                  </option>
+                  <option value="Achernar">
+                    Achernar · Female · Soft
+                  </option>
+                  <option value="Gacrux">
+                    Gacrux · Female · Mature
+                  </option>
+                  <option value="Pulcherrima">
+                    Pulcherrima · Female · Forward
+                  </option>
+                  <option value="Vindemiatrix">
+                    Vindemiatrix · Female · Gentle
+                  </option>
+                  <option value="Sulafat">
+                    Sulafat · Female · Warm
+                  </option>
+                </optgroup>
+                <optgroup label="♂ Male">
+                  <option value="Puck">
+                    Puck · Male · Upbeat
+                  </option>
+                  <option value="Charon">
+                    Charon · Male · Informative
+                  </option>
+                  <option value="Fenrir">
+                    Fenrir · Male · Excitable
+                  </option>
+                  <option value="Orus">
+                    Orus · Male · Firm
+                  </option>
+                  <option value="Enceladus">
+                    Enceladus · Male · Breathy
+                  </option>
+                  <option value="Iapetus">
+                    Iapetus · Male · Clear
+                  </option>
+                  <option value="Umbriel">
+                    Umbriel · Male · Easy-going
+                  </option>
+                  <option value="Algieba">
+                    Algieba · Male · Smooth
+                  </option>
+                  <option value="Algenib">
+                    Algenib · Male · Gravelly
+                  </option>
+                  <option value="Rasalgethi">
+                    Rasalgethi · Male · Informative
+                  </option>
+                  <option value="Alnilam">
+                    Alnilam · Male · Firm
+                  </option>
+                  <option value="Schedar">
+                    Schedar · Male · Even
+                  </option>
+                  <option value="Achird">
+                    Achird · Male · Friendly
+                  </option>
+                  <option value="Zubenelgenubi">
+                    Zubenelgenubi · Male · Casual
+                  </option>
+                  <option value="Sadachbia">
+                    Sadachbia · Male · Lively
+                  </option>
+                  <option value="Sadaltager">
+                    Sadaltager · Male · Knowledgeable
+                  </option>
+                </optgroup>
+              </select>
+              <p class="note">
+                Gender labels are as commonly reported for these voices; the tone may sound a little
+                different in Khmer. Try one and press 🔊 Voice to hear it.
               </p>
-              <input type="file" id="srt" accept=".srt,.vtt,.txt" style="font-size:13px" />
-              <textarea id="srtText" style="min-height:150px;margin-top:10px" placeholder="1
+              <label class="f" for="ttsmodel">
+                Gemini voice models, in order
+              </label>
+              <textarea id="ttsmodel" data-save="" spellcheck="false">gemini-3.6-flash
+gemini-3.5-flash
+gemini-3.5-flash-lite
+gemini-3-flash
+gemini-3.8-flash</textarea>
+              <p class="note">
+                High quality Gemini voice models for natural Khmer video dubbing. Each subtitle line is timed to match the video.
+              </p>
+            </div>
+          </section>
+          <section class="panel" id="tab-subs" hidden="">
+            <p class="note" style="margin:0 0 10px">
+              Optional: paste your Khmer subtitles (.srt) or plain Khmer text.
+              Transcription and translation are skipped completely: the text is used exactly as written and goes
+              straight
+              to the voice. Plain lines are spread evenly across the video.
+            </p>
+            <input type="file" id="srt" accept=".srt,.vtt,.txt" style="font-size:13px" />
+            <textarea id="srtText" style="min-height:150px;margin-top:10px" placeholder="1
 00:00:01,000 --> 00:00:03,500
 Hello everyone, welcome back.">
               </textarea>
-            </section>
-          </div>
-        </aside>
-      </div>
-    </div>
-    <p class="foot">
-      Made with ❤ for Khmer creators ·
-      <a id="donateLink">Buy me a coffee ☕</a>
-    </p>
-    <div class="mod" id="mod">
-      <div class="mbox">
-        <div class="big">
-          ☕
+          </section>
         </div>
-        <h3>
-          Support this project
-        </h3>
-        <p>
-          If Khmer Dubber saved you time, a small donation keeps it free and growing. Thank you!
-        </p>
-        <div class="merr" id="merr">
-        </div>
-        <a class="tg" id="tg" rel="noopener noreferrer" target="_blank">✈ Donate via Telegram</a>
-        <button class="mclose" id="mclose" type="button">
-          Maybe later
-        </button>
+      </aside>
+    </div>
+  </div>
+  <p class="foot">
+    Made with ❤ for Khmer creators ·
+    <a id="donateLink">Buy me a coffee ☕</a>
+  </p>
+  <div class="mod" id="mod">
+    <div class="mbox">
+      <div class="big">
+        ☕
       </div>
-    </div>
-    <div class="mod" id="xmod">
-      <div class="mbox">
-        <div class="big">
-          🎉
-        </div>
-        <h3>
-          Your Khmer dub is ready!
-        </h3>
-        <p id="xinfo">
-        </p>
-        <a class="tg" id="xopen" rel="noopener" target="_blank">▶ Open exported video</a>
-        <button class="b" id="xsave" type="button" style="width:100%;margin-top:10px">
-          ⬇ Save another copy
-        </button>
-        <p class="note" id="xwhere" style="margin-top:12px">
-        </p>
-        <button class="mclose" id="xclose" type="button">
-          Close
-        </button>
+      <h3>
+        Support this project
+      </h3>
+      <p>
+        If Khmer Dubber saved you time, a small donation keeps it free and growing. Thank you!
+      </p>
+      <div class="merr" id="merr">
       </div>
+      <a class="tg" id="tg" rel="noopener noreferrer" target="_blank">✈ Donate via Telegram</a>
+      <button class="mclose" id="mclose" type="button">
+        Maybe later
+      </button>
     </div>
-    <div class="toast" id="toast">
+  </div>
+  <div class="mod" id="xmod">
+    <div class="mbox">
+      <div class="big">
+        🎉
+      </div>
+      <h3>
+        Your Khmer dub is ready!
+      </h3>
+      <p id="xinfo">
+      </p>
+      <a class="tg" id="xopen" rel="noopener" target="_blank">▶ Open exported video</a>
+      <button class="b" id="xsave" type="button" style="width:100%;margin-top:10px">
+        ⬇ Save another copy
+      </button>
+      <p class="note" id="xwhere" style="margin-top:12px">
+      </p>
+      <button class="mclose" id="xclose" type="button">
+        Close
+      </button>
     </div>
-    <script>
-      // ================== OWNER SETTINGS ==================
+  </div>
+  <div class="toast" id="toast">
+  </div>
+  <script>
+    // ================== OWNER SETTINGS ==================
     // Put YOUR Telegram link here (e.g. https://t.me/yourname). Must start with https://t.me/
     const DONATE_TELEGRAM = 'https://t.me/donateTOmeta';
     // ====================================================
@@ -1129,16 +2276,18 @@ Hello everyone, welcome back.">
         const [a, e] = L[i].split('-->'); return { t: ts(a), e: ts(e), text: L.slice(i + 1).join(' ').replace(/<[^>]+>/g, '').trim() };
       }).filter(x => x && x.text);
     }
-    // Fit an imported SRT timeline proportionally when it exceeds the source video.
-    // This keeps every subtitle and preserves the relative gaps and pacing.
+    // Fit an imported SRT timeline: keep subtitle timings exact and clamp any line extending past the video
     function fitSrtToVideo() {
       const duration = Number(v.duration);
       if (!Number.isFinite(duration) || duration <= 0 || !segs.length) return false;
-      const last = Math.max(...segs.map(s => Math.max(Number(s.t) || 0, Number(s.e) || 0)));
-      if (last <= duration + 0.05) return false;
-      const scale = duration / last;
-      segs.forEach(s => { s.t = (Number(s.t) || 0) * scale; if (Number.isFinite(s.e)) s.e *= scale; });
-      blog('Adjusted subtitle timeline from ' + fmt(last).slice(3, 8) + ' to ' + fmt(duration).slice(3, 8) + ' to fit the ' + fmt(duration).slice(3, 8) + ' video. All ' + segs.length + ' subtitles are kept.', 'k');
+      let adjusted = 0;
+      segs.forEach(s => {
+        if (s.t < duration && Number.isFinite(s.e) && s.e > duration) {
+          s.e = duration;
+          adjusted++;
+        }
+      });
+      if (adjusted) blog('Adjusted ' + adjusted + ' subtitle(s) extending past the video end (' + fmt(duration).slice(3, 8) + ').', 'k');
       return true;
     }
     function parsePlain(t) {
@@ -1154,28 +2303,49 @@ Hello everyone, welcome back.">
     document.querySelectorAll('[data-save]').forEach(el => { const k = 'kd_' + el.id, c = el.type === 'checkbox'; try { const x = localStorage.getItem(k); if (x !== null) c ? el.checked = x === '1' : el.value = x } catch (_) { } el.addEventListener('input', () => { try { localStorage.setItem(k, c ? (el.checked ? '1' : '0') : el.value) } catch (_) { } }) });
     const lines = el => el.value.split(/[\s,]+/).filter(Boolean);
     const providers = () => keyList().length && $('en-gemini').checked ? ['gemini'] : [];
-    const AVAILABLE_MODELS = ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-flash', 'gemini-1.5-pro'];
+    const AVAILABLE_MODELS = [
+      'gemini-3.6-flash',
+      'gemini-3.5-flash',
+      'gemini-3.5-flash-lite',
+      'gemini-3-flash',
+      'gemini-3.1-pro',
+      'gemini-3.8-flash'
+    ];
+    const AVAILABLE_VOICE_MODELS = [
+      'gemini-3.6-flash',
+      'gemini-3.5-flash',
+      'gemini-3.5-flash-lite',
+      'gemini-3-flash',
+      'gemini-3.8-flash'
+    ];
     try {
-      ['model', 'ttsmodel'].forEach(id => {
-        const stored = localStorage.getItem('kd_' + id) || $(id).value || '';
-        const cleaned = stored.split(/[\s,]+/).map(s => s.trim()).filter(x => x && !/2\.5|3\.[5678]/.test(x));
-        const finalVal = (id === 'model') ? (cleaned.length ? cleaned : AVAILABLE_MODELS).join('\n') : (cleaned.length ? cleaned.join('\n') : 'gemini-2.0-flash');
-        $(id).value = finalVal;
-        localStorage.setItem('kd_' + id, finalVal);
-      });
-      localStorage.setItem('kd_modelv', '5');
-      try {
-        const o = JSON.parse(localStorage.getItem('kd_cool') || '{}');
-        let mod = false;
-        for (const k in o) { if (/2\.5|3\.[5678]/.test(k)) { delete o[k]; mod = true; } }
-        if (mod) localStorage.setItem('kd_cool', JSON.stringify(o));
-      } catch (_) { }
+      if (localStorage.getItem('kd_modelv') !== '10') {
+        ['model', 'ttsmodel'].forEach(id => {
+          const def = (id === 'model') ? AVAILABLE_MODELS : AVAILABLE_VOICE_MODELS;
+          $(id).value = def.join('\n');
+          localStorage.setItem('kd_' + id, $(id).value);
+        });
+        localStorage.setItem('kd_modelv', '10');
+      } else {
+        ['model', 'ttsmodel'].forEach(id => {
+          const stored = localStorage.getItem('kd_' + id) || $(id).value || '';
+          const cleaned = stored.split(/[\s,]+/).map(s => s.trim()).filter(Boolean);
+          const def = (id === 'model') ? AVAILABLE_MODELS : AVAILABLE_VOICE_MODELS;
+          const finalVal = cleaned.length ? cleaned.join('\n') : def.join('\n');
+          $(id).value = finalVal;
+          localStorage.setItem('kd_' + id, finalVal);
+        });
+      }
     } catch (_) { }
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     const keyList = () => [...new Set($('key').value.split(/[\s,]+/).filter(Boolean))];
     const modelList = () => {
-      const list = $('model').value.split(/[\s,]+/).map(s => s.trim()).filter(x => x && !/2\.5/.test(x));
+      const list = $('model').value.split(/[\s,]+/).map(s => s.trim()).filter(Boolean);
       return list.length ? list : AVAILABLE_MODELS;
+    };
+    const ttsModels = () => {
+      const list = $('ttsmodel').value.split(/[\s,]+/).map(s => s.trim()).filter(Boolean);
+      return list.length ? list : AVAILABLE_VOICE_MODELS;
     };
     // ---- per-key / per-model state (remembered across reloads) ----
     const cool = {}, dly = {}, keyBad = {}; window.paintKeys = () => { };
@@ -1207,9 +2377,12 @@ Hello everyone, welcome back.">
         return { ok: false, msg: 'Invalid format. Google Gemini keys start with AIzaSy…' };
       }
       try {
-        const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=1', {
-          headers: { 'x-goog-api-key': k }
-        });
+        let res = await fetch('https://generativelanguage.googleapis.com/v1beta/models?key=' + encodeURIComponent(k) + '&pageSize=1');
+        if (!res.ok) {
+          res = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=1', {
+            headers: { 'x-goog-api-key': k }
+          });
+        }
         if (res.ok) return { ok: true, msg: 'Valid Gemini key' };
         const j = await res.json().catch(() => ({}));
         const m = (j.error && j.error.message) || String(res.status);
@@ -1241,10 +2414,13 @@ Hello everyone, welcome back.">
       return out;
     }
     const tsAny = v => {
-      if (typeof v === 'number') return isFinite(v) ? v : NaN;
+      if (typeof v === 'number') return isFinite(v) ? (v > 10000 ? v / 1000 : v) : NaN;
       if (typeof v !== 'string') return NaN;
-      const s = v.trim().replace(',', '.');
-      if (/^\d+(\.\d+)?$/.test(s)) return parseFloat(s);
+      const s = v.trim().replace(',', '.').replace(/s$/i, '');
+      if (/^\d+(\.\d+)?$/.test(s)) {
+        const n = parseFloat(s);
+        return n > 10000 ? n / 1000 : n;
+      }
       const m = s.match(/^(?:(\d+):)?(\d+):(\d+(?:\.\d+)?)$/);
       return m ? (+(m[1] || 0)) * 3600 + (+m[2]) * 60 + parseFloat(m[3]) : NaN;
     };
@@ -1308,7 +2484,7 @@ Hello everyone, welcome back.">
           let r, j; const t0 = performance.now(), el = () => ((performance.now() - t0) / 1000).toFixed(1) + 's';
           blog('→ Gemini request: ' + who);
           try {
-            r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + m + ':generateContent', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': K[ki] }, body });
+            r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + m + ':generateContent?key=' + encodeURIComponent(K[ki]), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
             j = await r.json().catch(() => ({}));
           } catch (e) { lastErr = 'Network error'; setCool(id, Date.now() + 60000); blog('✕ ' + who + ' network error (' + el() + ') → resting 1 min', 'w'); continue }
           if (r.ok) {
@@ -1426,20 +2602,20 @@ Hello everyone, welcome back.">
     }
     function snapToSpeech(L) {
       const R = speechRuns(); if (!R || !R.length || !L.length) return 0;
-      const near = x => { let best = null, bd = 1e9; for (const r of R) { const d = x < r[0] ? r[0] - x : x > r[1] ? x - r[1] : 0; if (d < bd) { bd = d; best = r } } return bd <= 0.9 ? best : null };
+      const near = x => { let best = null, bd = 1e9; for (const r of R) { const d = x < r[0] ? r[0] - x : x > r[1] ? x - r[1] : 0; if (d < bd) { bd = d; best = r } } return bd <= 0.2 ? best : null };
       const o = L.map(s => ({ t: Number(s.t) || 0, e: Number(s.e) > s.t ? Number(s.e) : s.t + 2 })), used = new Set(), t2 = [], e2 = []; let moved = 0;
       o.forEach((s, i) => {
         let t = s.t; const r = near(t), pe = i ? e2[i - 1] || o[i - 1].e : 0;
-        if (r && !used.has(r) && r[0] >= pe - 0.1) { t = r[0]; used.add(r) }
+        if (r && !used.has(r) && r[0] >= pe - 0.05 && Math.abs(t - r[0]) <= 0.2) { t = r[0]; used.add(r) }
         t2.push(t); e2.push(s.e);
       });
       o.forEach((s, i) => {
         let e = s.e; const r = near(e - 0.02), nx = i + 1 < o.length ? t2[i + 1] : 1e9;
-        if (r && r[1] > t2[i] + 0.3 && nx >= r[1] - 0.25) e = r[1];
+        if (r && r[1] > t2[i] + 0.3 && nx >= r[1] - 0.15 && Math.abs(e - r[1]) <= 0.25) e = r[1];
         e = Math.max(t2[i] + 0.3, Math.min(e, nx - 0.02));
         e2[i] = e;
       });
-      L.forEach((s, i) => { if (Math.abs(s.t - t2[i]) > 0.05 || Math.abs((Number(s.e) || 0) - e2[i]) > 0.05) moved++; s.t = t2[i]; s.e = e2[i] });
+      L.forEach((s, i) => { if (Math.abs(s.t - t2[i]) > 0.04 || Math.abs((Number(s.e) || 0) - e2[i]) > 0.04) moved++; s.t = t2[i]; s.e = e2[i] });
       return moved;
     }
     function pauseNear(x, lo, hi, minT) {
@@ -1524,7 +2700,6 @@ Hello everyone, welcome back.">
     }
 
     // ---------- Gemini Khmer voice ----------
-    const ttsModels = () => $('ttsmodel').value.split(/[\s,]+/).filter(Boolean);
     function rawWav(bin, rate) {
       const o = new DataView(new ArrayBuffer(44)), w = (p, t) => [...t].forEach((c, i) => o.setUint8(p + i, c.charCodeAt(0)));
       w(0, 'RIFF'); o.setUint32(4, 36 + bin.length, true); w(8, 'WAVEfmt '); o.setUint32(16, 16, true); o.setUint16(20, 1, true); o.setUint16(22, 1, true);
@@ -1601,22 +2776,21 @@ Hello everyone, welcome back.">
       if (!keyList().length) throw new Error('no Gemini key added');
       const gen = { responseModalities: ['AUDIO'], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: $('vname').value } } } };
       segs.forEach(x => { x.skip = false; x.grp = undefined });
-      const G = []; let cur = null;
-      segs.forEach((x, i) => {
-        if (!x.km.trim()) return;
-        const prevEnd = cur ? (Number(segs[cur.idx[cur.idx.length - 1]].e) || segs[cur.idx[cur.idx.length - 1]].t) : 0;
-        if (cur && cur.text.length + x.km.length < 260 && x.t - cur.t < 14 && x.t - prevEnd < 1.0) { cur.text += ' ' + x.km; cur.idx.push(i) } else G.push(cur = { i, text: x.km, t: x.t, idx: [i] })
-      });
-      G.forEach(g => { g.idx.slice(1).forEach(j => segs[j].skip = true); segs[g.i].grp = g.idx[g.idx.length - 1] });
-      let n = 0;
-      for (const g of G) {
-        n++; if (segs[g.i].audio) continue;
-        log('Generating Khmer voice with Gemini… ' + n + '/' + G.length);
-        const d = await gem([{ text: g.text }], { models: ttsModels(), raw: true, gen, rounds: 2 });
-        const mt = d.mimeType || d.mime_type || '', bin = Uint8Array.from(atob(d.data), c => c.charCodeAt(0));
-        const isWav = /wav/i.test(mt) || String.fromCharCode(bin[0], bin[1], bin[2], bin[3]) === 'RIFF';
-        segs[g.i].audio = URL.createObjectURL(isWav ? new Blob([bin], { type: 'audio/wav' }) : rawWav(bin, +((mt.match(/rate=(\d+)/) || [])[1] || 24000)));
+      const todo = segs.map((s, i) => ({ s, i })).filter(x => x.s.km && x.s.km.trim() && !x.s.audio);
+      let n = 0; const failed = [];
+      for (const { s, i } of todo) {
+        n++;
+        log('Generating Khmer voice with Gemini… ' + n + '/' + todo.length + (failed.length ? ' (' + failed.length + ' failed)' : ''));
+        const txt = khClean(s.km) || s.km;
+        try {
+          const d = await gem([{ text: txt }], { models: ttsModels(), raw: true, gen, rounds: 3 });
+          const mt = d.mimeType || d.mime_type || '', bin = Uint8Array.from(atob(d.data), c => c.charCodeAt(0));
+          const isWav = /wav/i.test(mt) || String.fromCharCode(bin[0], bin[1], bin[2], bin[3]) === 'RIFF';
+          s.audio = URL.createObjectURL(isWav ? new Blob([bin], { type: 'audio/wav' }) : rawWav(bin, +((mt.match(/rate=(\d+)/) || [])[1] || 24000)));
+        } catch (e) { failed.push(i); blog('✕ line ' + (i + 1) + ' failed: ' + (e.message || e), 'w') }
       }
+      await measureAll();
+      if (failed.length) throw new Error(failed.length + ' of ' + todo.length + ' lines failed (line ' + failed.map(i => i + 1).sort((a, b) => a - b).join(', ') + '). Press 🔊 Voice to retry only those.');
     }
     async function makeVoices() {
       const sel = $('voice').value, order = [sel === 'edge' ? 'edge' : 'gemini'], errs = []; let first = true;
@@ -1711,23 +2885,34 @@ Hello everyone, welcome back.">
       await measureAll();
       const cl = segs.map((s, i) => ({ s, i })).filter(x => x.s.audio && x.s.dur), vd = Number.isFinite(v.duration) ? v.duration : 1e9, out = []; let fitted = 0;
       for (let k = 0; k < cl.length; k++) {
-        const { s, i } = cl[k], nx = cl[k + 1], last = segs[s.grp != null ? s.grp : i];
-        const cueEnd = Number(last.e) > s.t ? Number(last.e) : s.t + 2, nextSt = nx ? nx.s.t : vd;
-        const base = Math.max(0.4, Math.min(cueEnd - s.t, vd - s.t)), gap = Math.max(base, Math.min(nextSt - s.t - 0.08, vd - s.t));
-        const ideal = s.dur / base, floor = s.dur / gap;
-        const need = ideal <= 1.5 ? ideal : Math.max(floor, 1.5); let b = s.buf;
-        const hard = Math.max(0.2, vd - s.t - 0.05); let sp = need > 1.03 ? Math.min(2.2, need) : 1;
-        if (s.dur / sp > hard) sp = Math.min(3.2, s.dur / hard);
+        const { s, i } = cl[k], nx = cl[k + 1];
+        const cueEnd = Number(s.e) > s.t ? Number(s.e) : s.t + 2;
+        const nextSt = nx ? nx.s.t : vd;
+        const base = Math.max(0.3, Math.min(cueEnd - s.t, vd - s.t));
+        const gap = Math.max(base, Math.min(nextSt - s.t - 0.05, vd - s.t));
+        let b = s.buf;
+        let sp = 1;
+
+        if (s.dur <= base + 0.15) {
+          sp = 1;
+        } else if (s.dur <= gap) {
+          const ratio = s.dur / base;
+          sp = ratio > 1.25 ? Math.min(1.2, ratio) : 1;
+        } else {
+          sp = Math.min(2.0, s.dur / Math.max(0.3, gap - 0.04));
+        }
+
+        const hard = Math.max(0.2, gap);
         if (sp > 1.03) {
           const key = sp.toFixed(3);
           if (!s.fit || s.fit.k !== key || s.fit.src !== s.buf) s.fit = { k: key, src: s.buf, b: stretchBuf(s.buf, sp) };
           b = s.fit.b; fitted++;
-          if (need > 2.2) blog('⚠ line ' + (i + 1) + ' is much longer than its slot in the video (' + s.dur.toFixed(1) + 's voice vs ' + gap.toFixed(1) + 's) — shorten that Khmer line for a perfect fit.', 'w');
+          if (sp >= 2.0 && s.dur > gap) blog('⚠ line ' + (i + 1) + ' is long for its slot in the video (' + s.dur.toFixed(1) + 's vs ' + gap.toFixed(1) + 's). Consider shortening this line.', 'w');
         }
-        if (b.duration > hard) b = cutBuf(b, hard);
+        if (b.duration > hard + 0.02) b = cutBuf(b, hard);
         out.push({ i, st: s.t, b });
       }
-      blog('Timeline fit: ' + out.length + ' clips scheduled, ' + fitted + ' compressed (pitch kept) to match the original timing.', 'k');
+      blog('Timeline fit: ' + out.length + ' clips scheduled, ' + fitted + ' adjusted to match video timing.', 'k');
       return out;
     }
     function startClip(ctx, dest, p, delay, gain) {
@@ -1772,11 +2957,11 @@ Hello everyone, welcome back.">
       plan.forEach(p => {
         if (played.has(p.i)) return;
         if (c >= p.st + p.b.duration) { played.add(p.i); return }
-        if (p.st - c <= 0.35) { played.add(p.i); startClip(ctx, ctx.destination, p, p.st - c, 1.3) }
+        if (p.st - c <= 0.06 && c >= p.st - 0.1) { played.add(p.i); startClip(ctx, ctx.destination, p, p.st - c, 1.3) }
       });
       $('cap').textContent = cur;
     }
-    setInterval(tick, 40); v.addEventListener('timeupdate', tick);
+    setInterval(tick, 25); v.addEventListener('timeupdate', tick);
     v.addEventListener('seeked', () => { if (dubbing) { stopVoice(); played = new Set(); spoken = new Set(segs.map((s, i) => s.t < v.currentTime - 1 ? i : -1).filter(i => i >= 0)) } });
     v.addEventListener('pause', () => { try { speechSynthesis.pause() } catch (_) { } stopVoice(); played = new Set() });
     v.addEventListener('play', () => { try { speechSynthesis.resume() } catch (_) { } unlockAudio(); played = new Set() });
@@ -1785,130 +2970,262 @@ Hello everyone, welcome back.">
 
     // ---------- export dubbed video ----------
     let _mb = null;
-    const loadMuxer = () => _mb || (_mb = import('https://cdn.jsdelivr.net/npm/mediabunny@1.65.2/+esm').catch(e => { _mb = null; throw new Error('could not load the video encoder library — check your internet connection') }));
-    async function exportOffline(m, cfg, voice) {
+    const loadMuxer = () => _mb || (_mb = (async () => {
+      const urls = [
+        'https://cdn.jsdelivr.net/npm/mediabunny@1.65.0/+esm',
+        'https://cdn.jsdelivr.net/npm/mediabunny/+esm',
+        'https://esm.sh/mediabunny@1.65.0'
+      ];
+      for (const u of urls) {
+        try { return await import(u) } catch (_) { }
+      }
+      _mb = null;
+      throw new Error('could not load the video encoder library — check your internet connection');
+    })());
+    async function mixExportAudio(voice, dur, sr = 48000) {
+      log('Decoding and mixing audio tracks…');
+      let orig = null;
+      try { orig = await decode(_mac(), await curFile.arrayBuffer()) } catch (_) { blog('⚠ Original audio could not be decoded; exporting with the Khmer voice only.', 'w') }
+      const totalDur = Math.max(dur || 0, ev0dur(), voice ? voice.duration : 0, 1);
+      const oc = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(2, Math.max(1, Math.ceil(totalDur * sr)), sr);
+      if (orig) { const n = oc.createBufferSource(), g = oc.createGain(); n.buffer = orig; g.gain.value = $('vol').value / 100; n.connect(g); g.connect(oc.destination); n.start(0) }
+      if (voice) { const vs = oc.createBufferSource(); vs.buffer = voice; vs.connect(oc.destination); vs.start(0) }
+      return await oc.startRendering();
+    }
+    async function exportOffline(m, cfg, mixed) {
       const input = new m.Input({ source: new m.BlobSource(curFile), formats: m.ALL_FORMATS });
       try {
         const track = await input.getPrimaryVideoTrack();
         if (!track) throw new Error('no video track found in this file');
-        const dur = await track.computeDuration();
-        const sc = Math.min(1, 1920 / Math.max(track.displayWidth, track.displayHeight));
-        const W = Math.max(2, Math.round(track.displayWidth * sc / 2) * 2), H = Math.max(2, Math.round(track.displayHeight * sc / 2) * 2);
-        log('Decoding the original audio…');
-        let orig = null;
-        try { orig = await decode(_mac(), await curFile.arrayBuffer()) } catch (_) { blog('⚠ Original audio could not be decoded; exporting with the Khmer voice only.', 'w') }
-        const oc = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(2, Math.max(1, Math.ceil(dur * 44100)), 44100);
-        if (orig) { const n = oc.createBufferSource(), g = oc.createGain(); n.buffer = orig; g.gain.value = $('vol').value / 100; n.connect(g); g.connect(oc.destination); n.start(0) }
-        const vs = oc.createBufferSource(); vs.buffer = voice; vs.connect(oc.destination); vs.start(0);
-        const mixed = await oc.startRendering();
+        let dur = 0;
+        try { dur = await track.computeDuration() } catch (_) { }
+        if (!Number.isFinite(dur) || dur <= 0) dur = ev0dur() || mixed.duration || 1;
+        const t0 = performance.now();
+
+        // 1. Try fast lossless video packet remuxing first (no re-encoding needed)
+        if (m.EncodedPacketSink && m.EncodedVideoPacketSource && track.codec) {
+          try {
+            const fmt = cfg.fmt === 'mp4' ? new m.Mp4OutputFormat() : new m.WebMOutputFormat();
+            const supV = typeof fmt.getSupportedVideoCodecs === 'function' ? fmt.getSupportedVideoCodecs() : (cfg.fmt === 'mp4' ? ['avc', 'hevc', 'vp9', 'av1'] : ['vp8', 'vp9', 'av1']);
+            if (supV.includes(track.codec)) {
+              const decCfg = await track.getDecoderConfig();
+              if (decCfg) {
+                log('Exporting dubbed video (fast lossless stream copy)…');
+                const out = new m.Output({ format: fmt, target: new m.BufferTarget() });
+                const vsrc = new m.EncodedVideoPacketSource(track.codec);
+                out.addVideoTrack(vsrc, { rotation: track.rotation || 0 });
+                const asrc = new m.AudioBufferSource({ codec: cfg.acodec, bitrate: cfg.abitrate || 128000 });
+                out.addAudioTrack(asrc);
+                await out.start();
+                const psink = new m.EncodedPacketSink(track);
+                const meta = { decoderConfig: decCfg };
+                let pkts = 0, shift = 0;
+                for await (const pkt of psink.packets()) {
+                  if (pkts === 0 && pkt.timestamp < 0) shift = -pkt.timestamp;
+                  const ts = Math.max(0, pkt.timestamp + shift);
+                  const d = Number.isFinite(pkt.duration) && pkt.duration >= 0 ? pkt.duration : 0;
+                  const p2 = (shift !== 0 && pkt.clone) ? pkt.clone({ timestamp: ts, duration: d }) : pkt;
+                  await vsrc.add(p2, pkts === 0 ? meta : undefined);
+                  pkts++;
+                }
+                if (pkts > 0) {
+                  vsrc.close();
+                  await asrc.add(mixed);
+                  asrc.close();
+                  await out.finalize();
+                  blog('Fast lossless export: ' + pkts + ' video packets remuxed in ' + ((performance.now() - t0) / 1000).toFixed(1) + 's, duration ' + dur.toFixed(2) + 's.', 'k');
+                  return { blob: new Blob([out.target.buffer], { type: cfg.mime }), dur, ext: cfg.fmt };
+                }
+              }
+            }
+          } catch (remuxErr) {
+            blog('Fast stream copy skipped (' + (remuxErr.message || remuxErr) + ') — encoding video frames instead…');
+          }
+        }
+
+        // 2. Fallback: Decode and re-encode video frames via CanvasSource
+        const dw = track.displayWidth || v.videoWidth || 1280, dh = track.displayHeight || v.videoHeight || 720;
+        let W = 1280, H = 720;
+        for (const maxD of [1920, 1280, 960, 640]) {
+          const sc = Math.min(1, maxD / Math.max(dw, dh));
+          const tw = Math.max(2, Math.round(dw * sc / 2) * 2), th = Math.max(2, Math.round(dh * sc / 2) * 2);
+          W = tw; H = th;
+          if (!window.VideoEncoder) break;
+          try {
+            const sup = await VideoEncoder.isConfigSupported({ codec: cfg.vcodecFull || 'avc1.42002A', width: tw, height: th, bitrate: Math.round(Math.min(8e6, Math.max(2e6, tw * th * 3))), framerate: 30 });
+            if (sup && sup.supported) break;
+          } catch (_) { }
+        }
         const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g2 = cv.getContext('2d', { alpha: false });
         const out = new m.Output({ format: cfg.fmt === 'mp4' ? new m.Mp4OutputFormat() : new m.WebMOutputFormat(), target: new m.BufferTarget() });
-        const vsrc = new m.CanvasSource(cv, { codec: cfg.codec, bitrate: Math.round(Math.min(10e6, Math.max(4e6, W * H * 4))), keyFrameInterval: 2 });
+        const vsrc = new m.CanvasSource(cv, { codec: cfg.codec, bitrate: Math.round(Math.min(8e6, Math.max(2e6, W * H * 3))), keyFrameInterval: 2 });
         out.addVideoTrack(vsrc);
-        const asrc = new m.AudioBufferSource({ codec: cfg.acodec, bitrate: 192000 });
+        const asrc = new m.AudioBufferSource({ codec: cfg.acodec, bitrate: cfg.abitrate || 128000 });
         out.addAudioTrack(asrc);
         await out.start();
         const sink = new m.VideoSampleSink(track);
-        let frames = 0, lastLog = -1; const t0 = performance.now();
+        let frames = 0, lastLog = -1, lastTs = 0;
         for await (const s of sink.samples()) {
-          try { s.draw(g2, 0, 0, W, H); await vsrc.add(s.timestamp, s.duration) } finally { s.close() }
+          try {
+            const rawTs = Number.isFinite(s.timestamp) ? Math.max(0, s.timestamp) : lastTs;
+            const ts = frames === 0 ? rawTs : Math.max(lastTs + 0.0005, rawTs);
+            const d = Number.isFinite(s.duration) && s.duration > 0 ? s.duration : (1 / 30);
+            lastTs = ts;
+            s.draw(g2, 0, 0, W, H);
+            await vsrc.add(ts, d);
+          } finally { s.close() }
           frames++;
-          const sec = Math.floor(s.timestamp);
-          if (sec !== lastLog) { lastLog = sec; log('Exporting dubbed video… ' + Math.min(99, Math.round(s.timestamp / dur * 100)) + '% (' + frames + ' frames · frame-accurate, no need to keep this tab in front)') }
+          const sec = Math.floor(lastTs);
+          if (sec !== lastLog) { lastLog = sec; log('Exporting dubbed video… ' + Math.min(99, Math.round(lastTs / dur * 100)) + '% (' + frames + ' frames · frame-accurate, no need to keep this tab in front)') }
         }
         if (!frames) throw new Error('no video frames could be decoded from this file');
+        vsrc.close();
         await asrc.add(mixed);
+        asrc.close();
         await out.finalize();
         blog('Frame-accurate export: ' + frames + ' frames encoded in ' + ((performance.now() - t0) / 1000).toFixed(1) + 's, duration ' + dur.toFixed(2) + 's (same as the original).', 'k');
         return { blob: new Blob([out.target.buffer], { type: cfg.mime }), dur, ext: cfg.fmt };
       } finally { try { input.dispose() } catch (_) { } }
     }
     async function saveExport(blob, ext, handle) {
-      let where, name = 'khmer-dubbed.' + ext;
-      if (handle && handle.name.toLowerCase().endsWith('.' + ext)) { name = handle.name; const w = await handle.createWritable(); await w.write(blob); await w.close(); where = 'saved as “' + name + '” in the folder you chose' }
-      else { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.append(a); a.click(); a.remove(); where = 'saved as “' + name + '” in your browser’s Downloads folder' }
-      return { blob, name, where, handle: !!(handle && handle.name.toLowerCase().endsWith('.' + ext)) };
+      let where, name = 'khmer-dubbed.' + ext, usedHandle = false;
+      if (handle && handle.name.toLowerCase().endsWith('.' + ext)) {
+        try {
+          name = handle.name;
+          const w = await handle.createWritable();
+          await w.write(blob);
+          await w.close();
+          where = 'saved as “' + name + '” in the folder you chose';
+          usedHandle = true;
+        } catch (e) {
+          blog('⚠ Could not write directly to chosen file (' + (e.message || e) + '); saving to Downloads folder instead.', 'w');
+          usedHandle = false;
+        }
+      }
+      if (!usedHandle) {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.append(a);
+        a.click();
+        a.remove();
+        where = 'saved as “' + name + '” in your browser’s Downloads folder';
+      }
+      return { blob, name, where, handle: usedHandle };
+    }
+    async function detectOfflineConfig() {
+      if (!window.VideoEncoder || !window.AudioEncoder) return null;
+      const ok = (p, c) => p.isConfigSupported(c).then(x => !!(x && x.supported)).catch(() => false);
+      const vAvc = await ok(VideoEncoder, { codec: 'avc1.42002A', width: 1280, height: 720, bitrate: 4e6, framerate: 30 }) ? 'avc1.42002A'
+        : await ok(VideoEncoder, { codec: 'avc1.42E01E', width: 640, height: 360, bitrate: 2e6, framerate: 30 }) ? 'avc1.42E01E' : null;
+      const vVp9 = await ok(VideoEncoder, { codec: 'vp09.00.10.08', width: 1280, height: 720, bitrate: 4e6, framerate: 30 }) ? 'vp09.00.10.08' : null;
+      const vVp8 = await ok(VideoEncoder, { codec: 'vp8', width: 1280, height: 720, bitrate: 4e6, framerate: 30 }) ? 'vp8' : null;
+      for (const sr of [48000, 44100]) {
+        for (const br of [128000, 96000, 192000]) {
+          if (vAvc && await ok(AudioEncoder, { codec: 'mp4a.40.2', sampleRate: sr, numberOfChannels: 2, bitrate: br })) {
+            return { codec: 'avc', vcodecFull: vAvc, acodec: 'aac', asr: sr, abitrate: br, fmt: 'mp4', mime: 'video/mp4' };
+          }
+        }
+      }
+      if (await ok(AudioEncoder, { codec: 'opus', sampleRate: 48000, numberOfChannels: 2, bitrate: 128000 })) {
+        if (vAvc) return { codec: 'avc', vcodecFull: vAvc, acodec: 'opus', asr: 48000, abitrate: 128000, fmt: 'mp4', mime: 'video/mp4' };
+        if (vVp9) return { codec: 'vp9', vcodecFull: vVp9, acodec: 'opus', asr: 48000, abitrate: 128000, fmt: 'webm', mime: 'video/webm' };
+        if (vVp8) return { codec: 'vp8', vcodecFull: vVp8, acodec: 'opus', asr: 48000, abitrate: 128000, fmt: 'webm', mime: 'video/webm' };
+      }
+      return null;
     }
     async function exportDub() {
       segs = segs.filter(x => x.km && x.km.trim());
       if (!segs.length) return log('⚠ No translated Khmer speech available to store into video.');
-      const mime0 = window.MediaRecorder && ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm'].find(t => MediaRecorder.isTypeSupported(t));
-      let offCfg = null;
-      if (window.VideoEncoder && window.AudioEncoder) {
-        const ok = (p, c) => p.isConfigSupported(c).then(x => !!x.supported).catch(() => false);
-        if (await ok(VideoEncoder, { codec: 'avc1.42002A', width: 1280, height: 720, bitrate: 5e6, framerate: 30 }) && await ok(AudioEncoder, { codec: 'mp4a.40.2', sampleRate: 44100, numberOfChannels: 2, bitrate: 192000 })) offCfg = { codec: 'avc', acodec: 'aac', fmt: 'mp4', mime: 'video/mp4' };
-        else if (await ok(VideoEncoder, { codec: 'vp09.00.10.08', width: 1280, height: 720, bitrate: 5e6, framerate: 30 }) && await ok(AudioEncoder, { codec: 'opus', sampleRate: 48000, numberOfChannels: 2, bitrate: 192000 })) offCfg = { codec: 'vp9', acodec: 'opus', fmt: 'webm', mime: 'video/webm' };
-      }
+      const mime0 = window.MediaRecorder && ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4;codecs=avc1.42E01E,opus', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'].find(t => { try { return MediaRecorder.isTypeSupported(t) } catch (_) { return false } });
+      const offCfg = await detectOfflineConfig();
       if (!offCfg && (!mime0 || !HTMLCanvasElement.prototype.captureStream)) return log('⚠ This browser can’t export video (iPhone/Safari can’t). Use Chrome or Edge on a computer or on Android, or use ▶ Replay and ⬇ .srt here.');
-      const ext0 = offCfg ? offCfg.fmt : mime0.includes('mp4') ? 'mp4' : 'webm'; let handle = null;
-      if (window.showSaveFilePicker) { try { handle = await showSaveFilePicker({ suggestedName: 'khmer-dubbed.' + ext0, types: [{ description: ext0.toUpperCase() + ' video', accept: { [offCfg ? offCfg.mime : mime0.split(';')[0]]: ['.' + ext0] } }] }) } catch (e) { if (e && e.name === 'AbortError') return log('Export cancelled.'); handle = null } }
-      let clips = segs.map(x => ({ t: x.t, u: x.audio })).filter(c => c.u);
-      if (!clips.length) {
-        if ($('voice').value === 'device') return log('⚠ Device voices can’t be recorded. Choose Edge or Gemini voice in the Pipeline tab, then export.');
+      const ext0 = offCfg ? offCfg.fmt : mime0.includes('mp4') ? 'mp4' : 'webm';
+      if ($('genv').disabled) { log('Waiting for the running voice generation to finish before exporting…'); while ($('genv').disabled) await sleep(500) }
+      const missing = () => segs.map((x, i) => ({ x, i })).filter(o => !o.x.audio && !o.x.skip && khClean(o.x.km));
+      if (missing().length) {
+        if ($('voice').value === 'device') return log('⚠ ' + missing().length + ' line(s) have no recorded voice (line ' + missing().map(o => o.i + 1).join(', ') + '). Device voices can’t be recorded, so the exported video would be silent there. Choose Edge or Gemini voice in the Pipeline tab, then export.');
         $('exp').disabled = true;
-        try { log('No voice audio yet, generating it first…'); await genVoice() } catch (e) { $('exp').disabled = false; return log('⚠ Voice generation failed: ' + e.message) }
-        $('exp').disabled = false; clips = segs.map(x => ({ t: x.t, u: x.audio })).filter(c => c.u);
-        if (!clips.length) return log('⚠ No voice audio was produced.');
+        log('Generating voice for ' + missing().length + ' line(s) that would be silent in the export…');
+        try { await genVoice() } catch (e) { blog('⚠ Voice generation reported: ' + (e.message || e), 'w') }
+        $('exp').disabled = false; await measureAll();
+        const left = segs.map((x, i) => ({ x, i })).filter(o => (!o.x.audio || !o.x.dur) && !o.x.skip && khClean(o.x.km));
+        if (left.length && !segs.some(x => x.audio && x.dur)) return log('⚠ Export stopped: no voice audio could be generated. Press 🔊 Voice to retry, or switch to Edge voice, then export again.');
+        if (left.length) blog('⚠ ' + left.length + ' line(s) have no voice audio (line ' + left.map(o => o.i + 1).join(', ') + ') and will be silent in the exported video.', 'w');
       }
+      await measureAll();
+      const clips = segs.map(x => ({ t: x.t, u: x.audio })).filter(c => c.u);
+      if (!clips.length) return log('⚠ No voice audio was produced.');
+      let handle = null;
+      if (window.showSaveFilePicker) { try { handle = await showSaveFilePicker({ suggestedName: 'khmer-dubbed.' + ext0, types: [{ description: ext0.toUpperCase() + ' video', accept: { [offCfg ? offCfg.mime : mime0.split(';')[0]]: ['.' + ext0] } }] }) } catch (e) { if (e && e.name === 'AbortError') return log('Export cancelled.'); handle = null } }
       const btn = $('exp'); busy(true, 'export'); btn.disabled = true; $('replay').disabled = true; $('go').disabled = true;
       v.pause(); stopVoice(); dubbing = false;
       let ac = null, ev, drv, drw, rec, result = null;
       try {
         log('Preparing audio…');
         const voice = await mergeVoice(await buildPlan(), ev0dur());
+        const targetSr = (offCfg && offCfg.asr) || 48000;
+        const mixed = await mixExportAudio(voice, ev0dur(), targetSr);
         blog('Export: ' + clips.length + ' voice clips ready, video ' + (v.duration || 0).toFixed(1) + 's, format ' + (offCfg ? offCfg.mime + ' (frame-accurate)' : mime0.split(';')[0] + ' (real-time)'));
+        let rawExport = null;
         if (offCfg) {
           try {
             log('Loading the frame-accurate exporter…');
-            const r = await exportOffline(await loadMuxer(), offCfg, voice);
-            result = await saveExport(r.blob, r.ext, handle); result.dur = r.dur;
-          } catch (e) { blog('⚠ Frame-accurate export unavailable (' + (e.message || e) + ') — using real-time recording instead.', 'w'); result = null }
+            rawExport = await exportOffline(await loadMuxer(), offCfg, mixed);
+          } catch (e) { blog('⚠ Frame-accurate export unavailable (' + (e.message || e) + ') — using real-time recording instead.', 'w'); rawExport = null }
         }
-        if (!result) {
-        if (!mime0 || !HTMLCanvasElement.prototype.captureStream) throw new Error('this browser can’t record video');
-        ac = new (window.AudioContext || window.webkitAudioContext)();
-        const mbuf = ac.createBuffer(1, voice.length, voice.sampleRate); mbuf.getChannelData(0).set(voice.getChannelData(0));
-        ev = document.createElement('video'); ev.src = v.src; ev.playsInline = true;
-        ev.style.cssText = 'position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:200px;max-height:200px;border-radius:12px;z-index:45;box-shadow:0 8px 30px rgba(0,0,0,.4);pointer-events:none;background:#000'; document.body.append(ev);
-        await new Promise((r, j) => { ev.onloadedmetadata = r; ev.onerror = () => j(new Error('Could not open the video for export.')); ev.load() });
-        const W0 = ev.videoWidth || 1280, H0 = ev.videoHeight || 720, sc = Math.min(1, 1280 / Math.max(W0, H0)), W = Math.max(2, Math.round(W0 * sc / 2) * 2), H = Math.max(2, Math.round(H0 * sc / 2) * 2);
-        const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g2 = cv.getContext('2d', { alpha: false });
-        const paint = () => { try { g2.drawImage(ev, 0, 0, W, H) } catch (_) { } };
-        const dest = ac.createMediaStreamDestination(), og = ac.createGain(); og.gain.value = $('vol').value / 100;
-        ac.createMediaElementSource(ev).connect(og); og.connect(dest);
-        let cs = cv.captureStream(0), vt = cs.getVideoTracks()[0]; const manual = typeof vt.requestFrame === 'function';
-        if (!manual) { cs = cv.captureStream(30); vt = cs.getVideoTracks()[0] }
-        let lastP = 0; const frame = () => { paint(); lastP = performance.now(); if (manual) vt.requestFrame() };
-        const stream = new MediaStream([vt, ...dest.stream.getAudioTracks()]);
-        rec = new MediaRecorder(stream, { mimeType: mime0, videoBitsPerSecond: 5e6, audioBitsPerSecond: 192000 }); const chunks = [];
-        rec.ondataavailable = e => e.data.size && chunks.push(e.data);
-        const stopped = new Promise(r => rec.onstop = r);
-        await ac.resume(); ev.currentTime = 0; await ev.play(); frame(); drw = setInterval(() => { if (performance.now() - lastP >= 28) frame() }, 15);
-        if (ev.requestVideoFrameCallback) { const cb = () => { frame(); try { ev.requestVideoFrameCallback(cb) } catch (_) { } }; ev.requestVideoFrameCallback(cb) }
-        rec.start(1000);
-        const vs = ac.createBufferSource(); vs.buffer = mbuf; vs.connect(dest); active.add(vs);
-        vs.start(0, Math.min(ev.currentTime, Math.max(0, mbuf.duration - 0.01)));
-        ev.ontimeupdate = () => log('Exporting dubbed video… ' + Math.round(ev.currentTime) + 's / ' + Math.round(ev.duration) + 's (real time, keep this tab open and in front)');
-        await new Promise((res, rej) => {
-          let lastT = -1, lastChange = Date.now();
-          const watch = setInterval(() => {
-            if (ev.currentTime !== lastT) { lastT = ev.currentTime; lastChange = Date.now() }
-            else if (Date.now() - lastChange > 10000) { clearInterval(watch); rej(new Error('The video stopped playing during export. Keep this tab visible and try again.')) }
-          }, 1000);
-          const done = fn => (...a) => { clearInterval(watch); fn(...a) };
-          ev.onended = done(res);
-          ev.onerror = done(() => rej(new Error('The video could not be decoded during export.')));
-          rec.onerror = done(e => rej(new Error('Recorder error: ' + ((e.error && e.error.message) || e.error || 'unknown'))));
-        });
-        clearInterval(drv); clearInterval(drw);
-        active.forEach(a => { a.onended = null; try { a.stop() } catch (_) { } }); active.clear();
-        rec.stop(); await stopped;
-        const blob = new Blob(chunks, { type: mime0.split(';')[0] });
-        const probe = document.createElement('video'); probe.muted = true; probe.src = URL.createObjectURL(blob);
-        const pw = await new Promise(res => { const to = setTimeout(() => res(0), 8000); probe.onloadedmetadata = () => { clearTimeout(to); res(probe.videoWidth) }; probe.onerror = () => { clearTimeout(to); res(0) }; probe.load() });
-        URL.revokeObjectURL(probe.src);
-        if (!pw) throw new Error('The browser recorded no video frames. Keep this tab visible and in front, then try again (Chrome or Edge on a computer work best).');
-        result = await saveExport(blob, mime0.includes('mp4') ? 'mp4' : 'webm', handle); result.dur = ev.duration;
+        if (rawExport) {
+          result = await saveExport(rawExport.blob, rawExport.ext, handle);
+          result.dur = rawExport.dur;
+        } else {
+          if (!mime0 || !HTMLCanvasElement.prototype.captureStream) throw new Error('this browser can’t record video');
+          ac = new (window.AudioContext || window.webkitAudioContext)();
+          ev = document.createElement('video'); ev.src = v.src; ev.playsInline = true; ev.muted = true;
+          ev.style.cssText = 'position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:200px;max-height:200px;border-radius:12px;z-index:45;box-shadow:0 8px 30px rgba(0,0,0,.4);pointer-events:none;background:#000'; document.body.append(ev);
+          await new Promise((r, j) => { ev.onloadedmetadata = r; ev.onerror = () => j(new Error('Could not open the video for export.')); ev.load() });
+          const W0 = ev.videoWidth || 1280, H0 = ev.videoHeight || 720, sc = Math.min(1, 1280 / Math.max(W0, H0)), W = Math.max(2, Math.round(W0 * sc / 2) * 2), H = Math.max(2, Math.round(H0 * sc / 2) * 2);
+          const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g2 = cv.getContext('2d', { alpha: false });
+          const paint = () => { try { g2.drawImage(ev, 0, 0, W, H) } catch (_) { } };
+          paint();
+          const dest = ac.createMediaStreamDestination();
+          const mbuf = ac.createBuffer(mixed.numberOfChannels, mixed.length, mixed.sampleRate);
+          for (let ch = 0; ch < mixed.numberOfChannels; ch++) mbuf.getChannelData(ch).set(mixed.getChannelData(ch));
+          const cs = cv.captureStream(30), vt = cs.getVideoTracks()[0];
+          let lastP = 0; const frame = () => { paint(); lastP = performance.now(); if (vt && typeof vt.requestFrame === 'function') try { vt.requestFrame() } catch (_) { } };
+          const stream = new MediaStream([vt, ...dest.stream.getAudioTracks()]);
+          try {
+            rec = new MediaRecorder(stream, { mimeType: mime0, videoBitsPerSecond: 5e6, audioBitsPerSecond: 128000 });
+          } catch (_) {
+            rec = new MediaRecorder(stream, { mimeType: mime0 });
+          }
+          const chunks = [];
+          rec.ondataavailable = e => e.data && e.data.size && chunks.push(e.data);
+          const stopped = new Promise(r => rec.onstop = r);
+          await ac.resume(); ev.currentTime = 0; frame();
+          rec.start(500);
+          await ev.play();
+          drw = setInterval(() => { if (performance.now() - lastP >= 28) frame() }, 16);
+          if (ev.requestVideoFrameCallback) { const cb = () => { frame(); try { ev.requestVideoFrameCallback(cb) } catch (_) { } }; ev.requestVideoFrameCallback(cb) }
+          const vs = ac.createBufferSource(); vs.buffer = mbuf; vs.connect(dest); active.add(vs);
+          vs.start(0, Math.min(ev.currentTime, Math.max(0, mbuf.duration - 0.01)));
+          ev.ontimeupdate = () => log('Exporting dubbed video… ' + Math.round(ev.currentTime) + 's / ' + Math.round(ev.duration) + 's (real time, keep this tab open and in front)');
+          await new Promise((res, rej) => {
+            let lastT = -1, lastChange = Date.now();
+            const watch = setInterval(() => {
+              if (ev.currentTime !== lastT) { lastT = ev.currentTime; lastChange = Date.now() }
+              else if (Date.now() - lastChange > 10000) { clearInterval(watch); rej(new Error('The video stopped playing during export. Keep this tab visible and try again.')) }
+            }, 1000);
+            const done = fn => (...a) => { clearInterval(watch); fn(...a) };
+            ev.onended = done(res);
+            ev.onerror = done(() => rej(new Error('The video could not be decoded during export.')));
+            rec.onerror = done(e => rej(new Error('Recorder error: ' + ((e.error && e.error.message) || e.error || 'unknown'))));
+          });
+          clearInterval(drv); clearInterval(drw);
+          active.forEach(a => { a.onended = null; try { a.stop() } catch (_) { } }); active.clear();
+          rec.stop(); await stopped;
+          const blob = new Blob(chunks, { type: mime0.split(';')[0] });
+          if (blob.size < 1024) throw new Error('The browser recorded no video frames. Keep this tab visible and in front, then try again (Chrome or Edge on a computer work best).');
+          result = await saveExport(blob, mime0.includes('mp4') ? 'mp4' : 'webm', handle); result.dur = ev.duration || ev0dur();
         }
       } catch (e) { log('⚠ Export failed: ' + (e && e.name ? e.name + ' – ' : '') + (e.message || e)); try { blog(String(e && e.stack || e).split('\n').slice(0, 4).join(' | '), 'w') } catch (_) { } }
       active.forEach(a => { a.onended = null; try { a.stop() } catch (_) { } }); active.clear();
@@ -1948,7 +3265,7 @@ Hello everyone, welcome back.">
     const step = (n, st) => { if (st === 'on') window.__stage = +n; $('s' + n).className = 's ' + st; if (st === 'done') $('bar').style.width = (n / 3 * 100) + '%'; else if (st === 'on') $('bar').style.width = Math.max(4, (n - 1) / 3 * 100 + 4) + '%' };
     $('go').onclick = async () => {
       unlockAudio();
-      $('go').disabled = true; $('resCard').hidden = true; busy(true); ['s1', 's2', 's3'].forEach(i => step(i.slice(1), '')); $('bar').style.width = '0%';
+      $('go').disabled = true; $('resCard').hidden = true; busy(true);['s1', 's2', 's3'].forEach(i => step(i.slice(1), '')); $('bar').style.width = '0%';
       try {
         const pasted = $('srtText').value.trim();
         if (!pasted && !keyList().length) throw new Error('Add a Gemini API key first (Providers tab), or paste your Khmer subtitles in the Subtitles tab.');
@@ -1973,7 +3290,7 @@ Hello everyone, welcome back.">
         if (segs.some(x => !x.km)) await translate();
         segs = segs.filter(s => s.km && s.km.trim() && (pasted || s.km !== s.text));
         if (!segs.length) throw new Error('Translation incomplete. No translated Khmer speech to store into video.');
-        await refineTiming();
+        if (!pasted) await refineTiming();
         { const n0 = segs.length; segs = splitLong(segs); if (segs.length !== n0) blog('Split long lines: ' + n0 + ' → ' + segs.length + ' lines (each short enough for the voice)', 'k') }
         step(2, 'done'); step(3, 'on');
         let vnote = '';
@@ -1999,18 +3316,36 @@ Hello everyone, welcome back.">
     document.querySelectorAll('[data-refresh]').forEach(b => b.onclick = async () => {
       const w = b.dataset.refresh, old = b.textContent; b.textContent = '…';
       try {
-        {
-          if (!keyList().length) throw 0;
-          const j = await (await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200', { headers: { 'x-goog-api-key': keyList()[0] } })).json();
-          const all = (j.models || []).filter(m => (m.supportedGenerationMethods || []).includes('generateContent')).map(m => m.name.replace('models/', ''));
-          const valid = all.filter(i => /flash|pro/.test(i) && !/tts|image|live|audio|embed|robotics|computer|exp|2\.5/.test(i));
-          setList('model', valid.length ? valid.slice(0, 6) : AVAILABLE_MODELS);
-          const tts = all.filter(i => /tts/.test(i) && !/2\.5/.test(i));
-          setList('ttsmodel', tts.length ? tts.slice(0, 4) : ['gemini-2.0-flash']);
+        const keys = keyList();
+        if (!keys.length) throw 0;
+        let j = null;
+        for (const k of keys) {
+          try {
+            let res = await fetch('https://generativelanguage.googleapis.com/v1beta/models?key=' + encodeURIComponent(k) + '&pageSize=100');
+            if (!res.ok) {
+              res = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=100', { headers: { 'x-goog-api-key': k } });
+            }
+            if (res.ok) {
+              const data = await res.json();
+              if (data && data.models && data.models.length) { j = data; break; }
+            }
+          } catch (_) { }
         }
-        b.textContent = '✓ Loaded';
-      } catch (e) { b.textContent = e === 0 ? 'Add a key first' : '⚠ Failed' }
-      setTimeout(() => b.textContent = old, 2200);
+        if (!j || !j.models) throw new Error('Failed to load models. Check your API key and connection.');
+        const all = (j.models || []).filter(m => (m.supportedGenerationMethods || []).includes('generateContent')).map(m => m.name.replace('models/', ''));
+        const allowed = new Set(AVAILABLE_MODELS);
+        const allowedVoice = new Set(AVAILABLE_VOICE_MODELS);
+        const found = all.filter(i => allowed.has(i));
+        setList('model', found.length ? found : AVAILABLE_MODELS);
+        const tts = all.filter(i => allowedVoice.has(i));
+        setList('ttsmodel', tts.length ? tts : AVAILABLE_VOICE_MODELS);
+        b.textContent = '✓ Loaded (' + (found.length || AVAILABLE_MODELS.length) + ')';
+        toast('✓ Loaded ' + (found.length || AVAILABLE_MODELS.length) + ' models');
+      } catch (e) {
+        b.textContent = e === 0 ? 'Add a key first' : '⚠ Failed';
+        toast(e === 0 ? 'Add a Gemini key first' : (e.message || 'Failed to load models'));
+      }
+      setTimeout(() => b.textContent = old, 2500);
     });
 
     $('etest').onclick = async () => {
@@ -2034,7 +3369,7 @@ Hello everyone, welcome back.">
         chk.disabled = true; blog('Checking ' + K.length + ' key(s) with ' + M[0] + '…');
         for (let ki = 0; ki < K.length; ki++) {
           const who = 'key ' + (ki + 1) + '/' + K.length, id = M[0] + '|' + K[ki], t0 = performance.now(); let r, j;
-          try { r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + M[0] + ':generateContent', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': K[ki] }, body: JSON.stringify({ contents: [{ parts: [{ text: 'hi' }] }], generationConfig: { maxOutputTokens: 5 } }) }); j = await r.json().catch(() => ({})) }
+          try { r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + M[0] + ':generateContent?key=' + encodeURIComponent(K[ki]), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: 'hi' }] }], generationConfig: { maxOutputTokens: 5 } }) }); j = await r.json().catch(() => ({})) }
           catch (_) { setCool(id, Date.now() + 60000); blog('✕ ' + who + ': network error → resting 1 min', 'w'); paint(); continue }
           const el = ((performance.now() - t0) / 1000).toFixed(1) + 's', msg = (j.error && j.error.message) || String(r.status);
           if (r.ok) { delete cool[id]; delete dly[id]; delete keyBad[K[ki]]; setCool(id, 0); blog('✓ ' + who + ': ready (' + el + ')', 'k') }
@@ -2104,7 +3439,7 @@ Hello everyone, welcome back.">
         const r = document.createElement('div'), n = document.createElement('span'), i = document.createElement('input'), x = document.createElement('button');
         r.className = 'kr'; i.type = 'text'; i.className = show ? '' : 'mask'; i.value = v || ''; i.placeholder = ph; i.autocomplete = 'off'; i.spellcheck = false;
         x.type = 'button'; x.className = 'kx'; x.textContent = '✕'; x.title = 'Remove this key'; const ks = document.createElement('span'); ks.className = 'ks'; ks.hidden = true;
-        
+
         i.onchange = async () => {
           if (i.value.trim()) {
             await validateAndApply(i, i.value.trim(), r);
@@ -2223,6 +3558,7 @@ Hello everyone, welcome back.">
         if (d !== open) { open = d; g.style.display = d ? 'grid' : 'none' }
       }, 700);
     })();
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
