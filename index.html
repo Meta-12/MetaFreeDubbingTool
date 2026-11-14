@@ -94,9 +94,24 @@
               🔉 Original audio
               <input type="range" id="vol" min="0" max="100" value="0" data-save="" />
             </label>
-            <button class="cta" id="go" disabled="">
-              ✨ Dub to Khmer
-            </button>
+            <div class="cta-split" id="goWrap">
+              <button class="cta" id="go" disabled="" type="button">
+                ✨ Dub to Khmer
+              </button>
+              <button class="cta-mode" id="goModeBtn" disabled="" type="button" title="Choose Full Dub or Translate Only">
+                <span id="goModeLbl">Full Dub</span> ▾
+              </button>
+              <div class="cta-menu" id="goMenu" hidden="">
+                <button type="button" data-mode="all" class="on">
+                  <b>✨ Dub All Process</b>
+                  <small>Transcribe → Translate → Auto Piseth/Sreymom voice & play</small>
+                </button>
+                <button type="button" data-mode="translate">
+                  <b>📝 Translate Only</b>
+                  <small>Transcribe & translate first so you can edit subtitles & gender before audio</small>
+                </button>
+              </div>
+            </div>
           </div>
           <div class="track">
             <i id="bar"></i>
@@ -163,6 +178,9 @@
               <button class="b p" id="exp">🎞 Export dubbed video</button>
             </span>
           </h2>
+          <div class="edit-hint" id="editHint" hidden="">
+            <span>✎ Edit Khmer text or click <b>♂ Piseth</b> / <b>♀ Sreymom</b> on any line, then press <b>🔊 Generate Audio</b>.</span>
+          </div>
           <div class="list" id="list">
           </div>
           <p class="note" id="voiceNote">
@@ -255,11 +273,14 @@ gemini-1.5-pro-latest</textarea>
               </label>
               <div class="two">
                 <select id="evoice" data-save="">
-                  <option value="km-KH-PisethNeural" selected="">
-                    Piseth (male)
+                  <option value="auto" selected="">
+                    Auto from subtitle gender (♂ Piseth / ♀ Sreymom)
+                  </option>
+                  <option value="km-KH-PisethNeural">
+                    Piseth (male only)
                   </option>
                   <option value="km-KH-SreymomNeural">
-                    Sreymom (female)
+                    Sreymom (female only)
                   </option>
                 </select>
                 <input type="hidden" id="eurl" value="https://khmer-voice-1.onrender.com" />
@@ -453,6 +474,40 @@ Hello everyone, welcome back.">
       <button class="mclose" id="xclose" type="button">
         Close
       </button>
+    </div>
+  </div>
+  <div class="exp-ov" id="expOv" aria-live="polite">
+    <div class="exp-card">
+      <div class="exp-top">
+        <div class="exp-visual" aria-hidden="true">
+          <div class="exp-reel">
+            <div class="exp-reel-ring"></div>
+            <div class="exp-spokes"></div>
+            <div class="exp-hub">HD</div>
+          </div>
+          <div class="exp-strip">
+            <div class="exp-frames">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="exp-scan"></div>
+          </div>
+        </div>
+        <div class="exp-eq" aria-hidden="true">
+          <b></b><b></b><b></b><b></b><b></b><b></b>
+        </div>
+      </div>
+      <div class="bm">
+        <div class="stage-tag">
+          <span class="live-dot"></span>
+          <span id="expstage">Video Encoder Pipeline 🎞️</span>
+        </div>
+        <div class="bt" id="expbt">Encoding high-definition video</div>
+        <div class="bs" id="expbs">Rendering video: 0:00 · please keep this tab active</div>
+        <div class="exp-prog">
+          <div class="exp-bar-wrap"><i id="expbar"></i></div>
+          <span class="exp-pct" id="exppct">0%</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="toast" id="toast">
